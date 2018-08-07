@@ -13,6 +13,7 @@ import by.training.hotel.service.util.PageCountDeterminant;
 import by.training.hotel.service.validation.BookingValidator;
 import by.training.hotel.service.validation.CommonValidator;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -98,7 +99,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public synchronized CommonDTO<Booking> getBookingsForView(int pageNumber, int itemsPerPage) throws ServiceException{
 
-        CommonDTO<Booking> bookingsForDisplay = new CommonDTO<>();
+        CommonDTO<Booking> bookingsForView = new CommonDTO<>();
 
         int start = (pageNumber - 1) * itemsPerPage;
 
@@ -107,13 +108,43 @@ public class BookingServiceImpl implements BookingService {
             int bookingCount = bookingDao.getTotalCountOfBookings();
             int pageCount = PageCountDeterminant.definePageCount(bookingCount, itemsPerPage);
 
-            bookingsForDisplay.setEntityList(bookingList);
-            bookingsForDisplay.setPagesCount(pageCount);
+            bookingsForView.setEntityList(bookingList);
+            bookingsForView.setPagesCount(pageCount);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
 
-        return bookingsForDisplay;
+        return bookingsForView;
+    }
+
+    @Override
+    public synchronized CommonDTO<Booking> getBookingForView(String strBookingId) throws ServiceException{
+        Long bookingId = null;
+        CommonDTO<Booking> bookingForView = null;
+        try {
+            bookingId = Long.valueOf(strBookingId);
+        } catch (NumberFormatException e){
+            return null;
+        }
+
+        if (!CommonValidator.validateLongId(bookingId)){
+            return null;
+        }
+
+        try {
+            Booking wantedBooking = bookingDao.getById(bookingId);
+            if (wantedBooking != null){
+                bookingForView = new CommonDTO<>();
+                List<Booking> bookingList = new LinkedList<>();
+                bookingList.add(wantedBooking);
+
+                bookingForView.setEntityList(bookingList);
+                bookingForView.setPagesCount(1);
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return bookingForView;
     }
 
     @Override

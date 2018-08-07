@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public synchronized CommonDTO<User> getUsersForView(int pageNumber, int itemsPerPage) throws ServiceException{
 
-        CommonDTO<User> usersForDisplay = new CommonDTO<>();
+        CommonDTO<User> usersForView = new CommonDTO<>();
 
         int start = (pageNumber - 1) * itemsPerPage;
 
@@ -155,13 +155,13 @@ public class UserServiceImpl implements UserService {
             int userCount = userDAO.getTotalCountOfUsers();
             int pageCount = PageCountDeterminant.definePageCount(userCount, itemsPerPage);
 
-            usersForDisplay.setEntityList(usersList);
-            usersForDisplay.setPagesCount(pageCount);
+            usersForView.setEntityList(usersList);
+            usersForView.setPagesCount(pageCount);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
 
-        return usersForDisplay;
+        return usersForView;
     }
 
     @Override

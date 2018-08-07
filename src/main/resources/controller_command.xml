@@ -167,6 +167,10 @@
         <action>/provideRoomForView.do</action>
         <class>by.training.hotel.controller.command.impl.admin.ProvideRoomForViewCommand</class>
     </command>
+    <command>
+        <action>/provideBookingForView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ProvideBookingForViewCommand</class>
+    </command>
 
     <command>
         <action>/addNewRoom.do</action>
@@ -179,6 +183,15 @@
     <command>
         <action>/roomAddedSuccessfully.do</action>
         <class>by.training.hotel.controller.command.impl.admin.RoomAddedSuccessfullyCommand</class>
+    </command>
+
+    <command>
+        <action>/openBookingProcessingForm.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.OpenBookingProcessingFormCommand</class>
+    </command>
+    <command>
+        <action>/prepareForBookingProcess.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.PrepareForBookingProcessCommand</class>
     </command>
 
 </commands>

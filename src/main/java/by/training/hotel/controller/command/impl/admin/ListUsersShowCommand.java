@@ -31,17 +31,17 @@ public class ListUsersShowCommand extends Command {
             pageNumber = DEFAULT_PAGE_NUMBER;
         }
 
-        CommonDTO<User> usersForDisplay = null;
+        CommonDTO<User> usersForView = null;
         UserService userService = serviceFactory.getUserService();
 
         try {
-            usersForDisplay = userService.getUsersForView(pageNumber, ITEMS_PER_PAGE);
+            usersForView = userService.getUsersForView(pageNumber, ITEMS_PER_PAGE);
         } catch (ServiceException e){
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
 
-        request.setAttribute(ParameterName.USERS_FOR_DISPLAY, usersForDisplay);
+        request.setAttribute(ParameterName.USERS_FOR_VIEW, usersForView);
         request.setAttribute(ParameterName.PAGE, pageNumber);
 
         request.getRequestDispatcher(PageEnum.USER_LIST.getPath()).forward(request, response);

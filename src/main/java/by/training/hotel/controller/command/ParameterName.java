@@ -62,12 +62,12 @@ public final class ParameterName {
     public static final String BOOKING_ID = "bookingId";
     public static final String BOOKING_FOR_CHANGE = "bookingForChange";
 
-    public static final String USERS_FOR_DISPLAY = "usersForDisplay";
+    public static final String USERS_FOR_VIEW = "usersForView";
     public static final String BLOCK_DOWN = "blockDown";
     public static final String BLOCKED_USER_ID = "blockedUserId";
     public static final String USER_OPERATION_MESSAGE = "userOperationMessage";
 
-    public static final String BOOKINGS_FOR_DISPLAY = "bookingsForDisplay";
+    public static final String BOOKINGS_FOR_VIEW = "bookingsForView";
 
     public static final String CANCEL_BOOKING_ID = "cancelBookingId";
     public static final String CANCEL_INVOICE_ID = "cancelInvoiceId";
@@ -81,16 +81,20 @@ public final class ParameterName {
 
     public static final String DISABLED_ROOM_NUMBER = "disabledRoomNumber";
     public static final String ROOM_OPERATION_MESSAGE = "roomOperationMessage";
+    public static final String BOOKING_OPERATION_MESSAGE = "bookingOperationMessage";
+
     public static final int CHANGE_ROOM_STATUS_ERROR_CODE = 6;
 
     public static final String SEARCH_USER_ARTIFACT = "searchUserArtifact";
 
     public static final int NO_SUCH_USER_MESSAGE_CODE = 7;
     public static final int NO_SUCH_ROOM_MESSAGE_CODE = 8;
+    public static final int ROOM_NOT_ADDED_MESSAGE_CODE = 9;
+    public static final int NO_SUCH_BOOKING_MESSAGE_CODE = 10;
+    public static final int IMPOSSIBLE_PROCESS_BOOKING_MESSAGE_CODE = 11;
 
     public static final String BERTH_COUNT = "berthCount";
     public static final String PRICE_PER_NIGHT = "pricePerNight";
     public static final String PICTURE_LINK = "pictureLink";
 
-    public static final int ROOM_NOT_ADDED_MESSAGE_CODE = 9;
 }

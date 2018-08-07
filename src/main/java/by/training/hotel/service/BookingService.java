@@ -23,6 +23,8 @@ public interface BookingService {
 
     CommonDTO<Booking> getBookingsForView(int pageNumber, int itemsPerPage) throws ServiceException;
 
+    CommonDTO<Booking> getBookingForView(String strBookingId) throws ServiceException;
+
     boolean cancelBooking(String strBookingId) throws ServiceException;
 
     boolean confirmBooking(Long bookingId) throws ServiceException;

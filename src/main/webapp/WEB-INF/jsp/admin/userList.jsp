@@ -37,7 +37,7 @@ User List
 </form>
 
 <c:set var="currentPage" value="${requestScope.page}" scope="page"/>
-<c:set var="pagesCount" value="${requestScope.usersForDisplay.pagesCount}" scope="page"/>
+<c:set var="pagesCount" value="${requestScope.usersForView.pagesCount}" scope="page"/>
 <br>
 <div>
     <c:if test="${requestScope.userOperationMessage eq 4}">
@@ -59,7 +59,7 @@ User List
         </c:choose>
     </c:if>
 </div>
-<c:if test="${not empty requestScope.usersForDisplay}">
+<c:if test="${not empty requestScope.usersForView}">
     <div>
         <table border="1" >
             <thead>
@@ -77,7 +77,7 @@ User List
             </thead>
 
             <tbody>
-            <c:forEach var="user" items="${requestScope.usersForDisplay.entityList}">
+            <c:forEach var="user" items="${requestScope.usersForView.entityList}">
                 <tr>
                     <td>${user.userId}</td>
                     <td>${user.email}</td>

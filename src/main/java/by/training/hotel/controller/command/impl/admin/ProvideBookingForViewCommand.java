@@ -13,36 +13,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ListBookingsShowCommand extends Command {
-
-    private final static int ITEMS_PER_PAGE = 10;
-
-    private final static int DEFAULT_PAGE_NUMBER = 1;
+public class ProvideBookingForViewCommand extends Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        String strPage = request.getParameter(ParameterName.PAGE);
-        int pageNumber;
+        String strBookingId = request.getParameter(ParameterName.BOOKING_ID);
 
-        if (strPage!= null && !strPage.isEmpty()){
-            pageNumber = Integer.valueOf(strPage);
-        } else {
-            pageNumber = DEFAULT_PAGE_NUMBER;
-        }
-
-        CommonDTO<Booking> bookingsForView = null;
         BookingService bookingService = serviceFactory.getBookingService();
 
+        CommonDTO<Booking> bookingForView = null;
         try {
-            bookingsForView = bookingService.getBookingsForView(pageNumber, ITEMS_PER_PAGE);
-        } catch (ServiceException e){
+            bookingForView = bookingService.getBookingForView(strBookingId);
+        } catch (ServiceException e) {
             LOGGER.error(e);
-            request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
 
-        request.setAttribute(ParameterName.BOOKINGS_FOR_VIEW, bookingsForView);
-        request.setAttribute(ParameterName.PAGE, pageNumber);
-
+        if (bookingForView != null){
+            request.setAttribute(ParameterName.BOOKINGS_FOR_VIEW, bookingForView);
+        } else {
+            request.setAttribute(ParameterName.BOOKING_OPERATION_MESSAGE, ParameterName.NO_SUCH_BOOKING_MESSAGE_CODE);
+        }
         request.getRequestDispatcher(PageEnum.BOOKING_LIST.getPath()).forward(request, response);
     }
 }

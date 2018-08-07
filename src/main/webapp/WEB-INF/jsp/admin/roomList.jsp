@@ -30,7 +30,7 @@ Rooms list
 </form>
 
 <form action="${pageContext.request.contextPath}/provideRoomForView.do" method="get">
-    <label>Insert room number:
+    <label>Search room by number:
         <input type="text" name="roomNumber"/>
     </label>
     <input type="submit" value="search"/>
@@ -49,6 +49,9 @@ Rooms list
     </c:if>
     <c:if test="${requestScope.roomOperationMessage eq 8}">
         No such room existing.
+    </c:if>
+    <c:if test="${requestScope.roomOperationMessage eq 9}">
+        New room wasn't added.
     </c:if>
 
     <c:if test="${not empty requestScope.disabledRoomNumber}">
@@ -112,10 +115,10 @@ Rooms list
                     </td>
                     <td>
                         <form id="changeRoom">
-
+                            <input type="submit" value="change"/>
                         </form>
                         <form id="deleteRoom">
-
+                            <input type="submit" value="delete"/>
                         </form>
                     </td>
                 </tr>
