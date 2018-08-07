@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.hotel.training.by/commands"
+        targetNamespace="http://www.hotel.training.by/commands"
+        elementFormDefault="qualified">
+    <element name="commands">
+        <complexType>
+            <sequence>
+                <element name="command" type="tns:Command" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Command">
+        <sequence>
+            <element name="action" default="/">
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="/{1}[A-z.]+"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="class" default="by.training.hotel.controller.command.impl.">
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="(by.training.hotel.controller.command.impl.){1}[A-z]+"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+
+</schema>

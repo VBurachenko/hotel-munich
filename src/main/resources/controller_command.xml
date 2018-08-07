@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<commands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://www.hotel.training.by/commands"
+            xsi:schemaLocation="http://www.hotel.training.by/commands controller_command.xsd">
+    <command>
+        <action>/home.do</action>
+        <class>by.training.hotel.controller.command.impl.HomeCommand</class>
+    </command>
+
+
+    <command>
+        <action>/searchFreeRooms.do</action>
+        <class>by.training.hotel.controller.command.impl.SearchRoomCommand</class>
+    </command>
+    <command>
+        <action>/prepareForSearch.do</action>
+        <class>by.training.hotel.controller.command.impl.PrepareForRoomSearchCommand</class>
+    </command>
+    <command>
+        <action>/displayFreeRooms.do</action>
+        <class>by.training.hotel.controller.command.impl.DisplayRoomsCommand</class>
+    </command>
+    <command>
+        <action>/putRoomInCart.do</action>
+        <class>by.training.hotel.controller.command.impl.PutInCartCommand</class>
+    </command>
+    <command>
+        <action>/bookingSelectedRooms.do</action>
+        <class>by.training.hotel.controller.command.impl.BookingSelectedRoomsCommand</class>
+    </command>
+    <command>
+        <action>/singleRoomBooking.do</action>
+        <class>by.training.hotel.controller.command.impl.SingleRoomBookingCommand</class>
+    </command>
+    <command>
+        <action>/attachInvoiceToBooking.do</action>
+        <class>by.training.hotel.controller.command.impl.AttachInvoiceToBookingCommand</class>
+    </command>
+
+
+    <command>
+        <action>/register.do</action>
+        <class>by.training.hotel.controller.command.impl.RegistrationCommand</class>
+    </command>
+    <command>
+        <action>/performRegister.do</action>
+        <class>by.training.hotel.controller.command.impl.RegistrationPerformCommand</class>
+    </command>
+    <command>
+        <action>/successfullyRegistered.do</action>
+        <class>by.training.hotel.controller.command.impl.SuccessRegistrationCommand</class>
+    </command>
+
+
+    <command>
+        <action>/login.do</action>
+        <class>by.training.hotel.controller.command.impl.LoginCommand</class>
+    </command>
+    <command>
+        <action>/openUserOffice.do</action>
+        <class>by.training.hotel.controller.command.impl.OpenUserOfficeCommand</class>
+    </command>
+    <command>
+        <action>/performLogin.do</action>
+        <class>by.training.hotel.controller.command.impl.PerformLoginCommand</class>
+    </command>
+    <command>
+        <action>/adminAuthorized.do</action>
+        <class>by.training.hotel.controller.command.impl.AdminOfficeCommand</class>
+    </command>
+    <command>
+        <action>/customerAuthorized.do</action>
+        <class>by.training.hotel.controller.command.impl.CustomerOfficeCommand</class>
+    </command>
+
+
+    <command>
+        <action>/changeLang.do</action>
+        <class>by.training.hotel.controller.command.impl.LanguageCommand</class>
+    </command>
+    <command>
+        <action>/logout.do</action>
+        <class>by.training.hotel.controller.command.impl.LogoutCommand</class>
+    </command>
+    <command>
+        <action>/openCart.do</action>
+        <class>by.training.hotel.controller.command.impl.CartOpenCommand</class>
+    </command>
+
+
+
+
+
+
+
+    <command>
+        <action>/decidePaymentIssue.do</action>
+        <class>by.training.hotel.controller.command.impl.DecideOfPaymentIssueCommand</class>
+    </command>
+
+    <command>
+        <action>/payInvoice.do</action>
+        <class>by.training.hotel.controller.command.impl.PayInvoiceCommand</class>
+    </command>
+    <command>
+        <action>/paymentPerform.do</action>
+        <class>by.training.hotel.controller.command.impl.PaymentPerformCommand</class>
+    </command>
+    <command>
+        <action>/openChangeForm.do</action>
+        <class>by.training.hotel.controller.command.impl.OpenChangeFormCommand</class>
+    </command>
+    <command>
+        <action>/performBookingChange.do</action>
+        <class>by.training.hotel.controller.command.impl.ChangeBookingCommand</class>
+    </command>
+    <command>
+        <action>/listUsersShow.do</action>
+        <class>by.training.hotel.controller.command.impl.ListUsersShowCommand</class>
+    </command>
+    <command>
+        <action>/userBlockingControl.do</action>
+        <class>by.training.hotel.controller.command.impl.UserBlockingControlCommand</class>
+    </command>
+    <command>
+        <action>/listBookingsShow.do</action>
+        <class>by.training.hotel.controller.command.impl.ListBookingsShowCommand</class>
+    </command>
+    <command>
+        <action>/cancelBooking.do</action>
+        <class>by.training.hotel.controller.command.impl.CancelBookingCommand</class>
+    </command>
+
+    <command>
+        <action>/performChangeBooking.do</action>
+        <class>by.training.hotel.controller.command.impl.PerformChangeBookingCommand</class>
+    </command>
+
+    <command>
+        <action>/completeBooking.do</action>
+        <class>by.training.hotel.controller.command.impl.CompleteBookingCommand</class>
+    </command>
+    <command>
+        <action>/successPayment.do</action>
+        <class>by.training.hotel.controller.command.impl.SuccessPaymentCommand</class>
+    </command>
+
+</commands>

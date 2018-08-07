@@ -1,0 +1,74 @@
+/*
+Generic Styling, for Desktops/Laptops
+*/
+
+/* Container to specify my table */
+.my-table{
+}
+
+.my-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Zebra striping */
+.my-table tr:nth-of-type(odd) {
+    background: #cceeff;
+}
+
+.my-table th {
+    background: #005780;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.my-table td, .my-table th {
+    padding: 10px;
+    border: 1px solid #00aeff;
+}
+
+.my-table td {
+    text-align: left;
+}
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px.
+*/
+@media
+screen and (max-width: 760px) {
+
+    /* Force table to not be like tables anymore */
+    .my-table table,
+    .my-table thead,
+    .my-table tbody,
+    .my-table th,
+    .my-table td,
+    .my-table td:before,
+    .my-table tr {
+        display: block;
+    }
+
+    /* Hide table headers */
+    .my-table thead {
+        height: 1px;
+        overflow: hidden;
+    }
+
+    .my-table tr td:first-child {
+        background: #005780;
+        color: white;
+    }
+
+    .my-table td {
+        border: none;
+        border-bottom: 1px solid #00aeff;
+    }
+
+    /* Content like a table header */
+    .my-table td:before {
+        font-style: italic;
+        content:""attr(data-label)"";
+    }
+}

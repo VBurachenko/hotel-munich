@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>Hotel</display-name>
+
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>controller</servlet-name>
+    <servlet-class>by.training.hotel.controller.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controller</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
+  <listener>
+    <listener-class>by.training.hotel.listener.ConnectionPoolInitializer</listener-class>
+  </listener>
+    <listener>
+        <listener-class>by.training.hotel.listener.SessionCleanerListener</listener-class>
+    </listener>
+
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>by.training.hotel.filter.EncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>LanguageFilter</filter-name>
+    <filter-class>by.training.hotel.filter.LanguageFilter</filter-class>
+    <init-param>
+      <param-name>Language</param-name>
+      <param-value>en</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>LanguageFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>IncompleteBookingFilter</filter-name>
+    <filter-class>by.training.hotel.filter.IncompleteBookingFilter</filter-class>
+    <init-param>
+      <param-name>ChangeLanguage</param-name>
+      <param-value>/changeLang.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>BookingSelectedRooms</param-name>
+      <param-value>/bookingSelectedRooms.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SingleRoomBooking</param-name>
+      <param-value>/singleRoomBooking.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>AttachInvoice</param-name>
+      <param-value>/attachInvoiceToBooking.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>CompleteBooking</param-name>
+      <param-value>/completeBooking.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>DecideOfPayment</param-name>
+      <param-value>/decidePaymentIssue.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>InstantPayment</param-name>
+      <param-value>/payInvoice.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>PrepareForPayment</param-name>
+      <param-value>/prepareForPayment.do</param-value>
+    </init-param>
+    <init-param>
+      <param-name>PaymentPerform</param-name>
+      <param-value>/paymentPerform.do</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>IncompleteBookingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>GuestFilter</filter-name>
+    <filter-class>by.training.hotel.filter.GuestFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>GuestFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+</web-app>
