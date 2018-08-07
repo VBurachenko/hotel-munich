@@ -25,9 +25,6 @@
   <listener>
     <listener-class>by.training.hotel.listener.ConnectionPoolInitializer</listener-class>
   </listener>
-    <listener>
-        <listener-class>by.training.hotel.listener.SessionCleanerListener</listener-class>
-    </listener>
 
   <filter>
     <filter-name>EncodingFilter</filter-name>
