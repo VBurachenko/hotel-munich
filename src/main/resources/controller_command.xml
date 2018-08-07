@@ -14,7 +14,7 @@
     </command>
     <command>
         <action>/prepareForSearch.do</action>
-        <class>by.training.hotel.controller.command.impl.PrepareForRoomSearchCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.PrepareForRoomSearchCommand</class>
     </command>
     <command>
         <action>/displayFreeRooms.do</action>
@@ -22,33 +22,33 @@
     </command>
     <command>
         <action>/putRoomInCart.do</action>
-        <class>by.training.hotel.controller.command.impl.PutInCartCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.PutInCartCommand</class>
     </command>
     <command>
         <action>/bookingSelectedRooms.do</action>
-        <class>by.training.hotel.controller.command.impl.BookingSelectedRoomsCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.BookingSelectedRoomsCommand</class>
     </command>
     <command>
         <action>/singleRoomBooking.do</action>
-        <class>by.training.hotel.controller.command.impl.SingleRoomBookingCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.SingleRoomBookingCommand</class>
     </command>
     <command>
         <action>/attachInvoiceToBooking.do</action>
-        <class>by.training.hotel.controller.command.impl.AttachInvoiceToBookingCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.AttachInvoiceToBookingCommand</class>
     </command>
 
 
     <command>
         <action>/register.do</action>
-        <class>by.training.hotel.controller.command.impl.RegistrationCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.RegistrationCommand</class>
     </command>
     <command>
         <action>/performRegister.do</action>
-        <class>by.training.hotel.controller.command.impl.RegistrationPerformCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.RegistrationPerformCommand</class>
     </command>
     <command>
         <action>/successfullyRegistered.do</action>
-        <class>by.training.hotel.controller.command.impl.SuccessRegistrationCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.SuccessRegistrationCommand</class>
     </command>
 
 
@@ -58,7 +58,7 @@
     </command>
     <command>
         <action>/openUserOffice.do</action>
-        <class>by.training.hotel.controller.command.impl.OpenUserOfficeCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.OpenUserOfficeCommand</class>
     </command>
     <command>
         <action>/performLogin.do</action>
@@ -66,11 +66,11 @@
     </command>
     <command>
         <action>/adminAuthorized.do</action>
-        <class>by.training.hotel.controller.command.impl.AdminOfficeCommand</class>
+        <class>by.training.hotel.controller.command.impl.admin.AdminOfficeCommand</class>
     </command>
     <command>
         <action>/customerAuthorized.do</action>
-        <class>by.training.hotel.controller.command.impl.CustomerOfficeCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.CustomerOfficeCommand</class>
     </command>
 
 
@@ -84,7 +84,7 @@
     </command>
     <command>
         <action>/openCart.do</action>
-        <class>by.training.hotel.controller.command.impl.CartOpenCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.CartOpenCommand</class>
     </command>
 
 
@@ -95,54 +95,90 @@
 
     <command>
         <action>/decidePaymentIssue.do</action>
-        <class>by.training.hotel.controller.command.impl.DecideOfPaymentIssueCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.DecideOfPaymentIssueCommand</class>
     </command>
 
     <command>
         <action>/payInvoice.do</action>
-        <class>by.training.hotel.controller.command.impl.PayInvoiceCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.PayInvoiceCommand</class>
     </command>
     <command>
         <action>/paymentPerform.do</action>
-        <class>by.training.hotel.controller.command.impl.PaymentPerformCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.PaymentPerformCommand</class>
     </command>
     <command>
         <action>/openChangeForm.do</action>
-        <class>by.training.hotel.controller.command.impl.OpenChangeFormCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.OpenChangeFormCommand</class>
     </command>
     <command>
         <action>/performBookingChange.do</action>
-        <class>by.training.hotel.controller.command.impl.ChangeBookingCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.ChangeBookingCommand</class>
     </command>
     <command>
+        <action>/performChangeBooking.do</action>
+        <class>by.training.hotel.controller.command.impl.customer.PerformChangeBookingCommand</class>
+    </command>
+
+    <command>
         <action>/listUsersShow.do</action>
-        <class>by.training.hotel.controller.command.impl.ListUsersShowCommand</class>
+        <class>by.training.hotel.controller.command.impl.admin.ListUsersShowCommand</class>
+    </command>
+
+    <command>
+        <action>/listBookingsShow.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ListBookingsShowCommand</class>
+    </command>
+    <command>
+        <action>/listRoomsShow.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ListRoomsShowCommand</class>
     </command>
     <command>
         <action>/userBlockingControl.do</action>
-        <class>by.training.hotel.controller.command.impl.UserBlockingControlCommand</class>
+        <class>by.training.hotel.controller.command.impl.admin.UserBlockingControlCommand</class>
     </command>
     <command>
-        <action>/listBookingsShow.do</action>
-        <class>by.training.hotel.controller.command.impl.ListBookingsShowCommand</class>
-    </command>
-    <command>
-        <action>/cancelBooking.do</action>
-        <class>by.training.hotel.controller.command.impl.CancelBookingCommand</class>
+        <action>/roomBlockingControl.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.RoomBlockingControlCommand</class>
     </command>
 
+
     <command>
-        <action>/performChangeBooking.do</action>
-        <class>by.training.hotel.controller.command.impl.PerformChangeBookingCommand</class>
+        <action>/cancelBooking.do</action>
+        <class>by.training.hotel.controller.command.impl.customer.CancelBookingCommand</class>
     </command>
+
+
 
     <command>
         <action>/completeBooking.do</action>
-        <class>by.training.hotel.controller.command.impl.CompleteBookingCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.CompleteBookingCommand</class>
     </command>
     <command>
         <action>/successPayment.do</action>
-        <class>by.training.hotel.controller.command.impl.SuccessPaymentCommand</class>
+        <class>by.training.hotel.controller.command.impl.customer.SuccessPaymentCommand</class>
+    </command>
+
+
+    <command>
+        <action>/provideUserForView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ProvideUserForViewCommand</class>
+    </command>
+    <command>
+        <action>/provideRoomForView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ProvideRoomForViewCommand</class>
+    </command>
+
+    <command>
+        <action>/addNewRoom.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.AddNewRoomCommand</class>
+    </command>
+    <command>
+        <action>/newRoomAddingPerform.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.NewRoomAddingPerformCommand</class>
+    </command>
+    <command>
+        <action>/roomAddedSuccessfully.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.RoomAddedSuccessfullyCommand</class>
     </command>
 
 </commands>

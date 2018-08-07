@@ -39,19 +39,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final static String GET_USERS =
-            "SELECT" +
-                    " user.user_id," +
-                    " user.email," +
-                    " user.password," +
-                    " user.name," +
-                    " user.surname," +
-                    " user.tel_number," +
-                    " user.birthday," +
-                    " user.discount," +
-                    " user.gender_male," +
-                    " user.blocked," +
-                    " user.role " +
-                    "FROM user";
+            "SELECT * FROM user";
 
     private final static String JOIN_FOR_LIMIT =
             " JOIN (SELECT user_id FROM user ORDER BY user_id LIMIT ?, ?) " +
@@ -79,6 +67,8 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
     private final static String WHERE_USER_ID = " WHERE user.user_id = ?";
 
     private final static String WHERE_USER_EMAIL = " WHERE user.email = ?";
+
+    private final static String WHERE_USER_EMAIL_OR_TEL_NUMBER = " WHERE user.email = ? OR user.tel_number = ?";
 
     private final static String OR_TEL_NUMBER = " OR user.tel_number = ?";
 
@@ -288,6 +278,29 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
             pool.closeUsedResources(resultSet, statement);
         }
         return totalCountOfRooms;
+    }
+
+    @Override
+    public User getUserByEmailOrTelNumber(String emailOrTelNumber) throws DAOException {
+
+        User wantedUser = null;
+
+        PreparedStatement statement = null;
+        ResultSet resultSet= null;
+        try (ProxyConnection proxyConnection = pool.takeConnection()){
+            statement = proxyConnection.prepareStatement(GET_USERS + WHERE_USER_EMAIL_OR_TEL_NUMBER);
+            statement.setString(1, emailOrTelNumber);
+            statement.setString(2, emailOrTelNumber);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                wantedUser = getFromResultSet(resultSet);
+            }
+        } catch (PoolException | SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            pool.closeUsedResources(resultSet, statement);
+        }
+        return wantedUser;
     }
 
     private void prepareForAdd(PreparedStatement statement, User user) throws SQLException {

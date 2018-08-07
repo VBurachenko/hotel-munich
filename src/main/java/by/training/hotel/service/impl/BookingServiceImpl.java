@@ -96,7 +96,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public synchronized CommonDTO<Booking> getBookingsListForDisplay(int pageNumber, int itemsPerPage) throws ServiceException{
+    public synchronized CommonDTO<Booking> getBookingsForView(int pageNumber, int itemsPerPage) throws ServiceException{
 
         CommonDTO<Booking> bookingsForDisplay = new CommonDTO<>();
 

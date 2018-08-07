@@ -1,4 +1,4 @@
-package by.training.hotel.controller.command.impl;
+package by.training.hotel.controller.command.impl.admin;
 
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.ParameterName;
@@ -23,7 +23,7 @@ public class ListUsersShowCommand extends Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         String strPage = request.getParameter(ParameterName.PAGE);
-        Integer pageNumber;
+        int pageNumber;
 
         if (strPage!= null && !strPage.isEmpty()){
             pageNumber = Integer.valueOf(strPage);
@@ -35,7 +35,7 @@ public class ListUsersShowCommand extends Command {
         UserService userService = serviceFactory.getUserService();
 
         try {
-            usersForDisplay = userService.getUsersListForDisplay(pageNumber, ITEMS_PER_PAGE);
+            usersForDisplay = userService.getUsersForView(pageNumber, ITEMS_PER_PAGE);
         } catch (ServiceException e){
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);

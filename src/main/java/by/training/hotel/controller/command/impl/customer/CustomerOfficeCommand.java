@@ -1,9 +1,11 @@
-package by.training.hotel.controller.command.impl;
+package by.training.hotel.controller.command.impl.customer;
 
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.ParameterName;
 import by.training.hotel.controller.command.mapping.PageEnum;
+import by.training.hotel.entity.Booking;
 import by.training.hotel.entity.Invoice;
+import by.training.hotel.service.BookingService;
 import by.training.hotel.service.InvoiceService;
 import by.training.hotel.service.exception.ServiceException;
 
@@ -12,33 +14,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Set;
 
-public class PayInvoiceCommand extends Command {
+public class CustomerOfficeCommand extends Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         HttpSession session = request.getSession();
 
-        Long invoiceIdForPayment;
+        Integer currentUserId = (Integer) session.getAttribute(ParameterName.USER_ID);
 
-        invoiceIdForPayment = (Long) session.getAttribute(ParameterName.INVOICE_ID_FOR_PAYMENT);
-        if (invoiceIdForPayment == null){
-            String strInvoiceIdForPayment = request.getParameter(ParameterName.INVOICE_ID_FOR_PAYMENT);
-            invoiceIdForPayment = Long.valueOf(strInvoiceIdForPayment);
-        }
-
-        Invoice invoiceForPayment = null;
-
+        BookingService bookingService = serviceFactory.getBookingService();
         InvoiceService invoiceService = serviceFactory.getInvoiceService();
 
+        Set<Booking> usersBookingSet = null;
+        Set<Invoice> usersInvoiceSet = null;
         try {
-            invoiceForPayment = invoiceService.getInvoiceById(invoiceIdForPayment);
-        } catch (ServiceException e){
+            usersBookingSet = bookingService.getBookingsSetForUser(currentUserId);
+            usersInvoiceSet = invoiceService.getInvoicesSetByUserId(currentUserId);
+        } catch (ServiceException e) {
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
-        session.setAttribute(ParameterName.INVOICE_FOR_PAYMENT, invoiceForPayment);
-        request.getRequestDispatcher(PageEnum.INVOICE_PAYMENT.getPath()).forward(request,response);
+
+        request.setAttribute(ParameterName.USERS_BOOKING_SET, usersBookingSet);
+        request.setAttribute(ParameterName.USERS_INVOICE_SET, usersInvoiceSet);
+
+        request.getRequestDispatcher(PageEnum.CUSTOMER_OFFICE.getPath()).forward(request, response);
     }
 }

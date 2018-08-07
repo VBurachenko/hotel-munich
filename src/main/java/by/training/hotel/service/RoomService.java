@@ -14,4 +14,16 @@ public interface RoomService {
     Room getRoomByRoomNumber(String strRoomNumber) throws ServiceException;
 
     void attachSelectedRoomToBooking(Booking createdBooking, String roomNumber) throws ServiceException;
+
+    CommonDTO<Room> getRoomsForView(int pageNumber, int itemsPerPage) throws ServiceException;
+
+    boolean changeRoomAvailableStatus(String strRoomNumber, String strBlockDown) throws ServiceException;
+
+    CommonDTO<Room> getRoomForViewByRoomNumber(String strRoomNumber) throws ServiceException;
+
+    Integer addNewRoom(String strRoomNumber,
+                       String strBerthCount,
+                       String strComfortLevel,
+                       String strPricePerNight,
+                       String pictureLink) throws ServiceException;
 }

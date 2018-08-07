@@ -21,7 +21,7 @@ public interface BookingService {
 
     Booking getBookingByBookingId(String strBookingId) throws ServiceException;
 
-    CommonDTO<Booking> getBookingsListForDisplay(int pageNumber, int itemsPerPage) throws ServiceException;
+    CommonDTO<Booking> getBookingsForView(int pageNumber, int itemsPerPage) throws ServiceException;
 
     boolean cancelBooking(String strBookingId) throws ServiceException;
 

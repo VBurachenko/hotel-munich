@@ -31,7 +31,9 @@ public interface UserService {
                                 String birthday,
                                 String genderMale) throws ServiceException;
 
-    CommonDTO<User> getUsersListForDisplay(int pageNumber, int itemsPerPage) throws ServiceException;
+    CommonDTO<User> getUsersForView(int pageNumber, int itemsPerPage) throws ServiceException;
 
     boolean changeBlockUser(String strUserId, String strBlockDown) throws ServiceException;
+
+    CommonDTO<User> getUserByEmailOrTelephoneNumber(String telNumOrEmail) throws ServiceException;
 }

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../part/locale.jsp" %>
@@ -30,10 +30,13 @@
 </c:if>
 
 <form action="${pageContext.request.contextPath}/listUsersShow.do" method="post">
-    <input type="submit" value="Go to usersList">
+    <input type="submit" value="Go to users List">
 </form>
 <form action="${pageContext.request.contextPath}/listBookingsShow.do" method="post">
-    <input type="submit" value="Go to bookingsList">
+    <input type="submit" value="Go to bookings List">
+</form>
+<form action="${pageContext.request.contextPath}/listRoomsShow.do" method="post">
+    <input type="submit" value="Go to rooms List">
 </form>
 
 <div>

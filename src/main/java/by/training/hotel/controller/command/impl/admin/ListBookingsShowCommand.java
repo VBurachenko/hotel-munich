@@ -1,4 +1,4 @@
-package by.training.hotel.controller.command.impl;
+package by.training.hotel.controller.command.impl.admin;
 
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.ParameterName;
@@ -20,8 +20,9 @@ public class ListBookingsShowCommand extends Command {
     private final static int DEFAULT_PAGE_NUMBER = 1;
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         String strPage = request.getParameter(ParameterName.PAGE);
-        Integer pageNumber;
+        int pageNumber;
 
         if (strPage!= null && !strPage.isEmpty()){
             pageNumber = Integer.valueOf(strPage);
@@ -29,19 +30,17 @@ public class ListBookingsShowCommand extends Command {
             pageNumber = DEFAULT_PAGE_NUMBER;
         }
 
-        CommonDTO<Booking> bookingsForDisplay = null;
+        CommonDTO<Booking> bookingsForView = null;
         BookingService bookingService = serviceFactory.getBookingService();
 
         try {
-            bookingsForDisplay = bookingService.getBookingsListForDisplay(pageNumber, ITEMS_PER_PAGE);
-            System.out.println(bookingsForDisplay);
+            bookingsForView = bookingService.getBookingsForView(pageNumber, ITEMS_PER_PAGE);
         } catch (ServiceException e){
             LOGGER.error(e);
-            e.printStackTrace();
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
 
-        request.setAttribute(ParameterName.BOOKINGS_FOR_DISPLAY, bookingsForDisplay);
+        request.setAttribute(ParameterName.BOOKINGS_FOR_DISPLAY, bookingsForView);
         request.setAttribute(ParameterName.PAGE, pageNumber);
 
         request.getRequestDispatcher(PageEnum.BOOKING_LIST.getPath()).forward(request, response);

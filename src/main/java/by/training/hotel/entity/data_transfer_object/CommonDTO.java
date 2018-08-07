@@ -5,7 +5,7 @@ import by.training.hotel.entity.Entity;
 import java.util.List;
 import java.util.Objects;
 
-public class CommonDTO<E extends Entity> implements Entity {
+public final class CommonDTO<E extends Entity> implements Entity {
 
     private static final long serialVersionUID = 5628757903502077096L;
 

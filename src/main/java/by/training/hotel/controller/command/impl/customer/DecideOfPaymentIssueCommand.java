@@ -1,4 +1,4 @@
-package by.training.hotel.controller.command.impl;
+package by.training.hotel.controller.command.impl.customer;
 
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.ParameterName;

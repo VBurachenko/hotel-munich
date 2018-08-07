@@ -12,6 +12,7 @@ import by.training.hotel.service.validation.CommonValidator;
 import by.training.hotel.service.validation.UserValidator;
 import org.joda.time.LocalDate;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -143,7 +144,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public synchronized CommonDTO<User> getUsersListForDisplay(int pageNumber, int itemsPerPage) throws ServiceException{
+    public synchronized CommonDTO<User> getUsersForView(int pageNumber, int itemsPerPage) throws ServiceException{
 
         CommonDTO<User> usersForDisplay = new CommonDTO<>();
 
@@ -185,6 +186,28 @@ public class UserServiceImpl implements UserService {
         }
 
         return userBlocked;
+    }
+
+    @Override
+    public CommonDTO<User> getUserByEmailOrTelephoneNumber(String telNumOrEmail) throws ServiceException{
+
+        CommonDTO<User> userForView = null;
+
+        try {
+            User wantedUser = userDAO.getUserByEmailOrTelNumber(telNumOrEmail);
+            if (wantedUser != null){
+                userForView = new CommonDTO<>();
+                List<User> userList = new LinkedList<>();
+                userList.add(wantedUser);
+
+                userForView.setEntityList(userList);
+                userForView.setPagesCount(1);
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        return userForView;
     }
 
 }

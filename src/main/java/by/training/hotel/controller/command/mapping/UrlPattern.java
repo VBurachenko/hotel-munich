@@ -30,5 +30,7 @@ public final class UrlPattern {
     public static final String PAYMENT_PERFORM = "/paymentPerform.do";
     public static final String COMPLETE_BOOKING = "/completeBooking.do";
     public static final String SUCCESS_PAYMENT = "/successPayment.do";
+    public static final String LIST_ROOMS_SHOW = "/listRoomsShow.do";
+    public static final String ROOM_ADDED_SUCCESSFULLY = "/roomAddedSuccessfully.do";
 
 }

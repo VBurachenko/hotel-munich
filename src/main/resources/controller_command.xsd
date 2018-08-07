@@ -23,7 +23,7 @@
             <element name="class" default="by.training.hotel.controller.command.impl.">
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="(by.training.hotel.controller.command.impl.){1}[A-z]+"/>
+                        <pattern value="(by.training.hotel.controller.command.impl.){1}[A-z\\.]+"/>
                     </restriction>
                 </simpleType>
             </element>

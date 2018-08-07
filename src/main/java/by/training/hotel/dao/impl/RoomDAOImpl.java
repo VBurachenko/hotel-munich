@@ -64,7 +64,7 @@ public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
             "SELECT room.room_number FROM room ";
 
 
-    private static final String WHERE_ROOM_NUMBER = "WHERE room_number = ?";
+    private static final String WHERE_ROOM_NUMBER = " WHERE room_number = ?";
 
     private static final String GET_FREE_ROOMS = "{CALL findFreeRooms(?, ?, ?, ?, ?, ?, ?)}";
 
@@ -124,7 +124,7 @@ public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
         PreparedStatement statement = null;
 
         try (ProxyConnection proxyConnection = pool.takeConnection()){
-            statement = proxyConnection.prepareStatement(UPDATE_ROOM);
+            statement = proxyConnection.prepareStatement(UPDATE_ROOM + WHERE_ROOM_NUMBER);
 
             prepareForUpdate(statement, room);
 

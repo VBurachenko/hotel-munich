@@ -65,7 +65,7 @@ public final class ParameterName {
     public static final String USERS_FOR_DISPLAY = "usersForDisplay";
     public static final String BLOCK_DOWN = "blockDown";
     public static final String BLOCKED_USER_ID = "blockedUserId";
-    public static final String USER_CHANGE_BLOCK_MESSAGE = "userChangeBlockMessage";
+    public static final String USER_OPERATION_MESSAGE = "userOperationMessage";
 
     public static final String BOOKINGS_FOR_DISPLAY = "bookingsForDisplay";
 
@@ -77,4 +77,20 @@ public final class ParameterName {
     public static final String INVOICE_ID_FOR_PAYMENT = "invoiceIdForPayment";
     public static final String INVOICE_FOR_PAYMENT = "invoiceForPayment";
 
+    public static final String ROOMS_FOR_VIEW = "roomsForView";
+
+    public static final String DISABLED_ROOM_NUMBER = "disabledRoomNumber";
+    public static final String ROOM_OPERATION_MESSAGE = "roomOperationMessage";
+    public static final int CHANGE_ROOM_STATUS_ERROR_CODE = 6;
+
+    public static final String SEARCH_USER_ARTIFACT = "searchUserArtifact";
+
+    public static final int NO_SUCH_USER_MESSAGE_CODE = 7;
+    public static final int NO_SUCH_ROOM_MESSAGE_CODE = 8;
+
+    public static final String BERTH_COUNT = "berthCount";
+    public static final String PRICE_PER_NIGHT = "pricePerNight";
+    public static final String PICTURE_LINK = "pictureLink";
+
+    public static final int ROOM_NOT_ADDED_MESSAGE_CODE = 9;
 }
