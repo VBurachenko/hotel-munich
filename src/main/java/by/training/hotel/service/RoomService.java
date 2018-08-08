@@ -26,4 +26,7 @@ public interface RoomService {
                        String strComfortLevel,
                        String strPricePerNight,
                        String pictureLink) throws ServiceException;
+
+    boolean changeRoomDescription(String strRoomNumber, String strBerthCount, String strComfortLevel,
+                                  String pricePerNight, String pictureLink, String strAvailableStatus) throws ServiceException;
 }

@@ -87,33 +87,33 @@ Rooms list
 
                     <c:choose>
                         <c:when test="${room.availableStatus eq 'true'}">
-                            <td>Is available</td>
-                            <td>
+                            <td>Is available
                                 <form id="disable" action="${pageContext.request.contextPath}/roomBlockingControl.do"
                                       method="post">
                                     <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                     <input type="hidden" name="blockDown" value="false"/>
                                     <input type="submit" value="Disable"/>
                                 </form>
-                                <button form="changeRoom" type="submit">change</button>
                             </td>
                         </c:when>
                         <c:otherwise>
-                            <td>NOT available</td>
-                            <td>
+                            <td>NOT available
                                 <form id="makeAble" action="${pageContext.request.contextPath}/roomBlockingControl.do"
                                       method="post">
                                     <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                     <input type="hidden" name="blockDown" value="true"/>
                                     <input type="submit" value="Make Able"/>
                                 </form>
-                                <button form="changeRoom" type="submit">change</button>
                             </td>
                         </c:otherwise>
                     </c:choose>
-                    <form id="changeRoom">
-                        <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
-                    </form>
+                    <td>
+                        <form id="changeRoom" action="${pageContext.request.contextPath}/openRoomChangeForm.do" method="post">
+                            <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
+                            <input type="submit" value="change"/>
+                        </form>
+                    </td>
+
                 </tr>
             </c:forEach>
             </tbody>

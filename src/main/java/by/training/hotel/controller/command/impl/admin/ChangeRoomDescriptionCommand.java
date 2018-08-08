@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class NewRoomAddingPerformCommand extends Command {
+public class ChangeRoomDescriptionCommand extends Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -24,22 +24,24 @@ public class NewRoomAddingPerformCommand extends Command {
         String pictureLink = request.getParameter(ParameterName.PICTURE_LINK);
         String availableStatus = request.getParameter(ParameterName.AVAILABLE_STATUS);
 
-        Integer justAddedRoomNumber = null;
+        boolean roomUpdated = false;
 
         RoomService roomService = serviceFactory.getRoomService();
 
         try {
-            justAddedRoomNumber = roomService.addNewRoom(strRoomNumber, strBerthCount, strComfortLevel,
-                                                            strPricePerNight, pictureLink);
-        } catch (ServiceException e){
+            roomUpdated = roomService.changeRoomDescription(strRoomNumber, strBerthCount, strComfortLevel,
+                                                            strPricePerNight, pictureLink, availableStatus);
+        } catch (ServiceException e) {
             LOGGER.error(e);
         }
 
-        if (justAddedRoomNumber != null){
-            response.sendRedirect(UrlPattern.ROOM_ADDED_SUCCESSFULLY);
+        System.out.println(roomUpdated);
+        if (roomUpdated){
+            response.sendRedirect(UrlPattern.ROOM_CHANGE_SUCCESS);
         } else {
-            request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.ROOM_NOT_ADDED_MESSAGE_CODE);
+            request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.ROOM_CHANGE_IMPOSSIBLE_MESSAGE_CODE);
             request.getRequestDispatcher(PageEnum.ROOM_LIST.getPath()).forward(request, response);
         }
+
     }
 }

@@ -181,6 +181,46 @@ public class RoomServiceImpl implements RoomService {
         return justAddedRoomNumber;
     }
 
+    @Override
+    public boolean changeRoomDescription(String strRoomNumber, String strBerthCount, String strComfortLevel,
+                                         String strPricePerNight, String pictureLink, String strAvailableStatus) throws ServiceException{
+        boolean roomChanged = false;
+
+        Integer roomNumber;
+        Integer berthCount;
+        Integer comfortLevel;
+        Double pricePerNight;
+        Boolean availableStatus;
+
+        try {
+            roomNumber = Integer.valueOf(strRoomNumber);
+            berthCount = Integer.valueOf(strBerthCount);
+            comfortLevel = Integer.valueOf(strComfortLevel);
+            pricePerNight = Double.valueOf(strPricePerNight);
+            availableStatus = Boolean.valueOf(strAvailableStatus);
+        } catch (NumberFormatException e){
+            return false;
+        }
+
+        try {
+            Room roomForChange = roomDao.getById(roomNumber);
+            if (roomForChange != null){
+                roomForChange.setBerthCount(berthCount);
+                roomForChange.setComfortLevel(comfortLevel);
+                roomForChange.setPricePerNight(pricePerNight);
+                roomForChange.setPictureLink(pictureLink);
+                roomForChange.setAvailableStatus(availableStatus);
+
+                roomChanged = roomDao.update(roomForChange);
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        return roomChanged;
+
+    }
+
     private CommonDTO<Room> getFreeRooms(SearchUnitDTO searchUnit, int start,
                                          int itemsPerPage) throws DAOException{
 

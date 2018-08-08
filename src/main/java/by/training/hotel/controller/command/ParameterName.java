@@ -2,6 +2,8 @@ package by.training.hotel.controller.command;
 
 public final class ParameterName {
 
+
+
     private ParameterName() {
     }
 
@@ -106,4 +108,10 @@ public final class ParameterName {
     public static final int NO_SUCH_INVOICE_MESSAGE_CODE = 13;
 
     public static final int ADMIN_WAS_NOT_REGISTERED_MESSAGE_CODE = 14;
+
+    public static final String ROOM_FOR_CHANGE = "roomForChange";
+
+    public static final int ROOM_CHANGE_IMPOSSIBLE_MESSAGE_CODE = 15;
+
+    public static final String AVAILABLE_STATUS = "availableStatus";
 }

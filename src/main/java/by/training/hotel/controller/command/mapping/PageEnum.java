@@ -25,7 +25,9 @@ public enum PageEnum {
     BOOKING_PROCESSING_FORM("/WEB-INF/jsp/admin/bookingProcessingForm.jsp"),
     SUCCESS_BOOKING_PROCESSING("/WEB-INF/jsp/admin/successBookingProcessing.jsp"),
     SUCCESS_ADMIN_REGISTRATION("/WEB-INF/jsp/admin/successAdminRegistration.jsp"),
-    INVOICE_LIST("/WEB-INF/jsp/admin/invoiceList.jsp");
+    INVOICE_LIST("/WEB-INF/jsp/admin/invoiceList.jsp"),
+    CHANGE_ROOM_FORM("/WEB-INF/jsp/admin/changeRoomForm.jsp"),
+    SUCCESS_ROOM_CHANGE("WEB-INF/jsp/admin/successRoomChange.jsp");
 
 
     private String path;

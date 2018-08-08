@@ -35,5 +35,6 @@ public final class UrlPattern {
     public static final String OPEN_BOOKING_PROCESSING_FORM = "/openBookingProcessingForm.do";
     public static final String SUCCESS_BOOKING_PROCESSING = "/successBookingProcessing.do";
     public static final String SUCCESS_ADMIN_REGISTRATION = "/successAdminRegistration.do";
+    public static final String ROOM_CHANGE_SUCCESS = "/roomChangeSuccess.do";
 
 }

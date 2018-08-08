@@ -99,7 +99,7 @@ public class Room implements Entity, Comparable<Room>{
                 ", comfortLevel=" + comfortLevel +
                 ", pricePerNight=" + pricePerNight +
                 ", pictureLink='" + pictureLink + '\'' +
-                ", availableStatus=" + availableStatus +
+                ", AVAILABLE_STATUS=" + availableStatus +
                 '}';
     }
 

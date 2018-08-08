@@ -219,4 +219,17 @@
         <class>by.training.hotel.controller.command.impl.admin.SuccessAdminRegistrationCommand</class>
     </command>
 
+    <command>
+        <action>/openRoomChangeForm.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.OpenRoomChangeFormCommand</class>
+    </command>
+    <command>
+        <action>/changeRoomDescription.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ChangeRoomDescriptionCommand</class>
+    </command>
+    <command>
+        <action>/roomChangeSuccess.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.RoomChangeSuccessCommand</class>
+    </command>
+
 </commands>
