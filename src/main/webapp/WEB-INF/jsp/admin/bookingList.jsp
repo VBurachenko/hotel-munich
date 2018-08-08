@@ -49,6 +49,9 @@ bookingList
     <c:if test="${requestScope.bookingOperationMessage eq 10}">
         No such booking existing.
     </c:if>
+    <c:if test="${requestScope.bookingOperationMessage eq 12}">
+        Booking was not processed.
+    </c:if>
 
     <c:if test="${not empty requestScope.changedBookingId}">
         User with id ${requestScope.changedBookingId}
@@ -101,8 +104,10 @@ bookingList
                             <input type="hidden" name="bookingId" value="${booking.bookingId}">
                             <input type="submit" value="process"/>
                         </form>
-                        <form id="delete">
-                            <input type="submit" value="delete"/>
+                        <form action="${pageContext.request.contextPath}/cancelBooking.do" method="post">
+                            <input type="hidden" name="cancelBookingId" value="${booking.bookingId}"/>
+                            <input type="hidden" name="cancelInvoiceId" value="${booking.invoiceId}"/>
+                            <input type="submit" value="cancel"/>
                         </form>
                     </td>
                 </tr>

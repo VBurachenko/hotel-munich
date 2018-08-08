@@ -1,4 +1,4 @@
-package by.training.hotel.controller.command.impl.customer;
+package by.training.hotel.controller.command.impl;
 
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.ParameterName;
@@ -21,13 +21,14 @@ public class CancelBookingCommand extends Command {
         
         String bookingId = request.getParameter(ParameterName.CANCEL_BOOKING_ID);
         String invoiceId = request.getParameter(ParameterName.CANCEL_INVOICE_ID);
+
+        BookingService bookingService = serviceFactory.getBookingService();
+        InvoiceService invoiceService = serviceFactory.getInvoiceService();
         
         boolean bookingCanceled = false;
         boolean invoiceCanceled = false;
-        try {
-            BookingService bookingService = serviceFactory.getBookingService();
-            InvoiceService invoiceService = serviceFactory.getInvoiceService();
 
+        try {
             bookingCanceled = bookingService.cancelBooking(bookingId);
             invoiceCanceled = invoiceService.cancelInvoice(invoiceId);
         } catch (ServiceException e){

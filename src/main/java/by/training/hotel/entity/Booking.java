@@ -20,8 +20,6 @@ public class Booking implements Entity{
 
     private Integer childCount;
 
-    private Integer comfortLevel;
-
     private Integer userId;
 
     private Long invoiceId;
@@ -72,14 +70,6 @@ public class Booking implements Entity{
         this.childCount = childCount;
     }
 
-    public Integer getComfortLevel() {
-        return comfortLevel;
-    }
-
-    public void setComfortLevel(Integer comfortLevel) {
-        this.comfortLevel = comfortLevel;
-    }
-
     public Integer getUserId() {
         return userId;
     }
@@ -126,7 +116,6 @@ public class Booking implements Entity{
                 Objects.equals(getCheckOutDate(), booking.getCheckOutDate()) &&
                 Objects.equals(getAdultCount(), booking.getAdultCount()) &&
                 Objects.equals(getChildCount(), booking.getChildCount()) &&
-                Objects.equals(getComfortLevel(), booking.getComfortLevel()) &&
                 Objects.equals(getUserId(), booking.getUserId()) &&
                 Objects.equals(getInvoiceId(), booking.getInvoiceId()) &&
                 getBookingStatus() == booking.getBookingStatus() &&
@@ -136,7 +125,7 @@ public class Booking implements Entity{
     @Override
     public int hashCode() {
 
-        return Objects.hash(getBookingId(), getCheckInDate(), getCheckOutDate(), getAdultCount(), getChildCount(), getComfortLevel(), getUserId(), getInvoiceId(), getBookingStatus(), getRoomsSet());
+        return Objects.hash(getBookingId(), getCheckInDate(), getCheckOutDate(), getAdultCount(), getChildCount(), getUserId(), getInvoiceId(), getBookingStatus(), getRoomsSet());
     }
 
     @Override
@@ -147,7 +136,6 @@ public class Booking implements Entity{
                 ", checkOutDate=" + checkOutDate +
                 ", adultCount=" + adultCount +
                 ", childCount=" + childCount +
-                ", comfortLevel=" + comfortLevel +
                 ", userId=" + userId +
                 ", invoiceId=" + invoiceId +
                 ", bookingStatus=" + bookingStatus +

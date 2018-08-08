@@ -30,7 +30,7 @@ User List
 </form>
 
 <form action="${pageContext.request.contextPath}/provideUserForView.do" method="get">
-    <label>Insert user email or telephone number:
+    <label>Search user by email or telephone number:
         <input type="text" name="searchUserArtifact"/>
     </label>
     <input type="submit" value="search"/>
@@ -102,7 +102,7 @@ User List
                         <c:choose>
                             <c:when test="${user.blocked eq 'true'}">
                                 Blocked
-                                <c:if test="${user.role ne 'MODER'}">
+                                <c:if test="${user.role ne 'MODER' or user.role ne 'ADMIN'}">
                                     <form id="unblockUser" action="${pageContext.request.contextPath}/userBlockingControl.do" method="post">
                                         <input type="hidden" name="user_id" value="${user.userId}"/>
                                         <input type="hidden" name="blockDown" value="false"/>

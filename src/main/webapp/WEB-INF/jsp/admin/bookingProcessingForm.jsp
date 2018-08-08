@@ -10,8 +10,7 @@
     <script src="${pageContext.request.contextPath}/js/password.js"></script>
     <script src="${pageContext.request.contextPath}/js/navigation_bar.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navigation_bar.css">
-</head>
-<title><fmt:message key="page.title"/></title>
+    <title><fmt:message key="page.title"/></title>
 </head>
 <body>
 <br/>
@@ -19,11 +18,78 @@
     <%@include file="../part/header.jsp" %>
 </header>
 <br/>
-<p>
-    Booking in process : ${sessionScope.bookingInProcess}<br>
-    Invoice For this booking : ${sessionScope.invoiceForBooking}
-</a>
-</p>
+<c:set var="booking" value="${sessionScope.bookingInProcess}" scope="page"/>
+<c:set var="invoice" value="${sessionScope.invoiceForBooking}" scope="page"/>
+<div>
+    Booking in process : ${booking}<br>
+    <p>${booking.roomsSet}</p>
+    Invoice For this booking : ${invoice}<br>
+</div> <br>
+<div>
+    <form action="${pageContext.request.contextPath}/performBookingProcessing.do" method="post">
+        <hr>
+        <div> Select status for booking:<br>
+            <c:if test="${booking.bookingStatus eq 'REGISTERED'}">
+                <label>CONFIRM
+                    <input type="radio" name="bookingStatus" value="CONFIRMED" checked/>
+                </label><br>
+                <label>PERFORM
+                    <input type="radio" name="bookingStatus" value="PERFORMING"/>
+                </label><br>
+            </c:if>
+
+            <c:if test="${booking.bookingStatus eq 'CONFIRMED'}">
+                <label>PERFORMING
+                    <input type="radio" name="bookingStatus" value="PERFORMING" checked/>
+                </label>
+                <label>COMPLETE
+                    <input type="radio" name="bookingStatus" value="COMPLETED"/>
+                </label>
+            </c:if>
+
+            <c:if test="${booking.bookingStatus eq 'PERFORMING'}">
+                <label>COMPLETE
+                    <input type="radio" name="bookingStatus" value="COMPLETED"/>
+                </label>
+            </c:if>
+
+            <c:if test="${booking.bookingStatus ne 'COMPLETED'}">
+                <label>REJECT
+                    <input type="radio" name="bookingStatus" value="REJECTED"/>
+                </label>
+            </c:if>
+
+            <c:if test="${booking.bookingStatus eq 'REJECTED'}">
+                <label>CONFIRM BACK
+                    <input type="radio" name="bookingStatus" value="CONFIRMED"/>
+                </label>
+            </c:if>
+
+        </div>
+
+        <br>
+        <hr>
+
+        <div>
+            <c:choose>
+                <c:when test="${invoice.isPayed eq 'false'}">
+                    <label>Register invoice payment
+                        <input type="checkbox" name="isPayed" value="true"/>
+                    </label>
+                </c:when>
+                <c:otherwise>
+                    <label>
+                        Invoice payed
+                    </label>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+        <input type="submit" value="perform">
+    </form>
+</div>
+
+
 </body>
 </html>
 

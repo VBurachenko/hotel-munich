@@ -17,6 +17,8 @@ public interface BookingService {
 
     void clearIncompleteBookings(Integer userId) throws ServiceException;
 
+    boolean changeBookingStatus(Booking bookingInProcess, String strStatusForChange) throws ServiceException;
+
     Booking prepareBookingToOrder(SearchUnitDTO searchUnit, int userId);
 
     Booking getBookingByBookingId(String strBookingId) throws ServiceException;

@@ -58,7 +58,7 @@
     </command>
     <command>
         <action>/openUserOffice.do</action>
-        <class>by.training.hotel.controller.command.impl.customer.OpenUserOfficeCommand</class>
+        <class>by.training.hotel.controller.command.impl.OpenUserOfficeCommand</class>
     </command>
     <command>
         <action>/performLogin.do</action>
@@ -144,7 +144,7 @@
 
     <command>
         <action>/cancelBooking.do</action>
-        <class>by.training.hotel.controller.command.impl.customer.CancelBookingCommand</class>
+        <class>by.training.hotel.controller.command.impl.CancelBookingCommand</class>
     </command>
 
 
@@ -192,6 +192,14 @@
     <command>
         <action>/prepareForBookingProcess.do</action>
         <class>by.training.hotel.controller.command.impl.admin.PrepareForBookingProcessCommand</class>
+    </command>
+    <command>
+        <action>/performBookingProcessing.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.PerformBookingProcessingCommand</class>
+    </command>
+    <command>
+        <action>/successBookingProcessing.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.SuccessBookingProcessingCommand</class>
     </command>
 
 </commands>

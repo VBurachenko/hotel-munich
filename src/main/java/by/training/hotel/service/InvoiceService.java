@@ -25,4 +25,6 @@ public interface InvoiceService {
     boolean payInvoiceInstantly(Invoice invoiceForBooking) throws ServiceException;
 
     boolean cancelInvoice(String strInvoiceId) throws ServiceException;
+
+    boolean registerInvoicePayment(Invoice invoiceInProcess, String strIsPayed) throws ServiceException;
 }

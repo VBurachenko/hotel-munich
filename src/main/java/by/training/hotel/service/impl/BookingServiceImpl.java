@@ -72,13 +72,36 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public boolean changeBookingStatus(Booking bookingInProcess, String strStatusForChange) throws ServiceException{
+
+        BookingStatus statusForChange;
+        try {
+            if (strStatusForChange != null){
+                statusForChange = BookingStatus.valueOf(strStatusForChange);
+            } else {
+                return false;
+            }
+        } catch (IllegalArgumentException e){
+            return false;
+        }
+        if (!BookingValidator.validateUpdatingBooking(bookingInProcess)){
+            return false;
+        }
+        try {
+            bookingInProcess.setBookingStatus(statusForChange);
+            return bookingDao.update(bookingInProcess);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public Booking prepareBookingToOrder(SearchUnitDTO searchUnit, int userId){
         Booking preFormedOrder = new Booking();
         preFormedOrder.setCheckInDate(searchUnit.getFrom());
         preFormedOrder.setCheckOutDate(searchUnit.getTo());
         preFormedOrder.setAdultCount(searchUnit.getAdultCount());
         preFormedOrder.setChildCount(searchUnit.getChildCount());
-        preFormedOrder.setComfortLevel(searchUnit.getComfortLevel());
         preFormedOrder.setUserId(userId);
         return preFormedOrder;
     }
@@ -119,7 +142,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public synchronized CommonDTO<Booking> getBookingForView(String strBookingId) throws ServiceException{
-        Long bookingId = null;
+        Long bookingId;
         CommonDTO<Booking> bookingForView = null;
         try {
             bookingId = Long.valueOf(strBookingId);

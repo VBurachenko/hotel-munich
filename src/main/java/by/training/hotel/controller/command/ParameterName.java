@@ -97,4 +97,7 @@ public final class ParameterName {
     public static final String PRICE_PER_NIGHT = "pricePerNight";
     public static final String PICTURE_LINK = "pictureLink";
 
+    public static final String IS_PAYED = "isPayed";
+
+    public static final int BOOKING_NOT_PROCESSED_CODE = 12;
 }

@@ -160,6 +160,25 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
     }
 
+    @Override
+    public boolean registerInvoicePayment(Invoice invoiceInProcess, String strIsPayed) throws ServiceException {
+        Boolean isPayed;
+        if (strIsPayed != null){
+            isPayed = Boolean.parseBoolean(strIsPayed);
+        } else {
+            return false;
+        }
+        if (!InvoiceValidator.validateUpdatingInvoice(invoiceInProcess)){
+            return false;
+        }
+        try {
+            invoiceInProcess.setIsPayed(isPayed);
+            return invoiceDAO.update(invoiceInProcess);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     private Double calculateTotalPayment(int nightsCount, Set<Room> roomsInBooking){
 
         double commonDailyCost = 0.0;

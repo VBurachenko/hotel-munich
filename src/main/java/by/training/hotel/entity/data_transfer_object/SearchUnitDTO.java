@@ -5,7 +5,7 @@ import org.joda.time.LocalDate;
 
 import java.util.Objects;
 
-public class SearchUnitDTO implements Entity {
+public final class SearchUnitDTO implements Entity {
 
     private static final long serialVersionUID = -7795690481375817579L;
 

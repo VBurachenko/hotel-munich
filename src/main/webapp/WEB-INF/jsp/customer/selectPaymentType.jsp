@@ -28,7 +28,7 @@
             <input type="radio" name="payment" value="instant_pay" checked/> Pay now
         </label><br>
         <label>
-            <input type="radio" name="payment" value="pay_in_hotel" checked/> Pay in hotel
+            <input type="radio" name="payment" value="pay_in_hotel"/> Pay in hotel
         </label><br>
         <%--<c:set var="invoiceIdForPayment" value="${sessionScope.invoiceForBooking.invoiceId}" scope="session"/>--%>
         <input type="hidden" name="invoiceIdForPayment" value="${sessionScope.invoiceForBooking.invoiceId}"/>
