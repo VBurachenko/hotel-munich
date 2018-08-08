@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -24,6 +24,13 @@
         </a>
     </c:if>
 
+    <c:if test="${sessionScope.role eq 'ADMIN' or sessionScope.role eq 'MODER'}">
+        <a href="${pageContext.request.contextPath}/listUsersView.do">Users</a>
+        <a href="${pageContext.request.contextPath}/listBookingsView.do">Bookings</a>
+        <a href="${pageContext.request.contextPath}/listInvoicesView.do">Invoices</a>
+        <a href="${pageContext.request.contextPath}/listRoomsView.do">Rooms</a>
+    </c:if>
+
     <div class="navbar-right">
         <c:choose>
             <c:when test="${sessionScope.role eq 'GUEST'}">
@@ -40,6 +47,9 @@
 
             </c:when>
             <c:otherwise>
+                <a href="${pageContext.request.contextPath}/logout.do">
+                        Logout
+                </a>
                 <fmt:message key="header.link.account" var="myOffice"/>
                 <a href="${pageContext.request.contextPath}/login.do">
                     ${myOffice}

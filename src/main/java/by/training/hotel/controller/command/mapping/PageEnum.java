@@ -10,7 +10,7 @@ public enum PageEnum {
     SEARCH_ROOM("/WEB-INF/jsp/searchRoom.jsp"),
     CUSTOMER_OFFICE("/WEB-INF/jsp/customer/customerOffice.jsp"),
     ADMIN_OFFICE("/WEB-INF/jsp/admin/adminOffice.jsp"),
-    SUCCESS_REGISTRATION("/WEB-INF/jsp/successRegistration.jsp"),
+    SUCCESS_CUSTOMER_REGISTRATION("/WEB-INF/jsp/successRegistration.jsp"),
     CART_CONTENT("/WEB-INF/jsp/customer/cartContent.jsp"),
     SELECT_PAYMENT_TYPE("/WEB-INF/jsp/customer/selectPaymentType.jsp"),
     INVOICE_PAYMENT("/WEB-INF/jsp/customer/invoicePayment.jsp"),
@@ -24,6 +24,7 @@ public enum PageEnum {
     ROOM_ADDING_SUCCESS("/WEB-INF/jsp/admin/roomAddingSuccess.jsp"),
     BOOKING_PROCESSING_FORM("/WEB-INF/jsp/admin/bookingProcessingForm.jsp"),
     SUCCESS_BOOKING_PROCESSING("/WEB-INF/jsp/admin/successBookingProcessing.jsp"),
+    SUCCESS_ADMIN_REGISTRATION("/WEB-INF/jsp/admin/successAdminRegistration.jsp"),
     INVOICE_LIST("/WEB-INF/jsp/admin/invoiceList.jsp");
 
 

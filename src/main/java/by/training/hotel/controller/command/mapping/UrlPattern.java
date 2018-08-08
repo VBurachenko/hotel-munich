@@ -26,13 +26,14 @@ public final class UrlPattern {
     public static final String ATTACH_INVOICE_TO_BOOKING = "/attachInvoiceToBooking.do";
     public static final String PAY_INVOICE = "/payInvoice.do";
     public static final String PERFORM_CHANGE_BOOKING = "/performChangeBooking.do";
-    public static final String LIST_USERS_SHOW = "/listUsersShow.do";
+    public static final String LIST_USERS_VIEW = "/listUsersView.do";
     public static final String PAYMENT_PERFORM = "/paymentPerform.do";
     public static final String COMPLETE_BOOKING = "/completeBooking.do";
     public static final String SUCCESS_PAYMENT = "/successPayment.do";
-    public static final String LIST_ROOMS_SHOW = "/listRoomsShow.do";
+    public static final String LIST_ROOMS_VIEW = "/listRoomsView.do";
     public static final String ROOM_ADDED_SUCCESSFULLY = "/roomAddedSuccessfully.do";
     public static final String OPEN_BOOKING_PROCESSING_FORM = "/openBookingProcessingForm.do";
     public static final String SUCCESS_BOOKING_PROCESSING = "/successBookingProcessing.do";
+    public static final String SUCCESS_ADMIN_REGISTRATION = "/successAdminRegistration.do";
 
 }

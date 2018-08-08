@@ -22,15 +22,6 @@
 <br/>
 User List
 <br>
-<form action="${pageContext.request.contextPath}/listBookingsView.do" method="post">
-    <input type="submit" value="Go to bookings List">
-</form>
-<form action="${pageContext.request.contextPath}/listRoomsView.do" method="post">
-    <input type="submit" value="Go to rooms List">
-</form>
-<form action="${pageContext.request.contextPath}/listInvoicesView.do" method="post">
-    <input type="submit" value="Go to invoices List">
-</form>
 
 <form action="${pageContext.request.contextPath}/provideUserForView.do" method="get">
     <label>Search user by email or telephone number:
@@ -48,6 +39,9 @@ User List
     </c:if>
     <c:if test="${requestScope.userOperationMessage eq 7}">
         No such user registered.
+    </c:if>
+    <c:if test="${requestScope.userOperationMessage eq 14}">
+        Admin was not registered.
     </c:if>
 
     <c:if test="${not empty requestScope.blockedUserId}">
@@ -105,7 +99,7 @@ User List
                         <c:choose>
                             <c:when test="${user.blocked eq 'true'}">
                                 Blocked
-                                <c:if test="${user.role ne 'MODER' or user.role ne 'ADMIN'}">
+                                <c:if test="${(user.role ne 'MODER') and (user.role ne 'ADMIN')}">
                                     <form id="unblockUser" action="${pageContext.request.contextPath}/userBlockingControl.do" method="post">
                                         <input type="hidden" name="user_id" value="${user.userId}"/>
                                         <input type="hidden" name="blockDown" value="false"/>
@@ -116,7 +110,7 @@ User List
                             </c:when>
                             <c:otherwise>
                                 Not blocked
-                                <c:if test="${user.role ne 'MODER'}">
+                                <c:if test="${(user.role ne 'MODER') and (user.role ne 'ADMIN')}">
                                     <form id="blockUser" action="${pageContext.request.contextPath}/userBlockingControl.do" method="post">
                                         <input type="hidden" name="user_id" value="${user.userId}"/>
                                         <input type="hidden" name="blockDown" value="true"/>
@@ -127,7 +121,15 @@ User List
                         </c:choose>
                     </td>
 
-                    <td>${user.role}</td>
+                    <td>${user.role}
+                        <c:if test="${(user.role eq 'CUSTOMER') and (sessionScope.role eq 'MODER')}">
+                            <form action="${pageContext.request.contextPath}/registerNewAdmin.do" method="post">
+                                <input type="hidden" name="email" value="${user.email}"/>
+                                <input type="submit" value="make admin"/>
+                            </form>
+                        </c:if>
+
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -161,7 +163,7 @@ User List
                         </li>
                     </c:if>
                 </ul>
-                <form action="${pageContext.request.contextPath}/listUsersShow.do" method="post" name="form1" id="changePage">
+                <form action="${pageContext.request.contextPath}/listUsersView.do" method="post" name="form1" id="changePage">
                     <input type="hidden" name="page"/>
                 </form>
             </nav>

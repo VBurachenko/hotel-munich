@@ -25,16 +25,6 @@
 <br/>
 Invoice List
 <br>
-<form action="${pageContext.request.contextPath}/listUsersView.do" method="post">
-    <input type="submit" value="Go to users List">
-</form>
-<form action="${pageContext.request.contextPath}/listRoomsView.do" method="post">
-    <input type="submit" value="Go to rooms List">
-</form>
-<form action="${pageContext.request.contextPath}/listBookingsView.do" method="post">
-    <input type="submit" value="Go to bookings List">
-</form>
-
 
 <form action="${pageContext.request.contextPath}/provideInvoiceForView.do" method="get">
     <label>Search invoice by id:
@@ -83,7 +73,11 @@ Invoice List
             <c:forEach var="invoice" items="${requestScope.invoicesForView.entityList}">
                 <tr>
                     <td>${invoice.invoiceId}</td>
-                    <td>${invoice.userId}</td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/provideUserForView.do?searchUserArtifact=${invoice.userId}">
+                                ${invoice.userId}
+                        </a>
+                    </td>
                     <td>${invoice.invoiceDate}</td>
                     <td>${invoice.nightsCount}</td>
                     <td>${invoice.totalPayment}</td>
@@ -137,7 +131,7 @@ Invoice List
                         </li>
                     </c:if>
                 </ul>
-                <form action="${pageContext.request.contextPath}/listBookingsShow.do" method="post" name="form1"
+                <form action="${pageContext.request.contextPath}/listRoomsView.do" method="post" name="form1"
                       id="changePage">
                     <input type="hidden" name="page"/>
                 </form>

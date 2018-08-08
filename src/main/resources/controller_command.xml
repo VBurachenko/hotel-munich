@@ -210,4 +210,13 @@
         <class>by.training.hotel.controller.command.impl.admin.ProvideInvoiceForViewCommand</class>
     </command>
 
+    <command>
+        <action>/registerNewAdmin.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.RegisterNewAdminCommand</class>
+    </command>
+    <command>
+        <action>/successAdminRegistration.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.SuccessAdminRegistrationCommand</class>
+    </command>
+
 </commands>

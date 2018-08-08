@@ -22,15 +22,6 @@
 <br/>
 Rooms list
 <br>
-<form action="${pageContext.request.contextPath}/listUsersShow.do" method="post">
-    <input type="submit" value="Go to users List">
-</form>
-<form action="${pageContext.request.contextPath}/listBookingsShow.do" method="post">
-    <input type="submit" value="Go to bookings List">
-</form>
-<form action="${pageContext.request.contextPath}/listInvoicesView.do" method="post">
-    <input type="submit" value="Go to invocies List">
-</form>
 
 <form action="${pageContext.request.contextPath}/provideRoomForView.do" method="get">
     <label>Search room by number:
@@ -156,7 +147,7 @@ Rooms list
                         </li>
                     </c:if>
                 </ul>
-                <form action="${pageContext.request.contextPath}/listRoomsShow.do" method="post" name="form1"
+                <form action="${pageContext.request.contextPath}/listRoomsView.do" method="post" name="form1"
                       id="changePage">
                     <input type="hidden" name="page"/>
                 </form>

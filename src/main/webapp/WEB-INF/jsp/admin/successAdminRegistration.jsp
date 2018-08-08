@@ -19,8 +19,8 @@
 </header>
 <br/>
 <p>
-    Booking processed successfully <a href="${pageContext.request.contextPath}/listBookingsView.do">
-    Go to bookings list
+    Admin registered successfully <a href="${pageContext.request.contextPath}/listUsersView.do">
+    Go to users list
 </a>
 </p>
 </body>

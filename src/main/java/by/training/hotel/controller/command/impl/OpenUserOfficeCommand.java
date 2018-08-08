@@ -36,6 +36,7 @@ public class OpenUserOfficeCommand extends Command {
                 session.setAttribute(ParameterName.BIRTHDAY, currentUser.getBirthday());
                 session.setAttribute(ParameterName.TEL_NUMBER, currentUser.getTelNumber());
                 session.setAttribute(ParameterName.GENDER_MALE, currentUser.getGenderMale());
+                session.setAttribute(ParameterName.ROLE, currentUser.getRole().toString());
 
                 if (currentUser.getRole().equals(UserRole.CUSTOMER)){
                     urlPattern = UrlPattern.CUSTOMER_AUTHORIZED;

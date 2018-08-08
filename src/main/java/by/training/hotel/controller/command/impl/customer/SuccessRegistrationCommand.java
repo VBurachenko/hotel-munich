@@ -13,6 +13,6 @@ public class SuccessRegistrationCommand extends Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        request.getRequestDispatcher(PageEnum.SUCCESS_REGISTRATION.getPath()).forward(request, response);
+        request.getRequestDispatcher(PageEnum.SUCCESS_CUSTOMER_REGISTRATION.getPath()).forward(request, response);
     }
 }

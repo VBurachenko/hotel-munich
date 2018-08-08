@@ -4,6 +4,7 @@ import by.training.hotel.dao.DAOFactory;
 import by.training.hotel.dao.UserDAO;
 import by.training.hotel.dao.exception.DAOException;
 import by.training.hotel.entity.User;
+import by.training.hotel.entity.UserRole;
 import by.training.hotel.entity.data_transfer_object.CommonDTO;
 import by.training.hotel.service.UserService;
 import by.training.hotel.service.exception.ServiceException;
@@ -208,6 +209,22 @@ public class UserServiceImpl implements UserService {
         }
 
         return userForView;
+    }
+
+    @Override
+    public boolean registerNewAdmin(String email) throws ServiceException{
+
+        if (!UserValidator.validateUserEmail(email)){
+            return false;
+        }
+
+        try {
+            User incomingAdmin = userDAO.getUserByEmail(email);
+            incomingAdmin.setRole(UserRole.ADMIN);
+            return userDAO.update(incomingAdmin);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
 }

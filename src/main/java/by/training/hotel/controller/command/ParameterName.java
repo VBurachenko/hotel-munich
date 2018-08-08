@@ -104,4 +104,6 @@ public final class ParameterName {
 
     public static final String INVOICE_OPERATION_MESSAGE = "invoiceOperationMessage";
     public static final int NO_SUCH_INVOICE_MESSAGE_CODE = 13;
+
+    public static final int ADMIN_WAS_NOT_REGISTERED_MESSAGE_CODE = 14;
 }

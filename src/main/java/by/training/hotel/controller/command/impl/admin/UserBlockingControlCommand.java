@@ -34,10 +34,10 @@ public class UserBlockingControlCommand extends Command {
         if (userBlockChanged){
             request.setAttribute(ParameterName.BLOCKED_USER_ID, strUserId);
             request.setAttribute(ParameterName.BLOCK_DOWN, strBlockDown);
-            request.getRequestDispatcher(UrlPattern.LIST_USERS_SHOW).forward(request, response);
+            request.getRequestDispatcher(UrlPattern.LIST_USERS_VIEW).forward(request, response);
         } else {
             request.setAttribute(ParameterName.USER_OPERATION_MESSAGE, ParameterName.CHANGE_USER_BLOCK_ERROR_CODE);
-            request.getRequestDispatcher(UrlPattern.LIST_USERS_SHOW).forward(request, response);
+            request.getRequestDispatcher(UrlPattern.LIST_USERS_VIEW).forward(request, response);
         }
     }
 }

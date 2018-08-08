@@ -29,26 +29,7 @@
     <p>Booking was successfully changed</p>
 </c:if>
 
-<form action="${pageContext.request.contextPath}/listUsersView.do" method="post">
-    <input type="submit" value="Go to users List">
-</form>
-<form action="${pageContext.request.contextPath}/listBookingsView.do" method="post">
-    <input type="submit" value="Go to bookings List">
-</form>
-<form action="${pageContext.request.contextPath}/listRoomsView.do" method="post">
-    <input type="submit" value="Go to rooms List">
-</form>
-<form action="${pageContext.request.contextPath}/listInvoicesView.do" method="post">
-    <input type="submit" value="Go to invoices List">
-</form>
-
 <div>
-    <button class="button tablink" onclick="openTab(event, 'info')" id="defaultOpen">
-        My personal Data
-    </button>
-</div>
-
-<div id="info" class="tab-content">
     <table>
         <tr>
             <td>Email</td>
@@ -85,11 +66,6 @@
         </tr>
     </table>
 </div>
-<form action="${pageContext.request.contextPath}/logout.do" method="post" id="logout">
-    <fmt:message key="page.btn.logout" var="exit"/>
-    <input type="submit" value="${exit}"/>
-</form>
-<h1>${sessionScope.role}</h1>
 
 </body>
 </html>

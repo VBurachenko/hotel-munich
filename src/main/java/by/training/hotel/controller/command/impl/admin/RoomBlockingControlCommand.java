@@ -33,7 +33,7 @@ public class RoomBlockingControlCommand extends Command {
             request.setAttribute(ParameterName.DISABLED_ROOM_NUMBER, strRoomNumber);
             request.setAttribute(ParameterName.BLOCK_DOWN, strBlockDown);
 
-            request.getRequestDispatcher(UrlPattern.LIST_ROOMS_SHOW).forward(request, response);
+            request.getRequestDispatcher(UrlPattern.LIST_ROOMS_VIEW).forward(request, response);
         } else {
             request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.CHANGE_ROOM_STATUS_ERROR_CODE);
         }

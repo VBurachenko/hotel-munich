@@ -10,8 +10,7 @@
     <script src="${pageContext.request.contextPath}/js/password.js"></script>
     <script src="${pageContext.request.contextPath}/js/navigation_bar.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navigation_bar.css">
-</head>
-<title><fmt:message key="page.title"/></title>
+    <title><fmt:message key="page.title"/></title>
 </head>
 <body>
 <br/>
@@ -20,7 +19,7 @@
 </header>
 <br/>
 <p>
-    Room added successfully <a href="${pageContext.request.contextPath}/listRoomsShow.do">
+    Room added successfully <a href="${pageContext.request.contextPath}/listRoomsView.do">
                                 Go to rooms list
                             </a>
 </p>

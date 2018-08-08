@@ -15,4 +15,8 @@ public class UserValidator {
     public static boolean validateIncomingUser(String email, String password){
         return true;
     }
+
+    public static boolean validateUserEmail(String email){
+        return true;
+    }
 }
