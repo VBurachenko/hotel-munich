@@ -35,5 +35,5 @@ public interface UserService {
 
     boolean changeBlockUser(String strUserId, String strBlockDown) throws ServiceException;
 
-    CommonDTO<User> getUserByEmailOrTelephoneNumber(String telNumOrEmail) throws ServiceException;
+    CommonDTO<User> getUserByIdOrEmailOrTelephoneNumber(String telNumOrEmail) throws ServiceException;
 }

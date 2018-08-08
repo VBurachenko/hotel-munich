@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `hotel`.`room` (
   `comfort_level` TINYINT(5) UNSIGNED NOT NULL,
   `price_per_night` DECIMAL(20,2) UNSIGNED NOT NULL,
   `picture_link` VARCHAR(255) NOT NULL,
-  `available_status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+  `available_status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`room_number`),
   UNIQUE INDEX `room_number_UNIQUE` (`room_number` ASC),
   UNIQUE INDEX `picture_link_UNIQUE` (`picture_link` ASC))
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `hotel`.`room_in_booking` (
   CONSTRAINT `room_in_booking_room_number`
     FOREIGN KEY (`room_number`)
     REFERENCES `hotel`.`room` (`room_number`)
-    ON DELETE CASCADE
+    ON DELETE RESTRICT
     ON UPDATE CASCADE)
     ENGINE = InnoDB;
 

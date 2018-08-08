@@ -10,5 +10,5 @@ public interface UserDAO<K extends Number, T extends Entity> extends EntityDAO<K
 
     int getTotalCountOfUsers() throws DAOException;
 
-    User getUserByEmailOrTelNumber(String emailOrTelNumber) throws DAOException;
+    User getUserByIdOrEmailOrTelNumber(String emailOrTelNumber) throws DAOException;
 }

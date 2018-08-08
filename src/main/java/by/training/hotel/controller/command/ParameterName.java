@@ -78,6 +78,7 @@ public final class ParameterName {
     public static final String INVOICE_FOR_PAYMENT = "invoiceForPayment";
 
     public static final String ROOMS_FOR_VIEW = "roomsForView";
+    public static final String INVOICES_FOR_VIEW = "invoicesForView";
 
     public static final String DISABLED_ROOM_NUMBER = "disabledRoomNumber";
     public static final String ROOM_OPERATION_MESSAGE = "roomOperationMessage";
@@ -100,4 +101,7 @@ public final class ParameterName {
     public static final String IS_PAYED = "isPayed";
 
     public static final int BOOKING_NOT_PROCESSED_CODE = 12;
+
+    public static final String INVOICE_OPERATION_MESSAGE = "invoiceOperationMessage";
+    public static final int NO_SUCH_INVOICE_MESSAGE_CODE = 13;
 }

@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Booking implements Entity{
 
-    private static final long serialVersionUID = -6498156404079791961L;
+
 
     private Long bookingId;
 

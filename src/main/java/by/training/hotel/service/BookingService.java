@@ -32,4 +32,6 @@ public interface BookingService {
     boolean confirmBooking(Long bookingId) throws ServiceException;
 
     Long getBookingIdByInvoiceId(Long invoiceId) throws ServiceException;
+
+    Long getBookingIdByInvoiceId(String strInvoiceId) throws ServiceException;
 }

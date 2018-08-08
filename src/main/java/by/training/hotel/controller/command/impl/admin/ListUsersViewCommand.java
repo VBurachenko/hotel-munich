@@ -3,9 +3,9 @@ package by.training.hotel.controller.command.impl.admin;
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.ParameterName;
 import by.training.hotel.controller.command.mapping.PageEnum;
-import by.training.hotel.entity.Room;
+import by.training.hotel.entity.User;
 import by.training.hotel.entity.data_transfer_object.CommonDTO;
-import by.training.hotel.service.RoomService;
+import by.training.hotel.service.UserService;
 import by.training.hotel.service.exception.ServiceException;
 
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ListRoomsShowCommand extends Command {
+public class ListUsersViewCommand extends Command {
 
     private final static int ITEMS_PER_PAGE = 10;
 
@@ -31,20 +31,20 @@ public class ListRoomsShowCommand extends Command {
             pageNumber = DEFAULT_PAGE_NUMBER;
         }
 
-        CommonDTO<Room> roomsForView = null;
-
-        RoomService roomService = serviceFactory.getRoomService();
+        CommonDTO<User> usersForView = null;
+        UserService userService = serviceFactory.getUserService();
 
         try {
-            roomsForView = roomService.getRoomsForView(pageNumber, ITEMS_PER_PAGE);
+            usersForView = userService.getUsersForView(pageNumber, ITEMS_PER_PAGE);
         } catch (ServiceException e){
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
 
-        request.setAttribute(ParameterName.ROOMS_FOR_VIEW, roomsForView);
+        request.setAttribute(ParameterName.USERS_FOR_VIEW, usersForView);
         request.setAttribute(ParameterName.PAGE, pageNumber);
 
-        request.getRequestDispatcher(PageEnum.ROOM_LIST.getPath()).forward(request, response);
+        request.getRequestDispatcher(PageEnum.USER_LIST.getPath()).forward(request, response);
+
     }
 }

@@ -29,14 +29,17 @@
     <p>Booking was successfully changed</p>
 </c:if>
 
-<form action="${pageContext.request.contextPath}/listUsersShow.do" method="post">
+<form action="${pageContext.request.contextPath}/listUsersView.do" method="post">
     <input type="submit" value="Go to users List">
 </form>
-<form action="${pageContext.request.contextPath}/listBookingsShow.do" method="post">
+<form action="${pageContext.request.contextPath}/listBookingsView.do" method="post">
     <input type="submit" value="Go to bookings List">
 </form>
-<form action="${pageContext.request.contextPath}/listRoomsShow.do" method="post">
+<form action="${pageContext.request.contextPath}/listRoomsView.do" method="post">
     <input type="submit" value="Go to rooms List">
+</form>
+<form action="${pageContext.request.contextPath}/listInvoicesView.do" method="post">
+    <input type="submit" value="Go to invoices List">
 </form>
 
 <div>

@@ -7,14 +7,18 @@ import by.training.hotel.entity.Booking;
 import by.training.hotel.entity.Invoice;
 import by.training.hotel.entity.InvoiceStatus;
 import by.training.hotel.entity.Room;
+import by.training.hotel.entity.data_transfer_object.CommonDTO;
 import by.training.hotel.service.InvoiceService;
 import by.training.hotel.service.exception.ServiceException;
 import by.training.hotel.service.util.DatesCalculator;
+import by.training.hotel.service.util.PageCountDeterminant;
 import by.training.hotel.service.validation.BookingValidator;
 import by.training.hotel.service.validation.CommonValidator;
 import by.training.hotel.service.validation.InvoiceValidator;
 import org.joda.time.LocalDate;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 public class InvoiceServiceImpl implements InvoiceService {
@@ -178,6 +182,59 @@ public class InvoiceServiceImpl implements InvoiceService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public synchronized CommonDTO<Invoice> getInvoicesForView(int pageNumber, int itemsPerPage) throws ServiceException{
+
+        CommonDTO<Invoice> invoicesForView = new CommonDTO<>();
+
+        int start = (pageNumber - 1) * itemsPerPage;
+
+        try {
+            List<Invoice> invoiceList = invoiceDAO.getElementsList(start, itemsPerPage);
+            int invoiceCount = invoiceDAO.getTotalCountOfInvoices();
+            int pageCount = PageCountDeterminant.definePageCount(invoiceCount, itemsPerPage);
+
+            invoicesForView.setEntityList(invoiceList);
+            invoicesForView.setPagesCount(pageCount);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        return invoicesForView;
+    }
+
+    @Override
+    public synchronized CommonDTO<Invoice> getOneInvoiceForView(String strInvoiceId) throws ServiceException{
+        Long invoiceId;
+        CommonDTO<Invoice> invoiceForView = null;
+
+        try {
+            invoiceId = Long.valueOf(strInvoiceId);
+        } catch (NumberFormatException e){
+            return null;
+        }
+
+        if (!CommonValidator.validateLongId(invoiceId)){
+            return null;
+        }
+
+        try {
+            Invoice wantedInvoice = invoiceDAO.getById(invoiceId);
+            if (wantedInvoice != null){
+                invoiceForView = new CommonDTO<>();
+                List<Invoice> invoicesList = new LinkedList<>();
+                invoicesList.add(wantedInvoice);
+
+                invoiceForView.setEntityList(invoicesList);
+                invoiceForView.setPagesCount(1);
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return invoiceForView;
+    }
+
 
     private Double calculateTotalPayment(int nightsCount, Set<Room> roomsInBooking){
 

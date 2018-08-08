@@ -11,4 +11,5 @@ public interface InvoiceDAO<K extends Number, T extends Entity> extends EntityDA
 
     void clearUnspecifiedInvoices(Integer userId) throws DAOException;
 
+    int getTotalCountOfInvoices() throws DAOException;
 }

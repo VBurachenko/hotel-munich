@@ -28,6 +28,9 @@ Rooms list
 <form action="${pageContext.request.contextPath}/listBookingsShow.do" method="post">
     <input type="submit" value="Go to bookings List">
 </form>
+<form action="${pageContext.request.contextPath}/listInvoicesView.do" method="post">
+    <input type="submit" value="Go to invocies List">
+</form>
 
 <form action="${pageContext.request.contextPath}/provideRoomForView.do" method="get">
     <label>Search room by number:
@@ -91,36 +94,35 @@ Rooms list
                     <td>${room.pricePerNight}</td>
                     <td>${room.pictureLink}</td>
 
-                    <td>
-                        <c:choose>
-                            <c:when test="${room.availableStatus eq 'true'}">
-                                Is available
+                    <c:choose>
+                        <c:when test="${room.availableStatus eq 'true'}">
+                            <td>Is available</td>
+                            <td>
                                 <form id="disable" action="${pageContext.request.contextPath}/roomBlockingControl.do"
                                       method="post">
                                     <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                     <input type="hidden" name="blockDown" value="false"/>
                                     <input type="submit" value="Disable"/>
                                 </form>
-                            </c:when>
-                            <c:otherwise>
-                                NOT available
+                                <button form="changeRoom" type="submit">change</button>
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>NOT available</td>
+                            <td>
                                 <form id="makeAble" action="${pageContext.request.contextPath}/roomBlockingControl.do"
                                       method="post">
                                     <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                     <input type="hidden" name="blockDown" value="true"/>
                                     <input type="submit" value="Make Able"/>
                                 </form>
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td>
-                        <form id="changeRoom">
-                            <input type="submit" value="change"/>
-                        </form>
-                        <form id="deleteRoom">
-                            <input type="submit" value="delete"/>
-                        </form>
-                    </td>
+                                <button form="changeRoom" type="submit">change</button>
+                            </td>
+                        </c:otherwise>
+                    </c:choose>
+                    <form id="changeRoom">
+                        <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
+                    </form>
                 </tr>
             </c:forEach>
             </tbody>

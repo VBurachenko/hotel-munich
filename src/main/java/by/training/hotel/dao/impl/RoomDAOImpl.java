@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.training.hotel.dao.util.DateTypeConverter.localDateToSqlDate;
+import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
 
 public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
 

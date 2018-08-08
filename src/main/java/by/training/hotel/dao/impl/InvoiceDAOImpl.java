@@ -19,8 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static by.training.hotel.dao.util.DateTypeConverter.localDateToSqlDate;
-import static by.training.hotel.dao.util.DateTypeConverter.sqlToLocalDate;
+import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
+import static by.training.hotel.dao.util.DataTypeConverter.sqlToLocalDate;
 
 public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invoice> {
 
@@ -46,7 +46,7 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
             "SELECT * FROM invoice ";
 
     private final static String JOIN_FOR_LIMIT =
-            "JOIN (SELECT invoice.invoice_id FROM invoice ORDER BY invoice.invoice_id) " +
+            "JOIN (SELECT invoice.invoice_id FROM invoice ORDER BY invoice.invoice_id LIMIT ?, ?) " +
                     "AS i ON i.invoice_id = invoice.invoice_id";
 
     private final static String DELETE_INVOICE =
@@ -59,6 +59,8 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
     private final static String WHERE_INVOICE_ID = " WHERE invoice.invoice_id = ?";
 
     private final static String WHERE_USER_ID = "WHERE invoice.user_id = ?";
+
+    private static final String GET_TOTAL_COUNT_OF_INVOICES = "SELECT COUNT(*) FROM invoice ";
 
     public InvoiceDAOImpl(ConnectionPool connectionPool) {
         super(connectionPool);
@@ -264,6 +266,27 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
         } finally {
             pool.closeUsedResources(statement);
         }
+    }
+
+    @Override
+    public int getTotalCountOfInvoices() throws DAOException {
+
+        int totalCountOfInvoices;
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try (ProxyConnection proxyConnection = pool.takeConnection()) {
+            statement = proxyConnection.prepareStatement(GET_TOTAL_COUNT_OF_INVOICES);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            totalCountOfInvoices = resultSet.getInt(1);
+        } catch (SQLException | PoolException e) {
+            throw new DAOException(e);
+        } finally {
+            pool.closeUsedResources(resultSet, statement);
+        }
+        return totalCountOfInvoices;
     }
 
     private void prepareForUpdate(PreparedStatement statement, Invoice invoice) throws SQLException {

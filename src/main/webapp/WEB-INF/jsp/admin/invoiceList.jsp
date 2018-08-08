@@ -23,7 +23,7 @@
     <%@include file="../part/header.jsp" %>
 </header>
 <br/>
-bookingList
+Invoice List
 <br>
 <form action="${pageContext.request.contextPath}/listUsersView.do" method="post">
     <input type="submit" value="Go to users List">
@@ -31,94 +31,77 @@ bookingList
 <form action="${pageContext.request.contextPath}/listRoomsView.do" method="post">
     <input type="submit" value="Go to rooms List">
 </form>
-<form action="${pageContext.request.contextPath}/listInvoicesView.do" method="post">
-    <input type="submit" value="Go to invoices List">
+<form action="${pageContext.request.contextPath}/listBookingsView.do" method="post">
+    <input type="submit" value="Go to bookings List">
 </form>
 
-<form action="${pageContext.request.contextPath}/provideBookingForView.do" method="get">
-    <label>Search booking by booking id:
-        <input type="text" name="bookingId"/>
+
+<form action="${pageContext.request.contextPath}/provideInvoiceForView.do" method="get">
+    <label>Search invoice by id:
+        <input type="text" name="invoiceId"/>
     </label>
     <input type="submit" value="search"/>
 </form>
 
 <c:set var="currentPage" value="${requestScope.page}" scope="page"/>
-<c:set var="pagesCount" value="${requestScope.bookingsForView.pagesCount}" scope="page"/>
+<c:set var="pagesCount" value="${requestScope.invoicesForView.pagesCount}" scope="page"/>
 <br>
 <div>
-    <c:if test="${requestScope.bookingOperationMessage eq 6}">
-        Booking status was not changed.
-    </c:if>
-    <c:if test="${requestScope.bookingOperationMessage eq 10}">
-        No such booking existing.
-    </c:if>
-    <c:if test="${requestScope.bookingOperationMessage eq 12}">
-        Booking was not processed.
+    <c:if test="${requestScope.invoiceOperationMessage eq 13}">
+        No such invoice existing.
     </c:if>
 
-    <c:if test="${not empty requestScope.changedBookingId}">
-        User with id ${requestScope.changedBookingId}
-        <c:choose>
-            <c:when test="${requestScope.changedBookingStatus eq 'true'}">
-                was blocked.
-            </c:when>
-            <c:otherwise>
-                was unblocked.
-            </c:otherwise>
-        </c:choose>
-    </c:if>
+    <%--<c:if test="${not empty requestScope.changedInvoceId}">--%>
+        <%--Booking with id ${requestScope.changedInvoiceId}--%>
+        <%--<c:choose>--%>
+            <%--<c:when test="${requestScope.changedInvoiceStatus eq 'true'}">--%>
+                <%--was blocked.--%>
+            <%--</c:when>--%>
+            <%--<c:otherwise>--%>
+                <%--was unblocked.--%>
+            <%--</c:otherwise>--%>
+        <%--</c:choose>--%>
+    <%--</c:if>--%>
 </div>
-<c:if test="${not empty requestScope.bookingsForView}">
+<c:if test="${not empty requestScope.invoicesForView}">
     <div>
         <table border="1">
             <thead>
             <tr>
-                <td>BookingId</td>
-                <td>Check-In-Date</td>
-                <td>Check-Out-Date</td>
-                <td>AdultCount</td>
-                <td>ChildCount</td>
-                <td>InvoiceId</td>
-                <td>UserId</td>
-                <td>BookingStatus</td>
-                <td>RoomsSet</td>
-                <td>Perform action</td>
+                <td>Invoice Id</td>
+                <td>User Id</td>
+                <td>Invoice Date</td>
+                <td>Nights Count</td>
+                <td>Total Payment</td>
+                <td>Payment Type</td>
+                <td>Payed</td>
+                <td>Perform Action</td>
             </tr>
             </thead>
 
             <tbody>
-            <c:forEach var="booking" items="${requestScope.bookingsForView.entityList}">
+            <c:forEach var="invoice" items="${requestScope.invoicesForView.entityList}">
                 <tr>
-                    <td>${booking.bookingId}</td>
-                    <td>${booking.checkInDate}</td>
-                    <td>${booking.checkOutDate}</td>
-                    <td>${booking.adultCount}</td>
-                    <td>${booking.childCount}</td>
+                    <td>${invoice.invoiceId}</td>
+                    <td>${invoice.userId}</td>
+                    <td>${invoice.invoiceDate}</td>
+                    <td>${invoice.nightsCount}</td>
+                    <td>${invoice.totalPayment}</td>
+                    <td>${invoice.invoiceStatus}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/provideInvoiceForView.do?invoiceId=${booking.invoiceId}">
-                                ${booking.invoiceId}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/provideUserForView.do?searchUserArtifact=${booking.userId}">
-                                ${booking.userId}
-                        </a>
-                    </td>
-                    <td>${booking.bookingStatus}</td>
-                    <td>
-                        <c:forEach var="room" items="${booking.roomsSet}">
-                            <p>${room}</p>
-                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${invoice.isPayed eq 'true'}">
+                                Payed
+                            </c:when>
+                            <c:otherwise>
+                                NOT payed
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                     <td>
                         <form id="processBookingAndInvoice" action="${pageContext.request.contextPath}/prepareForBookingProcess.do" method="post">
-                            <input type="hidden" name="bookingId" value="${booking.bookingId}">
+                            <input type="hidden" name="invoiceId" value="${invoice.invoiceId}">
                             <input type="submit" value="process"/>
-                        </form>
-                        <form action="${pageContext.request.contextPath}/cancelBooking.do" method="post">
-                            <input type="hidden" name="cancelBookingId" value="${booking.bookingId}"/>
-                            <input type="hidden" name="cancelInvoiceId" value="${booking.invoiceId}"/>
-                            <input type="submit" value="cancel"/>
                         </form>
                     </td>
                 </tr>

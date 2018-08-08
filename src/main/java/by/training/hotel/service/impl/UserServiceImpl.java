@@ -189,12 +189,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public CommonDTO<User> getUserByEmailOrTelephoneNumber(String telNumOrEmail) throws ServiceException{
+    public CommonDTO<User> getUserByIdOrEmailOrTelephoneNumber(String searchUserArtifact) throws ServiceException{
 
         CommonDTO<User> userForView = null;
 
         try {
-            User wantedUser = userDAO.getUserByEmailOrTelNumber(telNumOrEmail);
+            User wantedUser = userDAO.getUserByIdOrEmailOrTelNumber(searchUserArtifact);
             if (wantedUser != null){
                 userForView = new CommonDTO<>();
                 List<User> userList = new LinkedList<>();

@@ -22,11 +22,14 @@
 <br/>
 User List
 <br>
-<form action="${pageContext.request.contextPath}/listBookingsShow.do" method="post">
+<form action="${pageContext.request.contextPath}/listBookingsView.do" method="post">
     <input type="submit" value="Go to bookings List">
 </form>
-<form action="${pageContext.request.contextPath}/listRoomsShow.do" method="post">
+<form action="${pageContext.request.contextPath}/listRoomsView.do" method="post">
     <input type="submit" value="Go to rooms List">
+</form>
+<form action="${pageContext.request.contextPath}/listInvoicesView.do" method="post">
+    <input type="submit" value="Go to invoices List">
 </form>
 
 <form action="${pageContext.request.contextPath}/provideUserForView.do" method="get">

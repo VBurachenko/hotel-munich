@@ -120,18 +120,22 @@
     </command>
 
     <command>
-        <action>/listUsersShow.do</action>
-        <class>by.training.hotel.controller.command.impl.admin.ListUsersShowCommand</class>
+        <action>/listUsersView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ListUsersViewCommand</class>
+    </command>
+    <command>
+        <action>/listBookingsView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ListBookingsViewCommand</class>
+    </command>
+    <command>
+        <action>/listRoomsView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ListRoomsViewCommand</class>
+    </command>
+    <command>
+        <action>/listInvoicesView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ListInvoicesViewCommand</class>
     </command>
 
-    <command>
-        <action>/listBookingsShow.do</action>
-        <class>by.training.hotel.controller.command.impl.admin.ListBookingsShowCommand</class>
-    </command>
-    <command>
-        <action>/listRoomsShow.do</action>
-        <class>by.training.hotel.controller.command.impl.admin.ListRoomsShowCommand</class>
-    </command>
     <command>
         <action>/userBlockingControl.do</action>
         <class>by.training.hotel.controller.command.impl.admin.UserBlockingControlCommand</class>
@@ -200,6 +204,10 @@
     <command>
         <action>/successBookingProcessing.do</action>
         <class>by.training.hotel.controller.command.impl.admin.SuccessBookingProcessingCommand</class>
+    </command>
+    <command>
+        <action>/provideInvoiceForView.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.ProvideInvoiceForViewCommand</class>
     </command>
 
 </commands>

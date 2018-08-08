@@ -215,4 +215,25 @@ public class BookingServiceImpl implements BookingService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public Long getBookingIdByInvoiceId(String strInvoiceId) throws ServiceException {
+
+        Long invoiceId;
+
+        try {
+            invoiceId = Long.parseLong(strInvoiceId);
+        } catch (NumberFormatException e){
+            return null;
+        }
+
+        if (!CommonValidator.validateLongId(invoiceId)){
+            return null;
+        }
+        try {
+            return bookingDao.getBookingIdByInvoiceId(invoiceId);
+        } catch (DAOException e){
+            throw new ServiceException(e);
+        }
+    }
 }

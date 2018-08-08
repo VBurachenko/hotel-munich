@@ -24,6 +24,7 @@ public class PrepareForBookingProcessCommand extends Command {
         HttpSession session = request.getSession();
 
         String strBookingId = request.getParameter(ParameterName.BOOKING_ID);
+        String strInvoiceId = request.getParameter(ParameterName.INVOICE_ID);
 
         Booking bookingInProcess = null;
         Invoice invoiceForBooking = null;
@@ -32,6 +33,9 @@ public class PrepareForBookingProcessCommand extends Command {
         InvoiceService invoiceService = serviceFactory.getInvoiceService();
 
         try {
+            if (strBookingId == null){
+                strBookingId = bookingService.getBookingIdByInvoiceId(strInvoiceId).toString();
+            }
             bookingInProcess = bookingService.getBookingByBookingId(strBookingId);
             if (bookingInProcess != null){
                 invoiceForBooking = invoiceService.getInvoiceById(bookingInProcess.getInvoiceId());

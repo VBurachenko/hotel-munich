@@ -6,6 +6,7 @@ import by.training.hotel.dao.connection_pool.ConnectionPool;
 import by.training.hotel.dao.connection_pool.ProxyConnection;
 import by.training.hotel.dao.connection_pool.exception.PoolException;
 import by.training.hotel.dao.exception.DAOException;
+import by.training.hotel.dao.util.DataTypeConverter;
 import by.training.hotel.dao.util.EntityParameter;
 import by.training.hotel.entity.User;
 import by.training.hotel.entity.UserRole;
@@ -19,8 +20,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.training.hotel.dao.util.DateTypeConverter.localDateToSqlDate;
-import static by.training.hotel.dao.util.DateTypeConverter.sqlToLocalDate;
+import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
+import static by.training.hotel.dao.util.DataTypeConverter.sqlToLocalDate;
 
 public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
 
@@ -68,7 +69,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
 
     private final static String WHERE_USER_EMAIL = " WHERE user.email = ?";
 
-    private final static String WHERE_USER_EMAIL_OR_TEL_NUMBER = " WHERE user.email = ? OR user.tel_number = ?";
+    private final static String WHERE_USER_ID_OR_EMAIL_OR_TEL_NUMBER = " WHERE user.user_id = ? OR user.email = ? OR user.tel_number = ?";
 
     private final static String OR_TEL_NUMBER = " OR user.tel_number = ?";
 
@@ -281,16 +282,25 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
     }
 
     @Override
-    public User getUserByEmailOrTelNumber(String emailOrTelNumber) throws DAOException {
+    public User getUserByIdOrEmailOrTelNumber(String userSearchArtifact) throws DAOException {
 
         User wantedUser = null;
 
         PreparedStatement statement = null;
         ResultSet resultSet= null;
         try (ProxyConnection proxyConnection = pool.takeConnection()){
-            statement = proxyConnection.prepareStatement(GET_USERS + WHERE_USER_EMAIL_OR_TEL_NUMBER);
-            statement.setString(1, emailOrTelNumber);
-            statement.setString(2, emailOrTelNumber);
+
+            statement = proxyConnection.prepareStatement(GET_USERS + WHERE_USER_ID_OR_EMAIL_OR_TEL_NUMBER);
+
+            Integer userId = DataTypeConverter.stringToIntConvert(userSearchArtifact);
+            if (userId != null){
+                statement.setInt(1, userId);
+            } else {
+                statement.setInt(1, 0);
+            }
+
+            statement.setString(2, userSearchArtifact);
+            statement.setString(3, userSearchArtifact);
             resultSet = statement.executeQuery();
             if (resultSet.next()){
                 wantedUser = getFromResultSet(resultSet);

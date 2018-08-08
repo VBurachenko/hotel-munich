@@ -31,7 +31,7 @@
         <div> Select status for booking:<br>
             <c:if test="${booking.bookingStatus eq 'REGISTERED'}">
                 <label>CONFIRM
-                    <input type="radio" name="bookingStatus" value="CONFIRMED" checked/>
+                    <input type="radio" name="bookingStatus" value="CONFIRMED"/>
                 </label><br>
                 <label>PERFORM
                     <input type="radio" name="bookingStatus" value="PERFORMING"/>
@@ -40,7 +40,7 @@
 
             <c:if test="${booking.bookingStatus eq 'CONFIRMED'}">
                 <label>PERFORMING
-                    <input type="radio" name="bookingStatus" value="PERFORMING" checked/>
+                    <input type="radio" name="bookingStatus" value="PERFORMING"/>
                 </label>
                 <label>COMPLETE
                     <input type="radio" name="bookingStatus" value="COMPLETED"/>

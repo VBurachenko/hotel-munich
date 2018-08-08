@@ -2,6 +2,7 @@ package by.training.hotel.service;
 
 import by.training.hotel.entity.Booking;
 import by.training.hotel.entity.Invoice;
+import by.training.hotel.entity.data_transfer_object.CommonDTO;
 import by.training.hotel.service.exception.ServiceException;
 
 import java.util.Set;
@@ -27,4 +28,8 @@ public interface InvoiceService {
     boolean cancelInvoice(String strInvoiceId) throws ServiceException;
 
     boolean registerInvoicePayment(Invoice invoiceInProcess, String strIsPayed) throws ServiceException;
+
+    CommonDTO<Invoice> getInvoicesForView(int pageNumber, int itemsPerPage) throws ServiceException;
+
+    CommonDTO<Invoice> getOneInvoiceForView(String strInvoiceId) throws ServiceException;
 }

@@ -21,8 +21,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static by.training.hotel.dao.util.DateTypeConverter.localDateToSqlDate;
-import static by.training.hotel.dao.util.DateTypeConverter.sqlToLocalDate;
+import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
+import static by.training.hotel.dao.util.DataTypeConverter.sqlToLocalDate;
 
 public class BookingDAOImpl extends AbstractDAO implements BookingDAO<Long, Booking> {
 
