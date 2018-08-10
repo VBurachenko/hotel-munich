@@ -122,6 +122,9 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public synchronized CommonDTO<Booking> getBookingsForView(int pageNumber, int itemsPerPage) throws ServiceException{
 
+        if (pageNumber <= 0){
+            return null;
+        }
         CommonDTO<Booking> bookingsForView = new CommonDTO<>();
 
         int start = (pageNumber - 1) * itemsPerPage;

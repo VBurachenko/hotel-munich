@@ -107,4 +107,17 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <jsp-config>
+
+    <taglib>
+      <taglib-uri>custom-tag/paginator</taglib-uri>
+      <taglib-location>WEB-INF/tld/paginator.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+      <taglib-uri>custom-tag/footer</taglib-uri>
+      <taglib-location>WEB-INF/tld/footer.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+
 </web-app>

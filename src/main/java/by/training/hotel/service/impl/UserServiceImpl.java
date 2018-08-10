@@ -147,6 +147,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public synchronized CommonDTO<User> getUsersForView(int pageNumber, int itemsPerPage) throws ServiceException{
 
+        if (pageNumber <= 0){
+            return null;
+        }
+
         CommonDTO<User> usersForView = new CommonDTO<>();
 
         int start = (pageNumber - 1) * itemsPerPage;

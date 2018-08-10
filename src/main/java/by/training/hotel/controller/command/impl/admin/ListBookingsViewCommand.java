@@ -32,6 +32,7 @@ public class ListBookingsViewCommand extends Command {
         }
 
         CommonDTO<Booking> bookingsForView = null;
+
         BookingService bookingService = serviceFactory.getBookingService();
 
         try {

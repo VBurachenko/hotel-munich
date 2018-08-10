@@ -16,7 +16,7 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-        defaultEncoding = filterConfig.getInitParameter(APPLICATION_ENCODING);
+        defaultEncoding = filterConfig.getServletContext().getInitParameter(APPLICATION_ENCODING);
     }
 
     @Override

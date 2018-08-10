@@ -71,6 +71,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public synchronized CommonDTO<Room> getRoomsForView(int pageNumber, int itemsPerPage) throws ServiceException{
+        if (pageNumber <= 0){
+            return null;
+        }
         CommonDTO<Room> roomsForView = new CommonDTO<>();
         int start = (pageNumber - 1) * itemsPerPage;
 

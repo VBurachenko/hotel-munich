@@ -185,7 +185,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public synchronized CommonDTO<Invoice> getInvoicesForView(int pageNumber, int itemsPerPage) throws ServiceException{
-
+        if (pageNumber <= 0){
+            return null;
+        }
         CommonDTO<Invoice> invoicesForView = new CommonDTO<>();
 
         int start = (pageNumber - 1) * itemsPerPage;

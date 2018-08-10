@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="custom-tag/paginator" prefix="pgr"%>
 <%@ include file="../part/locale.jsp" %>
+
 
 <html>
 <head>
@@ -138,34 +140,8 @@ User List
         <c:if test="${pagesCount ne '1'}">
             <nav>
                 <ul class="pagination">
-                    <c:if test="${currentPage ne 1}">
-                        <li>
-                            <a href="JavaScript:changePage(${currentPage - 1})">Previous</a>
-                        </li>
-                    </c:if>
-                    <c:forEach begin="1" end="${pagesCount}" var="i">
-                        <c:choose>
-                            <c:when test="${currentPage eq i}">
-                                <li>
-                                    <a><span>${i}</span></a>
-                                </li>
-                            </c:when>
-                            <c:otherwise>
-                                <li>
-                                    <a href="JavaScript:changePage(${i})">${i}</a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                    <c:if test="${currentPage lt pagesCount}">
-                        <li>
-                            <a href="JavaScript:changePage(${currentPage + 1})">Next</a>
-                        </li>
-                    </c:if>
+                    <pgr:navPages currentPage="${currentPage}" pagesCount="${pagesCount}" urlPattern="/listUsersView.do"/>
                 </ul>
-                <form action="${pageContext.request.contextPath}/listUsersView.do" method="post" name="form1" id="changePage">
-                    <input type="hidden" name="page"/>
-                </form>
             </nav>
         </c:if>
 
