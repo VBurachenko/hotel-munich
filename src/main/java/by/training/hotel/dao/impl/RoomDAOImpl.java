@@ -20,7 +20,7 @@ import java.util.List;
 
 import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
 
-public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
+public class RoomDAOImpl extends AbstractDAO<Room, Integer> implements RoomDAO<Room, Integer> {
 
     private static final String ADD_ROOM_QUERY =
             "INSERT INTO room " +
@@ -74,6 +74,16 @@ public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
 
     public RoomDAOImpl(ConnectionPool connectionPool) {
         super(connectionPool);
+    }
+
+    @Override
+    protected String getDeleteQuery() {
+        return DELETE_ROOM + WHERE_ROOM_NUMBER;
+    }
+
+    @Override
+    protected String getTotalCountQuery() {
+        return GET_TOTAL_COUNT_OF_ROOMS;
     }
 
     @Override
@@ -141,29 +151,6 @@ public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
     }
 
     @Override
-    public boolean delete(Integer roomNumber) throws DAOException {
-        boolean deletedSuccessfully = false;
-
-        PreparedStatement statement = null;
-
-        try (ProxyConnection proxyConnection = pool.takeConnection()){
-            statement = proxyConnection.prepareStatement(DELETE_ROOM + WHERE_ROOM_NUMBER);
-
-           statement.setInt(1, roomNumber);
-
-            if (statement.executeUpdate() == 1){
-                deletedSuccessfully = true;
-            }
-
-        } catch (SQLException | PoolException e){
-            throw new DAOException(e);
-        } finally {
-            pool.closeUsedResources(statement);
-        }
-        return deletedSuccessfully;
-    }
-
-    @Override
     public Room getById(Integer roomNumber) throws DAOException {
 
         Room currentRoom = null;
@@ -217,11 +204,6 @@ public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
             pool.closeUsedResources(resultSet, statement);
         }
         return allRoomsList;
-    }
-
-    @Override
-    public List<Room> getElementsList() throws DAOException {
-        return getElementsList(0, 0);
     }
 
     @Override
@@ -279,27 +261,6 @@ public class RoomDAOImpl extends AbstractDAO implements RoomDAO<Integer, Room> {
         }
 
         return freeRoomsCount;
-    }
-
-    @Override
-    public int getTotalCountOfRooms() throws DAOException {
-
-        int totalCountOfRooms;
-
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        try (ProxyConnection proxyConnection = pool.takeConnection()){
-            statement = proxyConnection.prepareStatement(GET_TOTAL_COUNT_OF_ROOMS);
-            resultSet = statement.executeQuery();
-            resultSet.next();
-            totalCountOfRooms = resultSet.getInt(1);
-        } catch (SQLException | PoolException e) {
-            throw new DAOException(e);
-        } finally {
-            pool.closeUsedResources(resultSet, statement);
-        }
-        return totalCountOfRooms;
     }
 
     private void prepareForUpdate(PreparedStatement statement, Room room) throws SQLException {

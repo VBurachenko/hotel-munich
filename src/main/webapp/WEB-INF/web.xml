@@ -118,6 +118,16 @@
       <taglib-uri>custom-tag/footer</taglib-uri>
       <taglib-location>WEB-INF/tld/footer.tld</taglib-location>
     </taglib>
+
+    <taglib>
+      <taglib-uri>custom-tag/post-method-paginator</taglib-uri>
+      <taglib-location>WEB-INF/tld/post_method_paginator.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+      <taglib-uri>custom-tag/operation-message</taglib-uri>
+      <taglib-location>WEB-INF/tld/operation_message.tld</taglib-location>
+    </taglib>
   </jsp-config>
 
 </web-app>

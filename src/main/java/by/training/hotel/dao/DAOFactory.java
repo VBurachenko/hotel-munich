@@ -16,19 +16,21 @@ public final class DAOFactory {
 
     private static DAOFactory INSTANCE = null;
 
-    public UserDAO<Integer, User> getUserDao() {
+
+
+    public UserDAO<User, Integer> getUserDao() {
         return new UserDAOImpl(POOL);
     }
 
-    public BookingDAO<Long, Booking> getBookingDao() {
+    public BookingDAO<Booking, Long> getBookingDao() {
         return new BookingDAOImpl(POOL);
     }
 
-    public InvoiceDAO<Long, Invoice> getInvoiceDao() {
+    public InvoiceDAO<Invoice, Long> getInvoiceDao() {
         return new InvoiceDAOImpl(POOL);
     }
 
-    public RoomDAO<Integer, Room> getRoomDao() {
+    public RoomDAO<Room, Integer> getRoomDao() {
         return new RoomDAOImpl(POOL);
     }
 

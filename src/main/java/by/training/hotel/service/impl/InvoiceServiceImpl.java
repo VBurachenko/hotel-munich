@@ -25,7 +25,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     private final DAOFactory factory = DAOFactory.getInstance();
 
-    private final InvoiceDAO<Long, Invoice> invoiceDAO = factory.getInvoiceDao();
+    private final InvoiceDAO<Invoice, Long> invoiceDAO = factory.getInvoiceDao();
 
     @Override
     public Set<Invoice> getInvoicesSetByUserId(Integer userId) throws ServiceException {
@@ -194,7 +194,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         try {
             List<Invoice> invoiceList = invoiceDAO.getElementsList(start, itemsPerPage);
-            int invoiceCount = invoiceDAO.getTotalCountOfInvoices();
+            int invoiceCount = invoiceDAO.getTotalCountOfElements();
             int pageCount = PageCountDeterminant.definePageCount(invoiceCount, itemsPerPage);
 
             invoicesForView.setEntityList(invoiceList);

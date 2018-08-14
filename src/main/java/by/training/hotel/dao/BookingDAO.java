@@ -1,17 +1,15 @@
 package by.training.hotel.dao;
 
 import by.training.hotel.dao.exception.DAOException;
-import by.training.hotel.entity.Entity;
+import by.training.hotel.entity.Booking;
 
 import java.util.Set;
 
-public interface BookingDAO<K extends Number, T extends Entity> extends EntityDAO<K, T> {
+public interface BookingDAO<E extends Booking, N extends Number> extends EntityDAO<E, N> {
 
-    Set<T> getBookingsSetByUserId(Integer userId) throws DAOException;
+    Set<E> getBookingsSetByUserId(Integer userId) throws DAOException;
 
-    K getBookingIdByInvoiceId(Long invoiceId) throws DAOException;
-
-    int getTotalCountOfBookings() throws DAOException;
+    N getBookingIdByInvoiceId(Long invoiceId) throws DAOException;
 
     void clearIncompleteBookings(Integer userId) throws DAOException;
 }

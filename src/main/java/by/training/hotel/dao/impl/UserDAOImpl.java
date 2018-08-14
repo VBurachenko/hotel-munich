@@ -23,7 +23,7 @@ import java.util.List;
 import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
 import static by.training.hotel.dao.util.DataTypeConverter.sqlToLocalDate;
 
-public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
+public class UserDAOImpl extends AbstractDAO<User, Integer> implements UserDAO<User, Integer> {
 
     private final static Logger LOGGER = LogManager.getLogger();
 
@@ -75,6 +75,16 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
 
     public UserDAOImpl(ConnectionPool connectionPool) {
         super(connectionPool);
+    }
+
+    @Override
+    protected String getDeleteQuery() {
+        return DELETE_USER + WHERE_USER_ID;
+    }
+
+    @Override
+    protected String getTotalCountQuery() {
+        return GET_TOTAL_COUNT_OF_USERS;
     }
 
     @Override
@@ -146,30 +156,6 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
     }
 
     @Override
-    public boolean delete(Integer id) throws DAOException {
-
-        boolean deletedSuccessfully = false;
-
-        PreparedStatement statement = null;
-
-        try (ProxyConnection proxyConnection = pool.takeConnection()){
-            statement = proxyConnection.prepareStatement(DELETE_USER + WHERE_USER_ID);
-
-            statement.setInt(1, id);
-
-            if (statement.executeUpdate() == 1){
-                deletedSuccessfully = true;
-            }
-
-        } catch (SQLException | PoolException e){
-            throw new DAOException(e);
-        } finally {
-            pool.closeUsedResources(statement);
-        }
-        return deletedSuccessfully;
-    }
-
-    @Override
     public User getById(Integer id) throws DAOException {
 
         User wantedUser = null;
@@ -229,12 +215,6 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
     }
 
     @Override
-    public List<User> getElementsList() throws DAOException {
-
-        return getElementsList(0, 0);
-    }
-
-    @Override
     public User getUserByEmail(String email) throws DAOException {
 
         User user = null;
@@ -259,26 +239,6 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO<Integer, User> {
             pool.closeUsedResources(resultSet, statement);
         }
         return user;
-    }
-
-    @Override
-    public int getTotalCountOfUsers() throws DAOException{
-
-        int totalCountOfRooms;
-
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try (ProxyConnection proxyConnection = pool.takeConnection()){
-            statement = proxyConnection.prepareStatement(GET_TOTAL_COUNT_OF_USERS);
-            resultSet = statement.executeQuery();
-            resultSet.next();
-            totalCountOfRooms = resultSet.getInt(1);
-        } catch (SQLException | PoolException e){
-            throw new DAOException(e);
-        } finally {
-            pool.closeUsedResources(resultSet, statement);
-        }
-        return totalCountOfRooms;
     }
 
     @Override

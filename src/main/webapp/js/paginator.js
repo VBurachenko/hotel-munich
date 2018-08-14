@@ -1,4 +1,5 @@
-function changePage(page){
-    document.form1.page.value = page;
-    document.form1.submit();
+function changePage(formId, page){
+    var currentForm = document.getElementById(formId);
+    currentForm.page.value = page;
+    currentForm.submit();
 }

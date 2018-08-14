@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(DataProviderRunner.class)
 public class RoomDAOImplTest extends BaseDAOTest{
 
-    private final RoomDAO<Integer, Room> roomDAO = factory.getRoomDao();
+    private final RoomDAO<Room, Integer> roomDAO = factory.getRoomDao();
 
     private Room testRoom;
 

@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNull;
 @RunWith(DataProviderRunner.class)
 public final class BookingDAOImplTest extends BaseDAOTest{
 
-    private final BookingDAO<Long, Booking> bookingDAO = factory.getBookingDao();
+    private final BookingDAO<Booking, Long> bookingDAO = factory.getBookingDao();
 
     private Booking testBooking;
 

@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(DataProviderRunner.class)
 public class UserDAOImplTest extends BaseDAOTest{
 
-    private final UserDAO<Integer, User> userDAO = factory.getUserDao();
+    private final UserDAO<User, Integer> userDAO = factory.getUserDao();
 
     private User testUser = new User();
 
@@ -257,7 +257,7 @@ public class UserDAOImplTest extends BaseDAOTest{
     @Test
     public void getTotalCountOfUsers() throws DAOException {
         final int expectedCount = userDAO.getElementsList().size();
-        int actualCount = userDAO.getTotalCountOfUsers();
+        int actualCount = userDAO.getTotalCountOfElements();
         assertEquals(expectedCount, actualCount);
     }
 

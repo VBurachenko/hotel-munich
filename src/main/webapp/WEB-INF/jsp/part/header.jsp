@@ -1,120 +1,86 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ include file="locale.jsp" %>
 
-
-<c:set var="URL" value="${pageContext.request.requestURL}" scope="page" />
+<c:set var="URL" value="${pageContext.request.requestURL}" scope="page"/>
 <c:set var="languageLabel" value="${sessionScope.localLang}" scope="page"/>
 
-<div class="header-left">
-    <ul>
-        <fmt:message key="page.title" var="siteTitle"/>
+<header>
+    <div class="header-left">
 
-        <fmt:message key="header.link.home" var="home"/>
-        <li>
-            <a href="${pageContext.request.contextPath}/home.do" title="${home}">
-                ${siteTitle}
-            </a>
-        </li>
+        <a href="${pageContext.request.contextPath}/home.do" title="<fmt:message key="header.link.home"/>">
+            <fmt:message key="page.title"/>
+        </a>
 
-
-        <fmt:message key="header.link.searchRoom" var="searchRoom"/>
-        <li>
-            <a href="${pageContext.request.contextPath}/searchFreeRooms.do">
-                ${searchRoom}
-            </a>
-        </li>
-
+        <a href="${pageContext.request.contextPath}/searchFreeRooms.do">
+            <fmt:message key="header.link.searchRoom"/>
+        </a>
 
         <c:if test="${sessionScope.role eq 'CUSTOMER'}">
-            <fmt:message key="page.btn.cart" var="cartOpen"/>
-            <li>
-                <a href="${pageContext.request.contextPath}/openCart.do">
-                        ${cartOpen}
-                </a>
-            </li>
-
+            <a href="${pageContext.request.contextPath}/openCart.do">
+                <fmt:message key="page.btn.cart"/>
+            </a>
         </c:if>
 
         <c:if test="${sessionScope.role eq 'ADMIN' or sessionScope.role eq 'MODER'}">
-            <li>
-                <a href="${pageContext.request.contextPath}/listUsersView.do">Users</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/listBookingsView.do">Bookings</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/listInvoicesView.do">Invoices</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/listRoomsView.do">Rooms</a>
-            </li>
+            <a href="${pageContext.request.contextPath}/listUsersView.do">Users</a>
+            <a href="${pageContext.request.contextPath}/listBookingsView.do">Bookings</a>
+            <a href="${pageContext.request.contextPath}/listInvoicesView.do">Invoices</a>
+            <a href="${pageContext.request.contextPath}/listRoomsView.do">Rooms</a>
         </c:if>
-    </ul>
 
-</div>
+    </div>
 
-<div class="header-right">
-    <c:choose>
-        <c:when test="${sessionScope.role eq 'GUEST'}">
-
-            <fmt:message key="page.btn.reg" var="register"/>
-            <li>
+    <div class="header-right">
+        <c:choose>
+            <c:when test="${sessionScope.role eq 'GUEST'}">
                 <a href="${pageContext.request.contextPath}/register.do">
-                        ${register}
+                    <fmt:message key="page.btn.reg"/>
                 </a>
-            </li>
 
-            <fmt:message key="header.link.login" var="logIn"/>
-            <li>
                 <a href="${pageContext.request.contextPath}/login.do">
-                        ${logIn}
+                    <fmt:message key="header.link.login"/>
                 </a>
-            </li>
-
-        </c:when>
-        <c:otherwise>
-            <li>
+            </c:when>
+            <c:otherwise>
                 <a href="${pageContext.request.contextPath}/logout.do">
                     Logout
                 </a>
-            </li>
 
-            <fmt:message key="header.link.account" var="myOffice"/>
-            <li>
                 <a href="${pageContext.request.contextPath}/login.do">
-                        ${myOffice}
+                    <fmt:message key="header.link.account"/>
                 </a>
-            </li>
+            </c:otherwise>
+        </c:choose>
+        <div class="lang-panel">
+            <form action="${pageContext.request.contextPath}/changeLang.do" method="post">
 
-        </c:otherwise>
-    </c:choose>
+                <input type="hidden" name="currentPage" value="${URL}" hidden/>
 
-    <li>
-        <form action="${pageContext.request.contextPath}/changeLang.do" method="post">
+                <label for="setLang"><fmt:message key="header.label.language"/>:</label>
+                <select contenteditable="false" name="setLang" id="setLang" onchange="submit();">
 
-            <input type="hidden" name="currentPage" value="${URL}"/>
+                    <option value="${sessionScope.localLang}">${languageLabel.toUpperCase()}</option>
 
-            <label><fmt:message key="header.label.language"/>:
-
-                <select contenteditable="false" name="setLang" onchange="submit();">
-                    <option name="setLang"
-                            value="${sessionScope.localLang}">${languageLabel.toUpperCase()}</option>
                     <c:if test="${sessionScope.localLang ne 'en'}">
                         <option value="en">EN</option>
                     </c:if>
+
                     <c:if test="${sessionScope.localLang ne 'de'}">
                         <option value="de">DE</option>
                     </c:if>
+
                     <c:if test="${sessionScope.localLang ne 'by'}">
                         <option value="by">BY</option>
                     </c:if>
+
                     <c:if test="${sessionScope.localLang ne 'ru'}">
                         <option value="ru">RU</option>
                     </c:if>
                 </select>
-            </label>
-        </form>
-    </li>
+            </form>
+        </div>
+    </div>
 
-</div>
+</header>

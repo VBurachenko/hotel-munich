@@ -5,17 +5,19 @@ import by.training.hotel.entity.Entity;
 
 import java.util.List;
 
-public interface EntityDAO<K extends Number, T extends Entity> {
+public interface EntityDAO<E extends Entity, N extends Number> {
 
-    K add(T element) throws DAOException;
+    N add(E element) throws DAOException;
 
-    boolean update(T element) throws DAOException;
+    boolean delete(N id) throws DAOException;
 
-    boolean delete(K id) throws DAOException;
+    boolean update(E element) throws DAOException;
 
-    T getById(K id) throws DAOException;
+    E getById(N id) throws DAOException;
 
-    List<T> getElementsList(int start, int offset) throws DAOException;
+    List<E> getElementsList(int start, int offset) throws DAOException;
 
-    List<T> getElementsList() throws DAOException;
+    List<E> getElementsList() throws DAOException;
+
+    int getTotalCountOfElements() throws DAOException;
 }

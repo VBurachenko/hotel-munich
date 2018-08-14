@@ -7,7 +7,7 @@
 
     <description>common footer</description>
     <tlib-version>1.0</tlib-version>
-    <short-name>ctg</short-name>
+    <short-name>ftr</short-name>
     <uri>custom-tag/footer</uri>
 
     <tag>

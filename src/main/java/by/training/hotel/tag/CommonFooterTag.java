@@ -11,7 +11,7 @@ public class CommonFooterTag extends TagSupport {
 
     private final static StringBuilder FOOTER_INFO_LINE = new StringBuilder();
 
-    public CommonFooterTag() {
+    static {
         ConfigFooterInfo.init(CONFIG_FILE_PATH);
         FOOTER_INFO_LINE.append("<footer>");
         FOOTER_INFO_LINE.append("<p class=\"footer-info\">");
@@ -26,9 +26,9 @@ public class CommonFooterTag extends TagSupport {
         FOOTER_INFO_LINE.append(ConfigFooterInfo.CONTACT_EMAIL);
         FOOTER_INFO_LINE.append("\u0020|\u0020");
 
-        FOOTER_INFO_LINE.append(ConfigFooterInfo.COMPANY_TYPE);
-        FOOTER_INFO_LINE.append(" ");
         FOOTER_INFO_LINE.append(ConfigFooterInfo.COMPANY_NAME);
+        FOOTER_INFO_LINE.append(" ");
+        FOOTER_INFO_LINE.append(ConfigFooterInfo.COMPANY_TYPE);
         FOOTER_INFO_LINE.append("\u0020|\u0020");
 
         FOOTER_INFO_LINE.append(ConfigFooterInfo.AUTHOR_COPYRIGHT);

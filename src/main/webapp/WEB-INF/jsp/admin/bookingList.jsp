@@ -1,29 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="custom-tag/footer" prefix="ftr" %>
+<%@ taglib uri="custom-tag/paginator" prefix="pgr"%>
 <%@ include file="../part/locale.jsp" %>
-<%@ taglib prefix="pgr" uri="custom-tag/paginator" %>
+
+<!DOCTYPE html>
 
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <title><fmt:message key="page.title"/></title>
-    <script src="${pageContext.request.contextPath}/js/navigation_bar.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navigation_bar.css">
+
     <script src="${pageContext.request.contextPath}/js/paginator.js"></script>
-    <script src="${pageContext.request.contextPath}/js/container_selector.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables-content.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tabs.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagination.css">
 </head>
 
 <body>
 
-<br/>
-<header>
-    <%@include file="../part/header.jsp" %>
-</header>
-<br/>
+<c:import url="../part/header.jsp"/>
+
 bookingList
 <br>
 
@@ -119,14 +117,20 @@ bookingList
 
         </table>
         <c:if test="${pagesCount ne '1'}">
-            <nav>
-                <ul class="pagination">
-                    <pgr:navPages currentPage="${currentPage}" pagesCount="${pagesCount}" urlPattern="/listBookingsView.do"/>
-                </ul>
-            </nav>
+            <div class="pagination-container">
+                <div class="pagination">
+                    <pgr:navPages currentPage="${currentPage}"
+                                  pagesCount="${pagesCount}"
+                                  urlPattern="/listBookingsView.do"
+                                  previous="&laquo;"
+                                  next="&raquo;"/>
+                </div>
+            </div>
         </c:if>
     </div>
 </c:if>
+
+<ftr:footer/>
 
 </body>
 

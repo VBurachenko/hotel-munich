@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     private final DAOFactory factory = DAOFactory.getInstance();
 
-    private final UserDAO<Integer, User> userDAO = factory.getUserDao();
+    private final UserDAO<User, Integer> userDAO = factory.getUserDao();
 
     @Override
     public int addCustomer(User user) throws ServiceException {
@@ -157,7 +157,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             List<User> usersList = userDAO.getElementsList(start, itemsPerPage);
-            int userCount = userDAO.getTotalCountOfUsers();
+            int userCount = userDAO.getTotalCountOfElements();
             int pageCount = PageCountDeterminant.definePageCount(userCount, itemsPerPage);
 
             usersForView.setEntityList(usersList);

@@ -21,7 +21,7 @@ public class BookingServiceImpl implements BookingService {
 
     private final DAOFactory factory = DAOFactory.getInstance();
 
-    private final BookingDAO<Long, Booking> bookingDao = factory.getBookingDao();
+    private final BookingDAO<Booking, Long> bookingDao = factory.getBookingDao();
 
     @Override
     public Long addNewBooking(Booking booking) throws ServiceException {
@@ -131,7 +131,7 @@ public class BookingServiceImpl implements BookingService {
 
         try {
             List<Booking> bookingList = bookingDao.getElementsList(start, itemsPerPage);
-            int bookingCount = bookingDao.getTotalCountOfBookings();
+            int bookingCount = bookingDao.getTotalCountOfElements();
             int pageCount = PageCountDeterminant.definePageCount(bookingCount, itemsPerPage);
 
             bookingsForView.setEntityList(bookingList);

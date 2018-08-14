@@ -22,7 +22,7 @@ import java.util.Set;
 import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
 import static by.training.hotel.dao.util.DataTypeConverter.sqlToLocalDate;
 
-public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invoice> {
+public class InvoiceDAOImpl extends AbstractDAO<Invoice, Long> implements InvoiceDAO<Invoice, Long> {
 
     private final static String ADD_INVOICE_QUERY =
             "INSERT INTO invoice (" +
@@ -64,6 +64,16 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
 
     public InvoiceDAOImpl(ConnectionPool connectionPool) {
         super(connectionPool);
+    }
+
+    @Override
+    protected String getTotalCountQuery() {
+        return GET_TOTAL_COUNT_OF_INVOICES;
+    }
+
+    @Override
+    protected String getDeleteQuery() {
+        return DELETE_INVOICE + WHERE_INVOICE_ID;
     }
 
     @Override
@@ -221,11 +231,6 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
     }
 
     @Override
-    public List<Invoice> getElementsList() throws DAOException {
-        return getElementsList(0, 0);
-    }
-
-    @Override
     public Set<Invoice> getInvoicesSetByUserId(Integer userId) throws DAOException {
 
         Set<Invoice> invoicesOfUser = new HashSet<>();
@@ -268,27 +273,6 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
         }
     }
 
-    @Override
-    public int getTotalCountOfInvoices() throws DAOException {
-
-        int totalCountOfInvoices;
-
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        try (ProxyConnection proxyConnection = pool.takeConnection()) {
-            statement = proxyConnection.prepareStatement(GET_TOTAL_COUNT_OF_INVOICES);
-            resultSet = statement.executeQuery();
-            resultSet.next();
-            totalCountOfInvoices = resultSet.getInt(1);
-        } catch (SQLException | PoolException e) {
-            throw new DAOException(e);
-        } finally {
-            pool.closeUsedResources(resultSet, statement);
-        }
-        return totalCountOfInvoices;
-    }
-
     private void prepareForUpdate(PreparedStatement statement, Invoice invoice) throws SQLException {
 
         Integer userId = invoice.getUserId();
@@ -314,7 +298,6 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
 
     }
 
-
     private void prepareForAdd(PreparedStatement statement, Invoice invoice) throws SQLException {
 
         Integer userId = invoice.getUserId();
@@ -327,7 +310,6 @@ public class InvoiceDAOImpl extends AbstractDAO implements InvoiceDAO<Long, Invo
         statement.setDouble(3, totalPayment);
 
     }
-
 
     private Invoice getFromResultSet(ResultSet resultSet) throws SQLException {
 

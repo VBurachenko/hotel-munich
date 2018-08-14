@@ -24,7 +24,7 @@ import java.util.Set;
 import static by.training.hotel.dao.util.DataTypeConverter.localDateToSqlDate;
 import static by.training.hotel.dao.util.DataTypeConverter.sqlToLocalDate;
 
-public class BookingDAOImpl extends AbstractDAO implements BookingDAO<Long, Booking> {
+public class BookingDAOImpl extends AbstractDAO<Booking, Long> implements BookingDAO<Booking, Long> {
 
     private static final String ADD_NEW_BOOKING_QUERY =
             "INSERT INTO booking (" +
@@ -101,6 +101,16 @@ public class BookingDAOImpl extends AbstractDAO implements BookingDAO<Long, Book
 
     public BookingDAOImpl(ConnectionPool connectionPool) {
         super(connectionPool);
+    }
+
+    @Override
+    protected String getDeleteQuery() {
+        return DELETE_BOOKING + WHERE_BOOKING_ID;
+    }
+
+    @Override
+    protected String getTotalCountQuery() {
+        return GET_TOTAL_COUNT_OF_BOOKINGS;
     }
 
     @Override
@@ -215,30 +225,6 @@ public class BookingDAOImpl extends AbstractDAO implements BookingDAO<Long, Book
     }
 
     @Override
-    public synchronized boolean delete(Long id) throws DAOException {
-
-        boolean deletedSuccessfully = false;
-
-        PreparedStatement statement = null;
-
-        try (ProxyConnection proxyConnection = pool.takeConnection()) {
-            statement = proxyConnection.prepareStatement(DELETE_BOOKING + WHERE_BOOKING_ID);
-
-            statement.setLong(1, id);
-
-            if (statement.executeUpdate() == 1) {
-                deletedSuccessfully = true;
-            }
-
-        } catch (SQLException | PoolException e) {
-            throw new DAOException(e);
-        } finally {
-            pool.closeUsedResources(statement);
-        }
-        return deletedSuccessfully;
-    }
-
-    @Override
     public Booking getById(Long bookingId) throws DAOException {
 
         Booking wantedBooking = null;
@@ -271,7 +257,6 @@ public class BookingDAOImpl extends AbstractDAO implements BookingDAO<Long, Book
 
         List<Booking> allBookingsList = new ArrayList<>();
 
-
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
@@ -300,11 +285,6 @@ public class BookingDAOImpl extends AbstractDAO implements BookingDAO<Long, Book
             pool.closeUsedResources(resultSet, statement);
         }
         return allBookingsList;
-    }
-
-    @Override
-    public synchronized List<Booking> getElementsList() throws DAOException {
-        return getElementsList(0, 0);
     }
 
     @Override
@@ -356,26 +336,6 @@ public class BookingDAOImpl extends AbstractDAO implements BookingDAO<Long, Book
             pool.closeUsedResources(resultSet, statement);
         }
         return wantedBookingId;
-    }
-
-    @Override
-    public int getTotalCountOfBookings() throws DAOException {
-        int totalCountOfBookings;
-
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        try (ProxyConnection proxyConnection = pool.takeConnection()) {
-            statement = proxyConnection.prepareStatement(GET_TOTAL_COUNT_OF_BOOKINGS);
-            resultSet = statement.executeQuery();
-            resultSet.next();
-            totalCountOfBookings = resultSet.getInt(1);
-        } catch (SQLException | PoolException e) {
-            throw new DAOException(e);
-        } finally {
-            pool.closeUsedResources(resultSet, statement);
-        }
-        return totalCountOfBookings;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class DisplayRoomsCommand extends Command {
         CommonDTO<Room> roomsForDisplay = null;
 
         try {
-            roomsForDisplay = roomService.getRoomsForDisplay(searchUnit, pageNumber, ITEMS_PER_PAGE);
+            roomsForDisplay = roomService.getRoomsForView(searchUnit, pageNumber, ITEMS_PER_PAGE);
         } catch (ServiceException e){
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);

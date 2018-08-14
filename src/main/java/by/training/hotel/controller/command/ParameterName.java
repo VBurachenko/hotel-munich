@@ -114,4 +114,6 @@ public final class ParameterName {
     public static final int ROOM_CHANGE_IMPOSSIBLE_MESSAGE_CODE = 15;
 
     public static final String AVAILABLE_STATUS = "availableStatus";
+
+    public static final String OPERATION_MESSAGE = "operationMessage";
 }

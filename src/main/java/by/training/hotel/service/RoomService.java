@@ -8,8 +8,8 @@ import by.training.hotel.service.exception.ServiceException;
 
 public interface RoomService {
 
-    CommonDTO<Room> getRoomsForDisplay(SearchUnitDTO searchUnit, int pageNumber,
-                                 int itemsPerPage) throws ServiceException;
+    CommonDTO<Room> getRoomsForView(SearchUnitDTO searchUnit, int pageNumber,
+                                    int itemsPerPage) throws ServiceException;
 
     Room getRoomByRoomNumber(String strRoomNumber) throws ServiceException;
 

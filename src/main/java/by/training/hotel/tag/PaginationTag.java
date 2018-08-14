@@ -7,15 +7,11 @@ import java.io.IOException;
 
 public class PaginationTag extends TagSupport {
 
-    private static final String PREVIOUS = "<<";
-    private static final String NEXT = ">>";
+    private final static String PAGE_PARAMETER = "?page=";
 
-    private static final String LI_OPEN = "<li>";
-    private static final String LI_CLOSE = "</li>";
+    private String previous;
 
-    private static final String A_OPEN = "<a>";
-    private static final String A_CLOSE = "</a>";
-
+    private String next;
 
     private String urlPattern;
 
@@ -28,19 +24,19 @@ public class PaginationTag extends TagSupport {
         try{
             JspWriter out = pageContext.getOut();
             if (currentPage > 1){
-                out.write(prepareLink(PREVIOUS, currentPage - 1));
+                out.write(prepareLink(previous, currentPage - 1));
             }
             for (int page = 1; page <= pagesCount; page++){
                 String link;
                 if (page == currentPage){
-                    link = prepareLink(Integer.toString(page));
+                    link = prepareActiveLink(Integer.toString(page), page);
                 } else {
                     link = prepareLink(Integer.toString(page), page);
                 }
                 out.write(link);
             }
             if (currentPage < pagesCount){
-                out.write(prepareLink(NEXT, currentPage + 1));
+                out.write(prepareLink(next, currentPage + 1));
             }
         } catch (IOException e) {
             throw new JspException(e);
@@ -48,31 +44,41 @@ public class PaginationTag extends TagSupport {
         return SKIP_BODY;
     }
 
-    private String prepareLink(String content, int page){
+    protected String prepareLink(String content, int page){
         StringBuilder link = new StringBuilder();
-        link.append(LI_OPEN);
-        link.append("<a href=\"");
+        link.append(StandardTagName.A_HREF_OPEN);
         link.append(urlPattern);
-        link.append("?page=");
+        link.append(PAGE_PARAMETER);
         link.append(page);
         link.append("\">");
         link.append(content);
-        link.append(A_CLOSE);
-        link.append(LI_CLOSE);
+        link.append(StandardTagName.A_CLOSE);
         return link.toString();
     }
 
-    private String prepareLink(String content){
+    protected String prepareActiveLink(String content, int page){
         StringBuilder link = new StringBuilder();
-        link.append(A_OPEN);
+        link.append(StandardTagName.A_HREF_OPEN);
+        link.append(urlPattern);
+        link.append(PAGE_PARAMETER);
+        link.append(page);
+        link.append("\" class = \"active\">");
         link.append(content);
-        link.append(A_CLOSE);
+        link.append(StandardTagName.A_CLOSE);
         return link.toString();
     }
 
     @Override
     public int doEndTag() throws JspException {
         return EVAL_PAGE;
+    }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
     }
 
     public void setUrlPattern(String urlPattern) {
@@ -85,5 +91,21 @@ public class PaginationTag extends TagSupport {
 
     public void setPagesCount(int pagesCount) {
         this.pagesCount = pagesCount;
+    }
+
+    int getCurrentPage() {
+        return currentPage;
+    }
+
+    int getPagesCount() {
+        return pagesCount;
+    }
+
+    public String getPrevious() {
+        return previous;
+    }
+
+    public String getNext() {
+        return next;
     }
 }

@@ -1,14 +1,11 @@
 package by.training.hotel.dao;
 
 import by.training.hotel.dao.exception.DAOException;
-import by.training.hotel.entity.Entity;
 import by.training.hotel.entity.User;
 
-public interface UserDAO<K extends Number, T extends Entity> extends EntityDAO<K, T> {
+public interface UserDAO<E extends User, N extends Number> extends EntityDAO<E, N>{
 
-    T getUserByEmail(String email) throws DAOException;
+    E getUserByEmail(String email) throws DAOException;
 
-    int getTotalCountOfUsers() throws DAOException;
-
-    User getUserByIdOrEmailOrTelNumber(String emailOrTelNumber) throws DAOException;
+    E getUserByIdOrEmailOrTelNumber(String emailOrTelNumber) throws DAOException;
 }

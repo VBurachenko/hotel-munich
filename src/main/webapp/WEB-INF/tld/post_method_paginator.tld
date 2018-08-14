@@ -5,15 +5,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
 
-    <description>paginator</description>
+    <description>post-method-paginator</description>
     <tlib-version>1.0</tlib-version>
-    <short-name>pgr</short-name>
-    <uri>custom-tag/paginator</uri>
+    <short-name>post-pgr</short-name>
+    <uri>custom-tag/post_method_paginator</uri>
 
     <tag>
-        <description>View of page numbers for page navigation</description>
-        <name>navPages</name>
-        <tag-class>by.training.hotel.tag.PaginationTag</tag-class>
+        <description>Use post method for view of page numbers during page navigation</description>
+        <name>navPagesWithPost</name>
+        <tag-class>by.training.hotel.tag.PostMethodPaginationTag</tag-class>
         <body-content>empty</body-content>
 
         <attribute>
@@ -31,7 +31,7 @@
         </attribute>
 
         <attribute>
-            <name>urlPattern</name>
+            <name>formId</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
             <type>java.lang.String</type>

@@ -1,25 +1,29 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="custom-tag/footer" prefix="ftr"%>
+
 <%@ include file="../part/locale.jsp" %>
+
 <c:set var="locale" value="${sessionScope.localLang}"/>
 
 <!DOCTYPE HTML>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <title><fmt:message key="page.title"/></title>
     <script src="${pageContext.request.contextPath}/js/password.js"></script>
-    <script src="${pageContext.request.contextPath}/js/navigation_bar.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navigation_bar.css">
+
+    <script src="${pageContext.request.contextPath}/js/paginator.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagination.css">
 </head>
 <body>
 
-<br/>
-<header>
-    <%@include file="../part/header.jsp"%>
-</header>
-<br/>
+<c:import url="../part/header.jsp"/>
+
 <section>
     <div class="container">
         <form action="${pageContext.request.contextPath}/newRoomAddingPerform.do" method="post">
@@ -43,6 +47,8 @@
     </div>
 
 </section>
+
+<ftr:footer/>
 
 </body>
 </html>

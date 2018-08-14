@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(DataProviderRunner.class)
 public class InvoiceDAOImplTest extends BaseDAOTest{
 
-    private final InvoiceDAO<Long, Invoice> invoiceDAO = factory.getInvoiceDao();
+    private final InvoiceDAO<Invoice, Long> invoiceDAO = factory.getInvoiceDao();
 
     private Invoice testInvoice;
 

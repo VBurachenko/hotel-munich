@@ -21,26 +21,26 @@ public class RoomServiceImpl implements RoomService {
 
     private final DAOFactory factory = DAOFactory.getInstance();
 
-    private final RoomDAO<Integer, Room> roomDao = factory.getRoomDao();
+    private final RoomDAO<Room, Integer> roomDao = factory.getRoomDao();
 
     @Override
-    public CommonDTO<Room> getRoomsForDisplay(SearchUnitDTO searchUnit, int pageNumber, int itemsPerPage) throws ServiceException {
+    public CommonDTO<Room> getRoomsForView(SearchUnitDTO searchUnit, int pageNumber, int itemsPerPage) throws ServiceException {
 
-        CommonDTO<Room> roomsForDisplay;
+        CommonDTO<Room> roomsForView;
 
         int start = (pageNumber - 1) * itemsPerPage;
 
         try {
             if (searchUnit.getFrom() != null && searchUnit.getTo() != null){
-                roomsForDisplay = getFreeRooms(searchUnit, start, itemsPerPage);
+                roomsForView = getFreeRooms(searchUnit, start, itemsPerPage);
             } else {
-                roomsForDisplay = getAllRooms(start, itemsPerPage);
+                roomsForView = getAllRooms(start, itemsPerPage);
             }
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
 
-        return roomsForDisplay;
+        return roomsForView;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class RoomServiceImpl implements RoomService {
 
         try {
             List<Room> roomsList = roomDao.getElementsList(start, itemsPerPage);
-            int roomCount = roomDao.getTotalCountOfRooms();
+            int roomCount = roomDao.getTotalCountOfElements();
             int pageCount = PageCountDeterminant.definePageCount(roomCount, itemsPerPage);
 
             roomsForView.setEntityList(roomsList);
@@ -244,7 +244,7 @@ public class RoomServiceImpl implements RoomService {
         CommonDTO<Room> roomsForDisplay = new CommonDTO<>();
 
         List<Room> roomsList = roomDao.getElementsList(start, itemsPerPage);
-        int roomsCount = roomDao.getTotalCountOfRooms();
+        int roomsCount = roomDao.getTotalCountOfElements();
         int pageCount = PageCountDeterminant.definePageCount(roomsCount, itemsPerPage);
 
         roomsForDisplay.setEntityList(roomsList);
