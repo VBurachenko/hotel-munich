@@ -8,7 +8,7 @@
    Moder is predetermined superadmin witch able to doing everything as same as usual admin, including the possibility of registering new one admin.
 
 ### Technical description of the project:
-Build tool: Maven; <br>
+Build tool: [Maven](http://maven.apache.org/); <br>
 Java 8; <br>
 JavaEE: Servlet, JSP; <br>
 Server / Servlet container: Tomcat 9.0.10 <br>
