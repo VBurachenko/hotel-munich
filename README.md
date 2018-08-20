@@ -9,13 +9,13 @@
 
 ### Technical description of the project:
 Build tool: [Maven](http://maven.apache.org/); <br>
-Java 8; <br>
+Java: [8](https://docs.oracle.com/javase/8/); <br>
 JavaEE: Servlet, JSP; <br>
-Server / Servlet container: Tomcat 9.0.10 <br>
+Server / Servlet container: [Tomcat 9.0.10](https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.10/) <br>
 Logger: [Log4J](https://logging.apache.org/log4j/2.x/); <br>
 Database access technology: JDBC (with own custom connection pool);<br>
 Database management system: [MySQL](https://www.mysql.com/); <br>
 Tests: [JUnit4](https://junit.org/junit4/); <br>
 General architecture of application corresponds patterns: MVC and Layered architecture; <br>
 User interface localized for next languages: English, German, Belarusian, Russian; <br>
-Advanced used technologies: JavaScript, jQuery.
+Advanced used technologies: JavaScript, [jQuery](http://jqueryui.com/).
