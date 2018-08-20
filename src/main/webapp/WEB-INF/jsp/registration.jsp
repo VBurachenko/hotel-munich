@@ -79,7 +79,7 @@
 
                     <div class="data-line">
                         <label><fmt:message key="page.pass"/>:
-                            <input type="password" name="passwordFirst" id="pwd1" placeholder=""/>
+                            <input type="password" name="passwordFirst" id="pwd1"/>
                         </label>
                     </div>
                     <label class="warn-label" id="wrongPassword">
@@ -88,7 +88,7 @@
 
                     <div class="data-line">
                         <label><fmt:message key="page.pass.rep"/>:
-                            <input type="password" name="passwordSecond" id="pwd2" placeholder=""/>
+                            <input type="password" name="passwordSecond" id="pwd2"/>
                         </label>
                     </div>
                     <label class="warn-label" id="passwordsNotEquals">
