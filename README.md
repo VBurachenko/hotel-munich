@@ -10,7 +10,7 @@
 ### Technical description of the project:
 Build tool: [Maven](http://maven.apache.org/); <br>
 Java: [8](https://docs.oracle.com/javase/8/); <br>
-JavaEE: Servlet, JSP; <br>
+JavaEE: Servlet, JSP, JSTL; <br>
 Server / Servlet container: [Tomcat 9.0.10](https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.10/) <br>
 Logger: [Log4J](https://logging.apache.org/log4j/2.x/); <br>
 Database access technology: JDBC (with own custom connection pool);<br>
