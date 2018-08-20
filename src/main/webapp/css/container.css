@@ -1,0 +1,20 @@
+.data-container {
+    float: left;
+}
+.data-line {
+    clear: both;
+    text-align: right;
+    line-height: 10px;
+}
+
+.data-line label {
+    float: left;
+    padding-right: 10px;
+}
+
+.warn-label {
+    font-size: 14px;
+    color: red;
+    float: top;
+    display: none;
+}

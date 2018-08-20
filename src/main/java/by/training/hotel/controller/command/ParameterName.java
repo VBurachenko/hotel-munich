@@ -13,9 +13,8 @@ public final class ParameterName {
 
     public static final String USER_ID = "user_id";
     public static final String EMAIL = "email";
-    public static final String PASSWORD = "password";
-    public static final String PASSWORD_FIRST = "password1";
-    public static final String PASSWORD_SECOND = "password2";
+    public static final String PASSWORD = "passwordFirst";
+    public static final String PASSWORD_SECOND = "passwordSecond";
     public static final String FIRST_NAME = "firstName";
     public static final String LAST_NAME = "lastName";
     public static final String TEL_NUMBER = "telephoneNumber";

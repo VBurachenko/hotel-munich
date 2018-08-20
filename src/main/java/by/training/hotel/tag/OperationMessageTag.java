@@ -18,7 +18,7 @@ public class OperationMessageTag extends TagSupport {
         JspWriter out = pageContext.getOut();
         try {
             Integer code = (Integer) pageContext.getRequest().getAttribute(ParameterName.OPERATION_MESSAGE);
-            if (code != null){
+            if (code == null){
                 code = (Integer) pageContext.getSession().getAttribute(ParameterName.OPERATION_MESSAGE);
             }
             if (code != null && code.equals(messageCode)){

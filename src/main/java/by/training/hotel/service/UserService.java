@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface UserService {
 
-    int addCustomer(User user) throws ServiceException;
-
     boolean updateCustomer(User user) throws ServiceException;
 
     boolean deleteCustomer(int userId) throws ServiceException;
@@ -22,7 +20,7 @@ public interface UserService {
 
     User authorizeUser(String email, String password) throws ServiceException;
 
-    int registerNewCustomer(String email,
+    Integer registerNewCustomer(String email,
                                 String passwordFirst,
                                 String passwordSecond,
                                 String name,

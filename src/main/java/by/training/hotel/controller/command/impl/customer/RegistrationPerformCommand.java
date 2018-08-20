@@ -11,6 +11,7 @@ import by.training.hotel.service.exception.ServiceException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class RegistrationPerformCommand extends Command {
@@ -20,7 +21,7 @@ public class RegistrationPerformCommand extends Command {
 
         String email = request.getParameter(ParameterName.EMAIL);
 
-        String passwordFirst = request.getParameter(ParameterName.PASSWORD_FIRST);
+        String passwordFirst = request.getParameter(ParameterName.PASSWORD);
         String encryptedPwdFirst = PasswordConverter.convertToHash(passwordFirst);
 
         String passwordSecond = request.getParameter(ParameterName.PASSWORD_SECOND);
@@ -33,7 +34,8 @@ public class RegistrationPerformCommand extends Command {
         String genderMale = request.getParameter(ParameterName.GENDER_MALE);
 
         UserService userService = serviceFactory.getUserService();
-        int registeredCustomerId = 0;
+
+        Integer registeredCustomerId = null;
 
         try {
 
@@ -51,17 +53,16 @@ public class RegistrationPerformCommand extends Command {
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
 
-        if (registeredCustomerId != 0) {
-            response.sendRedirect(UrlPattern.SUCCESSFULLY_REGISTER);
+        HttpSession session = request.getSession();
+
+        String urlPattern;
+        if (registeredCustomerId != null) {
+            session.removeAttribute(ParameterName.OPERATION_MESSAGE);
+            urlPattern = UrlPattern.SUCCESSFULLY_REGISTER;
         } else {
-            redirectBackWithError(request, response);
+            session.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.REGISTERED_ALREADY_OR_ERROR_CODE);
+            urlPattern = UrlPattern.REGISTER;
         }
-
-    }
-
-    private void redirectBackWithError(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.getSession().setAttribute(ParameterName.REGISTRATION_ERROR, ParameterName.REGISTERED_ALREADY_OR_ERROR_CODE);
-        String contextPath = request.getContextPath();
-        response.sendRedirect(contextPath + UrlPattern.REGISTER);
+        response.sendRedirect(request.getContextPath() + urlPattern);
     }
 }

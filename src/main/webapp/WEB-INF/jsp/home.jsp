@@ -13,7 +13,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=0.8">
         <title><fmt:message key="page.title"/></title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+        <link rel="stylesheet" href="../../css/main.css">
     </head>
 
     <body style="

@@ -23,20 +23,6 @@ public class UserServiceImpl implements UserService {
     private final UserDAO<User, Integer> userDAO = factory.getUserDao();
 
     @Override
-    public int addCustomer(User user) throws ServiceException {
-        int addedCustomerId = 0;
-        if (!UserValidator.validateAddingUser(user)){
-            return addedCustomerId;
-        }
-        try {
-            addedCustomerId = userDAO.add(user);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-        return addedCustomerId;
-    }
-
-    @Override
     public boolean updateCustomer(User user) throws ServiceException {
         if (!UserValidator.validateUpdatingUser(user)){
             return false;
@@ -114,7 +100,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int registerNewCustomer(String email, String passwordFirst, String passwordSecond,
+    public Integer registerNewCustomer(String email, String passwordFirst, String passwordSecond,
                                        String name, String surname, String telNumber,
                                        String birthday, String genderMale) throws ServiceException{
         try {
@@ -132,12 +118,12 @@ public class UserServiceImpl implements UserService {
                 registeringCustomer.setGenderMale(Boolean.valueOf(genderMale));
 
                 if (!UserValidator.validateAddingUser(registeringCustomer)){
-                    return 0;
+                    return null;
                 }
 
                 return userDAO.add(registeringCustomer);
             } else {
-                return 0;
+                return null;
             }
         } catch (DAOException e){
             throw new ServiceException(e);

@@ -21,10 +21,14 @@ public class PerformLoginCommand extends Command{
     public void execute(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
+        HttpSession session = request.getSession();
+
         String email = request.getParameter(ParameterName.EMAIL);
         String password = request.getParameter(ParameterName.PASSWORD);
 
         UserService userService = serviceFactory.getUserService();
+
+        String urlPattern = null;
 
         try {
 
@@ -32,36 +36,25 @@ public class PerformLoginCommand extends Command{
             User incomingUser = userService.authorizeUser(email, encryptedPass);
 
             if (incomingUser != null){
-
                 if (!incomingUser.getBlocked()){
-                    HttpSession session = request.getSession();
                     session.setAttribute(ParameterName.USER_ID, incomingUser.getUserId());
                     session.setAttribute(ParameterName.ROLE, incomingUser.getRole().toString());
                     session.setAttribute(ParameterName.DISCOUNT, incomingUser.getDiscount());
-                    response.sendRedirect(request.getContextPath() + UrlPattern.OPEN_USER_OFFICE);
+                    session.removeAttribute(ParameterName.OPERATION_MESSAGE);
+                    urlPattern = UrlPattern.OPEN_USER_OFFICE;
                 } else {
-                    redirectWithBlock(request, response);
+                    session.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.ACCOUNT_BLOCKED_CODE);
+                    urlPattern = UrlPattern.LOGIN;
                 }
             } else {
-                redirectBackWithError(request, response);
+                request.getSession().setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.WRONG_PASSWORD_OR_EMAIL_CODE);
+                urlPattern = UrlPattern.LOGIN;
             }
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + urlPattern);
         } catch (ServiceException e){
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
     }
-
-    private void redirectBackWithError(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.getSession().setAttribute(ParameterName.LOGIN_ERROR, ParameterName.WRONG_PASSWORD_OR_EMAIL_CODE);
-        String contextPath = request.getContextPath();
-        response.sendRedirect(contextPath + UrlPattern.LOGIN);
-    }
-
-    private void redirectWithBlock(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.getSession().setAttribute(ParameterName.LOGIN_ERROR, ParameterName.ACCOUNT_BLOCKED_CODE);
-        String contextPath = request.getContextPath();
-        response.sendRedirect(contextPath + UrlPattern.LOGIN);
-    }
-
-
 }

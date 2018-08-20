@@ -7,30 +7,27 @@
 <c:set var="languageLabel" value="${sessionScope.localLang}" scope="page"/>
 
 <header>
-    <div class="header-left">
 
-        <a href="${pageContext.request.contextPath}/home.do" title="<fmt:message key="header.link.home"/>">
-            <fmt:message key="page.title"/>
+    <a href="${pageContext.request.contextPath}/home.do" title="<fmt:message key="header.link.home"/>">
+        <fmt:message key="page.title"/>
+    </a>
+
+    <a href="${pageContext.request.contextPath}/searchFreeRooms.do">
+        <fmt:message key="header.link.searchRoom"/>
+    </a>
+
+    <c:if test="${sessionScope.role eq 'CUSTOMER'}">
+        <a href="${pageContext.request.contextPath}/openCart.do">
+            <fmt:message key="page.btn.cart"/>
         </a>
+    </c:if>
 
-        <a href="${pageContext.request.contextPath}/searchFreeRooms.do">
-            <fmt:message key="header.link.searchRoom"/>
-        </a>
-
-        <c:if test="${sessionScope.role eq 'CUSTOMER'}">
-            <a href="${pageContext.request.contextPath}/openCart.do">
-                <fmt:message key="page.btn.cart"/>
-            </a>
-        </c:if>
-
-        <c:if test="${sessionScope.role eq 'ADMIN' or sessionScope.role eq 'MODER'}">
-            <a href="${pageContext.request.contextPath}/listUsersView.do">Users</a>
-            <a href="${pageContext.request.contextPath}/listBookingsView.do">Bookings</a>
-            <a href="${pageContext.request.contextPath}/listInvoicesView.do">Invoices</a>
-            <a href="${pageContext.request.contextPath}/listRoomsView.do">Rooms</a>
-        </c:if>
-
-    </div>
+    <c:if test="${sessionScope.role eq 'ADMIN' or sessionScope.role eq 'MODER'}">
+        <a href="${pageContext.request.contextPath}/listUsersView.do">Users</a>
+        <a href="${pageContext.request.contextPath}/listBookingsView.do">Bookings</a>
+        <a href="${pageContext.request.contextPath}/listInvoicesView.do">Invoices</a>
+        <a href="${pageContext.request.contextPath}/listRoomsView.do">Rooms</a>
+    </c:if>
 
     <div class="header-right">
         <c:choose>
@@ -53,13 +50,16 @@
                 </a>
             </c:otherwise>
         </c:choose>
+
         <div class="lang-panel">
+
             <form action="${pageContext.request.contextPath}/changeLang.do" method="post">
 
                 <input type="hidden" name="currentPage" value="${URL}" hidden/>
 
-                <label for="setLang"><fmt:message key="header.label.language"/>:</label>
-                <select contenteditable="false" name="setLang" id="setLang" onchange="submit();">
+                <fmt:message key="header.label.language" var="chooseLang"/>
+
+                <select contenteditable="false" name="setLang" onchange="submit();" title="${chooseLang}">
 
                     <option value="${sessionScope.localLang}">${languageLabel.toUpperCase()}</option>
 
@@ -81,6 +81,7 @@
                 </select>
             </form>
         </div>
+
     </div>
 
 </header>

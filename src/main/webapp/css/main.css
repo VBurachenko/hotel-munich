@@ -4,27 +4,22 @@
 }
 
 body {
-    background-color: snow;
     height: 100%;
-    background-repeat: no-repeat;
+    background: white no-repeat;
+    text-align: center;
 }
 
 header {
-    top: 0;
+    top: 0.5%;
     overflow: hidden;
     background-color: #f1f1f1;
     border-radius: 4px;
     padding: 5px;
-}
-
-.header-left {
-    float: left;
-    padding: 5px;
+    width: 100%;
 }
 
 .header-right {
     float: right;
-    padding: 5px;
 }
 
 header a {
@@ -43,60 +38,63 @@ header a:hover, select:hover {
     color: black;
 }
 
-header label {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
-}
-
 header select{
-    float: left;
     color: black;
     font-size: 18px;
     text-align: center;
-    padding: 10px;
     text-decoration: none;
-    line-height: 25px;
     border-radius: 4px;
     border: none;
+    padding: 10px;
     background-color: #f1f1f1;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
 
-@media screen and (max-width: 500px) {
-    header a {
+@media screen and (max-width: 650px) {
+
+    header a, select {
         float: none;
         display: block;
-        text-align: left;
+        width: 100%;
     }
+
     .header-right {
         float: none;
     }
 
-    .header-left {
-        float: none;
-    }
 }
 
 .lang-panel {
     float: left;
 }
 
-footer {
-    flex: 0 0 auto;
-    color: black;
-    background-color: #f1f1f1;
+section {
+    height: 80vh;
     width: 100%;
+    overflow: scroll;
+    margin: 5px;
+}
+
+footer {
+    overflow: scroll;
+    background-color: #f1f1f1;
+    width: 99%;
     border-radius: 4px;
+    left: 0.5%;
+    bottom: 0.5%;
+    padding: 0;
+}
+
+footer p {
+    color: black;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 14px;
 }
 
 .footer-info {
     text-align: center;
-    padding: 10px;
+    padding: 0;
+    line-height: 0;
 }
