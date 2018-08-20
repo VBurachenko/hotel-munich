@@ -8,7 +8,7 @@
     Technical description of the project: <br>
     Build tool: Maven;<br>
     Java 8; <br>
-    JavaEE: Servlet, JSP; </br>
+    JavaEE: Servlet, JSP; <br>
     Server / Servlet container: Tomcat 9.0.10 <br>
     Logger: Log4J; <br>
     Database access technology: JDBC (with own custom connection pool);<br>
