@@ -32,19 +32,19 @@
             <form action="${pageContext.request.contextPath}/performLogin.do" method="post" onsubmit="return validateSignIn(this)">
 
                 <div class="data-line">
-                    <label><fmt:message key="page.email"/>:
-                        <fmt:message key="input.placeholder.enterEmail" var="emailEnter"/>
-                        <input type="text" id="email" placeholder="${emailEnter}" name="email" required>
-                    </label>
+                    <label for="email"><fmt:message key="page.email"/>:</label>
+                    <fmt:message key="input.placeholder.enterEmail" var="emailEnter"/>
+                    <input type="text" id="email" placeholder="${emailEnter}" name="email" required>
                 </div>
+
                 <label class="warn-label" id="wrongEmail">Wrong email</label>
 
                 <div class="data-line">
-                    <label><fmt:message key="page.pass"/>:
-                        <fmt:message key="input.placeholder.enterPassword" var="passEnter"/>
-                        <input type="password" id="pwd" placeholder="${passEnter}" name="passwordFirst" required>
-                    </label>
+                    <label for="pwd"><fmt:message key="page.pass"/>:</label>
+                    <fmt:message key="input.placeholder.enterPassword" var="passEnter"/>
+                    <input type="password" id="pwd" placeholder="${passEnter}" name="passwordFirst" required>
                 </div>
+
                 <label class="warn-label" id="wrongPassword">Password should consist: 6-20 symbols, one and more capital character, one and more digit</label>
 
                 <div class="check-label">
@@ -54,9 +54,7 @@
                     </label>
                 </div>
 
-                <div class="submit">
-                    <input type="submit" value="<fmt:message key="page.btn.login"/>"/>
-                </div>
+                <input type="submit" value="<fmt:message key="page.btn.login"/>"/>
 
                 <div class="warn-message">
                     <fmt:message key="error.wrongEmailOrPass" var="wrongEmailOrPassword"/>

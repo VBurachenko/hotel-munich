@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="locale.jsp" %>
 
-<div class="search-form">
+<div class="data-container">
     <form action="${pageContext.request.contextPath}/prepareForSearch.do" method="post">
 
         <fmt:message key="search.checkin" var="checkin"/>

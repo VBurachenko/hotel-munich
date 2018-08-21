@@ -42,7 +42,7 @@
             </c:when>
             <c:otherwise>
                 <a href="${pageContext.request.contextPath}/logout.do">
-                    Logout
+                    <fmt:message key="page.btn.logout"/>
                 </a>
 
                 <a href="${pageContext.request.contextPath}/login.do">

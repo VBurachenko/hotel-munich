@@ -122,7 +122,7 @@
                         </label>
                     </div>
                     <label class="warn-label" id="wrong-number-format">
-                        Wrong telephone format. Should be the same as: +XXX XX XXX XX XX..
+                        Wrong telephone format. Should be the same as: +375 12 123 12 12..
                     </label>
 
                     <div class="data-line">
@@ -151,9 +151,7 @@
                         </label>
                     </div>
 
-                    <div class="submit">
-                        <input type="submit" value="<fmt:message key="page.btn.reg"/>"/>
-                    </div>
+                    <input type="submit" value="<fmt:message key="page.btn.reg"/>"/>
 
                     <div class="warn-message">
                         <fmt:message key="error.allreadyRegistered" var="allreadyReg"/>

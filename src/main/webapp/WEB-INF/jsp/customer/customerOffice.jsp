@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="custom-tag/footer" prefix="ftr" %>
+<%@ taglib uri="custom-tag/operation-message" prefix="op-msg"%>
 
 <%@ include file="../part/locale.jsp"%>
 
@@ -10,39 +11,37 @@
 
 <html>
     <head>
+
         <meta name="viewport" content="width=device-width, initial-scale=0.8">
         <title><fmt:message key="page.title"/></title>
 
         <script src="${pageContext.request.contextPath}/js/container_selector.js"></script>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables-content.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tabs.css">
+        <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables-content.css">--%>
+        <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/tabs.css">--%>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tab.css">
     </head>
+
     <body>
 
         <c:import url="../part/header.jsp"/>
 
         <section>
-            <h2>Customer office</h2>
-
-            <p>Hello ${sessionScope.firstName}</p>
-
-            <c:if test="${sessionScope.changeBookingMessage eq 3}">
-                <p>Change this booking is impossible</p>
-            </c:if>
-            <c:if test="${sessionScope.changeBookingMessage eq 4}">
-                <p>Booking was successfully changed</p>
-            </c:if>
 
             <div>
-                <button class="button tablink" onclick="openTab(event, 'info')" id="defaultOpen">
+                <op-msg:operationMessage messageCode="3" textMessage="Change this booking is impossible"/>
+                <op-msg:operationMessage messageCode="4" textMessage="Booking was successfully changed"/>
+            </div>
+
+            <div>
+                <button class="tab-link" onclick="openTab(event, 'info')" id="defaultOpen">
                     My personal Data
                 </button>
-                <button class="button tablink" onclick="openTab(event, 'bookings')">
+                <button class="tab-link" onclick="openTab(event, 'bookings')">
                     My bookings
                 </button>
-                <button class="button tablink" onclick="openTab(event, 'invoices')">
+                <button class="tab-link" onclick="openTab(event, 'invoices')">
                     My invoices
                 </button>
             </div>

@@ -1,5 +1,3 @@
-document.getElementById("defaultOpen").click();
-
 function openTab(evt, tabName) {
     var i, tabContent, tabLink;
 
@@ -8,7 +6,7 @@ function openTab(evt, tabName) {
         tabContent[i].style.display = "none";
     }
 
-    tabLink = document.getElementsByClassName("tablink");
+    tabLink = document.getElementsByClassName("tab-link");
     for (i = 0; i < tabLink.length; i++) {
         tabLink[i].className = tabLink[i].className.replace(" active", "");
     }
@@ -16,3 +14,5 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+document.getElementById("defaultOpen").click();

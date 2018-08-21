@@ -26,7 +26,7 @@ header a {
     float: left;
     color: black;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     text-decoration: none;
     font-size: 18px;
     line-height: 25px;
@@ -45,7 +45,8 @@ header select{
     text-decoration: none;
     border-radius: 4px;
     border: none;
-    padding: 10px;
+    padding: 5px;
+    margin: 0;
     background-color: #f1f1f1;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -53,7 +54,7 @@ header select{
 
 @media screen and (max-width: 650px) {
 
-    header a, select {
+    header a, header select {
         float: none;
         display: block;
         width: 100%;
@@ -63,6 +64,11 @@ header select{
         float: none;
     }
 
+    .lang-panel {
+        float: left;
+        width: 100%;
+    }
+
 }
 
 .lang-panel {
@@ -70,8 +76,8 @@ header select{
 }
 
 section {
+    text-align: center;
     height: 80vh;
-    width: 100%;
     overflow: scroll;
     margin: 5px;
 }
@@ -79,7 +85,7 @@ section {
 footer {
     overflow: scroll;
     background-color: #f1f1f1;
-    width: 99%;
+    width: 100%;
     border-radius: 4px;
     left: 0.5%;
     bottom: 0.5%;
@@ -90,7 +96,7 @@ footer p {
     color: black;
     display: inline-block;
     padding: 0 10px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .footer-info {
