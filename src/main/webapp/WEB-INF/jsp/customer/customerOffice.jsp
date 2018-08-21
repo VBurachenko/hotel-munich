@@ -23,190 +23,193 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tab.css">
     </head>
 
-    <body>
+    <body onload="autoClick()">
 
         <c:import url="../part/header.jsp"/>
 
         <section>
 
-            <div>
-                <op-msg:operationMessage messageCode="3" textMessage="Change this booking is impossible"/>
-                <op-msg:operationMessage messageCode="4" textMessage="Booking was successfully changed"/>
-            </div>
+            <div class="tab-container">
+                <div>
+                    <op-msg:operationMessage messageCode="3" textMessage="Change this booking is impossible"/>
+                    <op-msg:operationMessage messageCode="4" textMessage="Booking was successfully changed"/>
+                </div>
 
-            <div>
-                <button class="tab-link" onclick="openTab(event, 'info')" id="defaultOpen">
-                    My personal Data
-                </button>
-                <button class="tab-link" onclick="openTab(event, 'bookings')">
-                    My bookings
-                </button>
-                <button class="tab-link" onclick="openTab(event, 'invoices')">
-                    My invoices
-                </button>
-            </div>
+                <div class="link-panel">
+                    <button id="defaultOpen" class="tab-link" onclick="openTable('info', this)" >
+                        My personal Data
+                    </button>
+                    <button class="tab-link" onclick="openTable('bookings', this)">
+                        My bookings
+                    </button>
+                    <button class="tab-link" onclick="openTable('invoices', this)">
+                        My invoices
+                    </button>
+                </div>
 
-            <div id="info" class="tab-content">
-                <table>
-                    <tr>
-                        <td>Email</td>
-                        <td>${sessionScope.email}</td>
-                    </tr>
-                    <tr>
-                        <td>First name</td>
-                        <td>${sessionScope.firstName}</td>
-                    </tr>
-                    <tr>
-                        <td>Last name</td>
-                        <td>${sessionScope.lastName}</td>
-                    </tr>
-                    <tr>
-                        <td>Birthday</td>
-                        <td>${sessionScope.birthday}</td>
-                    </tr>
-                    <tr>
-                        <td>Tel. number</td>
-                        <td>${sessionScope.telephoneNumber}</td>
-                    </tr>
-                    <tr>
-                        <td>Gender</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${sessionScope.genderMale}">
-                                    Male
-                                </c:when>
-                                <c:otherwise>
-                                    Female
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            <div id="bookings" class="tab-content">
-                <table border="1">
-                    <thead>
-                    <c:if test="${not empty requestScope.usersBookingSet}">
+                <div id="info" class="tab-content">
+                    <table>
                         <tr>
-                            <td>bookingId</td>
-                            <td>checkIn</td>
-                            <td>checkOut</td>
-                            <td>adultCount</td>
-                            <td>childCount</td>
-                            <td>invoiceId</td>
-                            <td>bookingStatus</td>
-                            <td>rooms</td>
+                            <td>Email</td>
+                            <td>${sessionScope.email}</td>
                         </tr>
-                    </c:if>
-                    </thead>
-
-                    <tbody>
-                    <c:choose>
-                        <c:when test="${not empty requestScope.usersBookingSet}">
-                            <c:forEach var="currentBooking" items="${requestScope.usersBookingSet}">
-                                <tr>
-                                    <td>${currentBooking.bookingId}</td>
-                                    <td>${currentBooking.checkInDate}</td>
-                                    <td>${currentBooking.checkOutDate}</td>
-                                    <td>${currentBooking.adultCount}</td>
-                                    <td>${currentBooking.childCount}</td>
-                                    <td>${currentBooking.invoiceId}</td>
-                                    <td>${currentBooking.bookingStatus}
-                                        <c:if test="${currentBooking.bookingStatus eq 'REGISTERED'}">
-                                            <form action="${pageContext.request.contextPath}/openChangeForm.do"
-                                                  method="get">
-                                                <input type="hidden" name="bookingId"
-                                                       value="${currentBooking.bookingId}"/>
-                                                <input type="submit" value="change booking"/>
-                                            </form>
-                                            <form action="${pageContext.request.contextPath}/cancelBooking.do"
-                                                  method="post">
-                                                <input type="hidden" name="cancelBookingId"
-                                                       value="${currentBooking.bookingId}"/>
-                                                <input type="hidden" name="cancelInvoiceId"
-                                                       value="${currentBooking.invoiceId}"/>
-                                                <input type="submit" value="cancel"/>
-                                            </form>
-                                        </c:if>
-                                    </td>
-                                    <td>
-                                        <c:forEach var="room" items="${currentBooking.roomsSet}">
-                                            ${room}
-                                        </c:forEach>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            You have not bookings
-                        </c:otherwise>
-                    </c:choose>
-                    </tbody>
-                </table>
-            </div>
-            <div id="invoices" class="tab-content">
-                <table border="1">
-                    <thead>
-                    <c:if test="${not empty requestScope.usersInvoiceSet}">
                         <tr>
-                            <td>invoiceId</td>
-                            <td>invoiceDate</td>
-                            <td>nightsCount</td>
-                            <td>totalPayment</td>
-                            <td>invoiceStatus</td>
-                            <td>payment</td>
+                            <td>First name</td>
+                            <td>${sessionScope.firstName}</td>
                         </tr>
-                    </c:if>
-                    </thead>
+                        <tr>
+                            <td>Last name</td>
+                            <td>${sessionScope.lastName}</td>
+                        </tr>
+                        <tr>
+                            <td>Birthday</td>
+                            <td>${sessionScope.birthday}</td>
+                        </tr>
+                        <tr>
+                            <td>Tel. number</td>
+                            <td>${sessionScope.telephoneNumber}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${sessionScope.genderMale}">
+                                        Male
+                                    </c:when>
+                                    <c:otherwise>
+                                        Female
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-                    <tbody>
-                    <c:choose>
-                        <c:when test="${not empty requestScope.usersInvoiceSet}">
-                            <c:forEach var="currentInvoice" items="${requestScope.usersInvoiceSet}">
-                                <tr>
-                                    <td>${currentInvoice.invoiceId}</td>
-                                    <td>${currentInvoice.invoiceDate}</td>
-                                    <td>${currentInvoice.nightsCount}</td>
-                                    <td>${currentInvoice.totalPayment}</td>
-                                    <td>${currentInvoice.invoiceStatus}
-                                        <c:if test="${currentInvoice.invoiceStatus eq 'PAY_IN_HOTEL' and currentInvoice.isPayed eq 'false'}">
-                                            <form action="${pageContext.request.contextPath}/payInvoice.do"
-                                                  method="post">
-                                                <input type="hidden" value="${currentInvoice.invoiceId}"
-                                                       name="invoiceIdForPayment"/>
-                                                <input type="submit" value="pay now"/>
-                                            </form>
-                                        </c:if>
-                                    </td>
-                                    <td>
-                                        <c:if test="${currentInvoice.isPayed eq 'true'}">
-                                            Payed
-                                        </c:if>
-                                        <c:if test="${currentInvoice.isPayed eq 'false'}">
-                                            Not payed
-                                        </c:if>
-                                    </td>
+                <div id="bookings" class="tab-content">
+                    <table border="1">
+                        <thead>
+                        <c:if test="${not empty requestScope.usersBookingSet}">
+                            <tr>
+                                <td>bookingId</td>
+                                <td>checkIn</td>
+                                <td>checkOut</td>
+                                <td>adultCount</td>
+                                <td>childCount</td>
+                                <td>invoiceId</td>
+                                <td>bookingStatus</td>
+                                <td>rooms</td>
+                            </tr>
+                        </c:if>
+                        </thead>
 
-                                </tr>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            You have not invoices
-                        </c:otherwise>
-                    </c:choose>
+                        <tbody>
+                        <c:choose>
+                            <c:when test="${not empty requestScope.usersBookingSet}">
+                                <c:forEach var="currentBooking" items="${requestScope.usersBookingSet}">
+                                    <tr>
+                                        <td>${currentBooking.bookingId}</td>
+                                        <td>${currentBooking.checkInDate}</td>
+                                        <td>${currentBooking.checkOutDate}</td>
+                                        <td>${currentBooking.adultCount}</td>
+                                        <td>${currentBooking.childCount}</td>
+                                        <td>${currentBooking.invoiceId}</td>
+                                        <td>${currentBooking.bookingStatus}
+                                            <c:if test="${currentBooking.bookingStatus eq 'REGISTERED'}">
+                                                <form action="${pageContext.request.contextPath}/openChangeForm.do"
+                                                      method="post">
+                                                    <input type="hidden" name="bookingId"
+                                                           value="${currentBooking.bookingId}"/>
+                                                    <input type="submit" value="change booking"/>
+                                                </form>
+                                                <form action="${pageContext.request.contextPath}/cancelBooking.do"
+                                                      method="post">
+                                                    <input type="hidden" name="cancelBookingId"
+                                                           value="${currentBooking.bookingId}"/>
+                                                    <input type="hidden" name="cancelInvoiceId"
+                                                           value="${currentBooking.invoiceId}"/>
+                                                    <input type="submit" value="cancel"/>
+                                                </form>
+                                            </c:if>
+                                        </td>
+                                        <td>
+                                            <c:forEach var="room" items="${currentBooking.roomsSet}">
+                                                ${room}
+                                            </c:forEach>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                You have not bookings
+                            </c:otherwise>
+                        </c:choose>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="invoices" class="tab-content">
+                    <table border="1">
+                        <thead>
+                        <c:if test="${not empty requestScope.usersInvoiceSet}">
+                            <tr>
+                                <td>invoiceId</td>
+                                <td>invoiceDate</td>
+                                <td>nightsCount</td>
+                                <td>totalPayment</td>
+                                <td>invoiceStatus</td>
+                                <td>payment</td>
+                            </tr>
+                        </c:if>
+                        </thead>
 
-                    </tbody>
-                </table>
+                        <tbody>
+                        <c:choose>
+                            <c:when test="${not empty requestScope.usersInvoiceSet}">
+                                <c:forEach var="currentInvoice" items="${requestScope.usersInvoiceSet}">
+                                    <tr>
+                                        <td>${currentInvoice.invoiceId}</td>
+                                        <td>${currentInvoice.invoiceDate}</td>
+                                        <td>${currentInvoice.nightsCount}</td>
+                                        <td>${currentInvoice.totalPayment}</td>
+                                        <td>${currentInvoice.invoiceStatus}
+                                            <c:if test="${currentInvoice.invoiceStatus eq 'PAY_IN_HOTEL' and currentInvoice.isPayed eq 'false'}">
+                                                <form action="${pageContext.request.contextPath}/payInvoice.do"
+                                                      method="post">
+                                                    <input type="hidden" value="${currentInvoice.invoiceId}"
+                                                           name="invoiceIdForPayment"/>
+                                                    <input type="submit" value="pay now"/>
+                                                </form>
+                                            </c:if>
+                                        </td>
+                                        <td>
+                                            <c:if test="${currentInvoice.isPayed eq 'true'}">
+                                                Payed
+                                            </c:if>
+                                            <c:if test="${currentInvoice.isPayed eq 'false'}">
+                                                Not payed
+                                            </c:if>
+                                        </td>
+
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                You have not invoices
+                            </c:otherwise>
+                        </c:choose>
+
+                        </tbody>
+                    </table>
+                </div>
+                <form action="${pageContext.request.contextPath}/logout.do" method="post" id="logout">
+                    <fmt:message key="page.btn.logout" var="exit"/>
+                    <input type="submit" value="${exit}"/>
+                </form>
+                <form action="${pageContext.request.contextPath}/openCart.do" method="post" id="cart">
+                    <fmt:message key="page.btn.cart" var="cartOpen"/>
+                    <input type="submit" value="${cartOpen}"/>
+                </form>
             </div>
-            <form action="${pageContext.request.contextPath}/logout.do" method="post" id="logout">
-                <fmt:message key="page.btn.logout" var="exit"/>
-                <input type="submit" value="${exit}"/>
-            </form>
-            <form action="${pageContext.request.contextPath}/openCart.do" method="post" id="cart">
-                <fmt:message key="page.btn.cart" var="cartOpen"/>
-                <input type="submit" value="${cartOpen}"/>
-            </form>
+
         </section>
 
     <ftr:footer/>

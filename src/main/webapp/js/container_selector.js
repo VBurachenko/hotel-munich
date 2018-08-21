@@ -1,18 +1,23 @@
-function openTab(evt, tabName) {
-    var i, tabContent, tabLink;
-
-    tabContent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
-    }
-
-    tabLink = document.getElementsByClassName("tab-link");
-    for (i = 0; i < tabLink.length; i++) {
-        tabLink[i].className = tabLink[i].className.replace(" active", "");
-    }
-
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+function autoClick(){
+    document.getElementById("defaultOpen").click();
 }
 
-document.getElementById("defaultOpen").click();
+function openTable(tableId, tableClassName) {
+
+    var i, tabsContent, tabsLink;
+
+    tabsContent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabsContent.length; i++) {
+        tabsContent[i].style.display = "none";
+    }
+
+    tabsLink = document.getElementsByClassName("tab-link");
+    for (i = 0; i < tabsLink.length; i++) {
+        tabsLink[i].style.backgroundColor = "";
+        tabsLink[i].style.color = "white";
+    }
+
+    document.getElementById(tableId).style.display = "inline-block";
+    tableClassName.style.backgroundColor = "#ddd";
+    tableClassName.style.color = "black";
+}
