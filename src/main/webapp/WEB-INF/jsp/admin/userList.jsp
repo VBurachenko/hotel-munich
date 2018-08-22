@@ -40,7 +40,7 @@
         <br>
         <div>
             <c:if test="${requestScope.userOperationMessage eq 4}">
-                User was not blocked.
+                User was not blocking.
             </c:if>
             <c:if test="${requestScope.userOperationMessage eq 7}">
                 No such user registered.
@@ -53,7 +53,7 @@
                 User with id ${requestScope.blockedUserId}
                 <c:choose>
                     <c:when test="${requestScope.blockDown eq 'true'}">
-                        was blocked.
+                        was blocking.
                     </c:when>
                     <c:otherwise>
                         was unblocked.
@@ -102,7 +102,7 @@
                             <td>
 
                                 <c:choose>
-                                    <c:when test="${user.blocked eq 'true'}">
+                                    <c:when test="${user.blocking eq 'true'}">
                                         Blocked
                                         <c:if test="${(user.role ne 'MODER') and (user.role ne 'ADMIN')}">
                                             <form id="unblockUser"
@@ -116,7 +116,7 @@
 
                                     </c:when>
                                     <c:otherwise>
-                                        Not blocked
+                                        Not blocking
                                         <c:if test="${(user.role ne 'MODER') and (user.role ne 'ADMIN')}">
                                             <form id="blockUser"
                                                   action="${pageContext.request.contextPath}/userBlockingControl.do"

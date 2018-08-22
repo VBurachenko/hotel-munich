@@ -49,7 +49,6 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(20);
         testUser.setGenderMale(false);
-        testUser.setBlocked(false);
         testUser.setRole(UserRole.CUSTOMER);
 
         Integer expectedUserId = 15;
@@ -70,7 +69,6 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(20);
         testUser.setGenderMale(false);
-        testUser.setBlocked(false);
         testUser.setRole(UserRole.CUSTOMER);
 
         Integer actualUserId = userDAO.add(testUser);
@@ -88,7 +86,6 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(20);
         testUser.setGenderMale(false);
-        testUser.setBlocked(false);
         testUser.setRole(UserRole.CUSTOMER);
 
         Integer actualUserId = userDAO.add(testUser);
@@ -107,7 +104,6 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(20);
         testUser.setGenderMale(false);
-        testUser.setBlocked(false);
         testUser.setRole(UserRole.CUSTOMER);
 
         Integer actualUserId = userDAO.add(testUser);
@@ -125,7 +121,6 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(-50);
         testUser.setGenderMale(false);
-        testUser.setBlocked(false);
         testUser.setRole(UserRole.CUSTOMER);
 
         try {
@@ -146,7 +141,6 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(10);
         testUser.setGenderMale(null);
-        testUser.setBlocked(false);
         testUser.setRole(UserRole.CUSTOMER);
 
         thrownException.expect(NullPointerException.class);
@@ -171,7 +165,7 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(10);
         testUser.setGenderMale(false);
-        testUser.setBlocked(false);
+        testUser.setBlocking(1);
         testUser.setRole(UserRole.CUSTOMER);
         testUser.setUserId(12);
 
@@ -190,7 +184,7 @@ public class UserDAOImplTest extends BaseDAOTest{
         testUser.setBirthday(new LocalDate(1994, 5, 31));
         testUser.setDiscount(10);
         testUser.setGenderMale(false);
-        testUser.setBlocked(true);
+        testUser.setBlocking(0);
         testUser.setRole(UserRole.CUSTOMER);
         testUser.setUserId(55);
 

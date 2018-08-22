@@ -1,16 +1,15 @@
-/* Style tab links */
 .tab-container {
-    border-radius: 5px;
+    border: none;
+    border-radius: 4px;
     background-color: #f2f2f2;
-    padding: 10px;
-    margin: auto;
-    text-align: center;
+    height: 100%;
+    margin: 0;
 }
 
 .link-panel {
     width: 720px;
-    border: none;
-    border-radius: 4px;
+    margin: auto;
+    padding: 10px;
 }
 .tab-link {
     background-color: #555;
@@ -25,14 +24,41 @@
 }
 
 .tab-link:hover {
-    background-color: #ddd;
+    background-color: #777;
 }
 
 .tab-content {
-    background-color: #f2f2f2;
+    color: black;
     display: none;
-    padding: 10px 20px;
+    padding: 50px 20px;
     height: 100%;
-    width: 100%;
     text-align: center;
+}
+
+table {
+    margin: auto;
+}
+
+.label-cell {
+    float: right;
+    padding: 5px 10px;
+}
+
+.block-message{
+    color: orangered;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    line-height: 1px;
+    border: orange solid 2px;
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 720px) {
+    .link-panel {
+        width: 100%;
+    }
+    .tab-content {
+        width: 100%
+    }
 }

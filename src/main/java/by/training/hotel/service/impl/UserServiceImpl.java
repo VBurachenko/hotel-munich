@@ -156,20 +156,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean changeBlockUser(String strUserId, String strBlockDown) throws ServiceException{
+    public boolean changeBlockUser(String strUserId, String strBlockCode) throws ServiceException{
 
+        Integer blockCode;
         boolean userBlocked = false;
-
         Integer userId = Integer.valueOf(strUserId);
         if (!CommonValidator.validateIntegerId(userId)){
             return false;
         }
-        Boolean blockDown = Boolean.valueOf(strBlockDown);
+        try {
+            blockCode = Integer.valueOf(strBlockCode);
+        } catch (NumberFormatException e){
+            return false;
+        }
 
         try {
             User userInProcess = userDAO.getById(userId);
             if (userInProcess != null){
-                userInProcess.setBlocked(blockDown);
+                userInProcess.setBlocking(blockCode);
                 userBlocked = userDAO.update(userInProcess);
             }
         } catch (DAOException e){

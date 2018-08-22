@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `test_hotel`.`user` (
   `birthday` DATE NOT NULL,
   `discount` INT(11) UNSIGNED NOT NULL DEFAULT 0,
   `gender_male` TINYINT(1) UNSIGNED NOT NULL,
-  `blocked` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+  `blocking` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
   `role` ENUM('customer', 'admin', 'moder') NOT NULL DEFAULT 'customer',
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
@@ -134,31 +134,31 @@ INSERT INTO room(room_number, berth_count, comfort_level, price_per_night, pictu
 VALUES (2007, 2, 3, 50.5, 've9jhdfrerf', 1);
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocked`, `role`)
+(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
 VALUES ('qwert@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Игорь', 'Петров', '+375447754924', '2018-04-15', 0, 1, 0, 'customer');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocked`, `role`)
+(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
 VALUES ('ytrew@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Cdewdw', 'Pfrew', '+375447754921', '2018-09-23', 0, 1, 0, 'customer');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocked`, `role`)
+(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
 VALUES ('asdfg@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Johnatan', 'Davis','+375447754922', '2018-09-23', 10, 1, 1, 'customer');
 
 INSERT INTO `user`
-(`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocked`, `role`)
+(`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
 VALUES (2, 'xswedc@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Евгений', 'Крюк','+375447754988', '2018-09-01', 0, 1, 0, 'admin');
 
 INSERT INTO `user`
-(`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocked`, `role`)
+(`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
 VALUES (1, 'zxcvb@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Ann', 'Volkova','+375447754956', '2018-09-15', 0, 0, 0, 'moder');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocked`, `role`)
+(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
 VALUES ('poiut@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Natali', 'Kir','+375447754945', '2018-09-24', 15, 0, 0, 'customer');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocked`, `role`)
+(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
 VALUES ('stas@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Stas', 'Ilyasov','+375447754432', '2018-01-06', 5, 1, 0, 'customer');
 
 INSERT INTO `booking`

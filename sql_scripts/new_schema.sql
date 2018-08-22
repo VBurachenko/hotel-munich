@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `hotel`.`user` (
   `birthday` DATE NOT NULL,
   `discount` INT(11) UNSIGNED NOT NULL DEFAULT 0,
   `gender_male` TINYINT(1) UNSIGNED NOT NULL,
-  `blocked` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+  `blocking` TINYINT(9) UNSIGNED NOT NULL DEFAULT 0,
   `role` ENUM('customer', 'admin', 'moder') NOT NULL DEFAULT 'customer',
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),

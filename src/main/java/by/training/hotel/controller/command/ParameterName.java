@@ -21,6 +21,7 @@ public final class ParameterName {
     public static final String BIRTHDAY = "birthday";
     public static final String GENDER_MALE = "genderMale";
     public static final String DISCOUNT = "discount";
+    public static final String BLOCKING = "blocking";
     public static final String ROLE = "role";
 
     public static final String CHECK_IN = "check_in";

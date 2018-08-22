@@ -14,7 +14,7 @@ public final class EntityParameter {
     public final static String BIRTHDAY = "birthday";
     public final static String DISCOUNT = "discount";
     public final static String GENDER_MALE = "gender_male";
-    public final static String BLOCKED = "blocked";
+    public final static String BLOCKING = "blocking";
     public final static String ROLE = "role";
 
     public final static String ROOM_NUMBER = "room_number";

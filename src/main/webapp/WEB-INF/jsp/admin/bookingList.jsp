@@ -50,7 +50,7 @@ bookingList
         User with id ${requestScope.changedBookingId}
         <c:choose>
             <c:when test="${requestScope.changedBookingStatus eq 'true'}">
-                was blocked.
+                was blocking.
             </c:when>
             <c:otherwise>
                 was unblocked.

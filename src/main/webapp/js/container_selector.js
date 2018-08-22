@@ -17,7 +17,17 @@ function openTable(tableId, tableClassName) {
         tabsLink[i].style.color = "white";
     }
 
-    document.getElementById(tableId).style.display = "inline-block";
+    document.getElementById(tableId).style.display = "block";
     tableClassName.style.backgroundColor = "#ddd";
     tableClassName.style.color = "black";
+}
+
+function smoothPanelBorder(panelLinksClassName, radiusValue) {
+    var tabsLink = document.getElementsByClassName(panelLinksClassName);
+    for (var i = 0; i < tabsLink.length; i++){
+        tabsLink[0].style.borderTopLeftRadius = radiusValue;
+        tabsLink[0].style.borderBottomLeftRadius = radiusValue;
+        tabsLink[tabsLink.length - 1].style.borderTopRightRadius = radiusValue;
+        tabsLink[tabsLink.length - 1].style.borderBottomRightRadius = radiusValue;
+    }
 }

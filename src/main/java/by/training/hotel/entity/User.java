@@ -26,7 +26,7 @@ public class User implements Entity {
 
     private Boolean genderMale;
 
-    private Boolean blocked;
+    private Integer blocking;
 
     private UserRole role;
 
@@ -104,12 +104,12 @@ public class User implements Entity {
         this.genderMale = genderMale;
     }
 
-    public Boolean getBlocked() {
-        return blocked;
+    public Integer getBlocking() {
+        return blocking;
     }
 
-    public void setBlocked(Boolean blocked) {
-        this.blocked = blocked;
+    public void setBlocking(Integer blocking) {
+        this.blocking = blocking;
     }
 
     public UserRole getRole() {
@@ -138,14 +138,14 @@ public class User implements Entity {
                 Objects.equals(getBirthday(), user.getBirthday()) &&
                 Objects.equals(getDiscount(), user.getDiscount()) &&
                 Objects.equals(getGenderMale(), user.getGenderMale()) &&
-                Objects.equals(getBlocked(), user.getBlocked()) &&
+                Objects.equals(getBlocking(), user.getBlocking()) &&
                 getRole() == user.getRole();
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getUserId(), getEmail(), getPassword(), getName(), getSurname(), getTelNumber(), getBirthday(), getDiscount(), getGenderMale(), getBlocked(), getRole());
+        return Objects.hash(getUserId(), getEmail(), getPassword(), getName(), getSurname(), getTelNumber(), getBirthday(), getDiscount(), getGenderMale(), getBlocking(), getRole());
     }
 
     @Override
@@ -160,7 +160,7 @@ public class User implements Entity {
                 ", birthday=" + birthday +
                 ", discount=" + discount +
                 ", genderMale=" + genderMale +
-                ", blocked=" + blocked +
+                ", blocking=" + blocking +
                 ", role=" + role +
                 '}';
     }

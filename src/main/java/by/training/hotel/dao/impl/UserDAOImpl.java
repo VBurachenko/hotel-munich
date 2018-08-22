@@ -60,10 +60,10 @@ public class UserDAOImpl extends AbstractDAO<User, Integer> implements UserDAO<U
                     " user.birthday = ?," +
                     " user.discount = ?," +
                     " user.gender_male = ?," +
-                    " user.blocked = ?," +
+                    " user.blocking = ?," +
                     " user.role = ? ";
 
-    private final static String DELETE_USER = "DELETE FROM user";
+    private final static String DELETE_USER = "DELETE FROM user ";
 
     private final static String WHERE_USER_ID = " WHERE user.user_id = ?";
 
@@ -326,8 +326,8 @@ public class UserDAOImpl extends AbstractDAO<User, Integer> implements UserDAO<U
         Boolean genderMale = user.getGenderMale();
         statement.setBoolean(8, genderMale);
 
-        Boolean blocked = user.getBlocked();
-        statement.setBoolean(9, blocked);
+        Integer blocked = user.getBlocking();
+        statement.setInt(9, blocked);
 
         String userRole = user.getRole().toString();
         statement.setString(10, userRole);
@@ -367,8 +367,8 @@ public class UserDAOImpl extends AbstractDAO<User, Integer> implements UserDAO<U
         Boolean genderMale = resultSet.getBoolean(EntityParameter.GENDER_MALE);
         user.setGenderMale(genderMale);
 
-        Boolean blocked = resultSet.getBoolean(EntityParameter.BLOCKED);
-        user.setBlocked(blocked);
+        Integer blocked = resultSet.getInt(EntityParameter.BLOCKING);
+        user.setBlocking(blocked);
 
         String role = resultSet.getString(EntityParameter.ROLE).toUpperCase();
         user.setRole(UserRole.valueOf(role));

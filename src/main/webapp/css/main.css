@@ -76,7 +76,6 @@ header select{
 }
 
 section {
-    text-align: center;
     height: 80vh;
     overflow: scroll;
     margin: 5px;

@@ -47,7 +47,7 @@ Invoice List
         <%--Booking with id ${requestScope.changedInvoiceId}--%>
         <%--<c:choose>--%>
         <%--<c:when test="${requestScope.changedInvoiceStatus eq 'true'}">--%>
-        <%--was blocked.--%>
+        <%--was blocking.--%>
         <%--</c:when>--%>
         <%--<c:otherwise>--%>
         <%--was unblocked.--%>

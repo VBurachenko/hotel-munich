@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="custom-tag/footer" prefix="ftr" %>
 <%@ taglib uri="custom-tag/operation-message" prefix="op-msg"%>
+<%@ taglib uri="custom-tag/blocking-message" prefix="block-msg"%>
 
 <%@ include file="../part/locale.jsp"%>
 
@@ -16,62 +17,71 @@
         <title><fmt:message key="page.title"/></title>
 
         <script src="${pageContext.request.contextPath}/js/container_selector.js"></script>
-        <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables-content.css">--%>
-        <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/tabs.css">--%>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tab.css">
     </head>
 
-    <body onload="autoClick()">
+    <body onload="autoClick(); smoothPanelBorder('tab-link', '6px')">
 
         <c:import url="../part/header.jsp"/>
 
         <section>
 
             <div class="tab-container">
-                <div>
+
+                <div class="warn-message">
                     <op-msg:operationMessage messageCode="3" textMessage="Change this booking is impossible"/>
                     <op-msg:operationMessage messageCode="4" textMessage="Booking was successfully changed"/>
                 </div>
 
+                <c:if test="${sessionScope.blocking ne 0}">
+                    <div class="block-message">
+                        <block-msg:userBlock reasonCode="1" textOfReason="you had damage hotel property"/>
+                        <block-msg:userBlock reasonCode="2" textOfReason="you have violated the rules of accommodation in the hotel"/>
+                        <block-msg:userBlock reasonCode="3" textOfReason="you have problems with payment"/>
+                    </div>
+                </c:if>
+
                 <div class="link-panel">
+
                     <button id="defaultOpen" class="tab-link" onclick="openTable('info', this)" >
-                        My personal Data
+                        Person
                     </button>
                     <button class="tab-link" onclick="openTable('bookings', this)">
-                        My bookings
+                        Bookings
                     </button>
                     <button class="tab-link" onclick="openTable('invoices', this)">
-                        My invoices
+                        Invoices
                     </button>
+
                 </div>
 
                 <div id="info" class="tab-content">
-                    <table>
+                    <table border="1px">
                         <tr>
-                            <td>Email</td>
-                            <td>${sessionScope.email}</td>
+                            <td class="label-cell">Email</td>
+                            <td class="content-cell">${sessionScope.email}</td>
                         </tr>
                         <tr>
-                            <td>First name</td>
-                            <td>${sessionScope.firstName}</td>
+                            <td class="label-cell">First name</td>
+                            <td class="content-cell">${sessionScope.firstName}</td>
                         </tr>
                         <tr>
-                            <td>Last name</td>
-                            <td>${sessionScope.lastName}</td>
+                            <td class="label-cell">Last name</td>
+                            <td class="content-cell">${sessionScope.lastName}</td>
                         </tr>
                         <tr>
-                            <td>Birthday</td>
-                            <td>${sessionScope.birthday}</td>
+                            <td class="label-cell">Birthday</td>
+                            <td class="content-cell">${sessionScope.birthday}</td>
                         </tr>
                         <tr>
-                            <td>Tel. number</td>
-                            <td>${sessionScope.telephoneNumber}</td>
+                            <td class="label-cell">Tel. number</td>
+                            <td class="content-cell">${sessionScope.telephoneNumber}</td>
                         </tr>
                         <tr>
-                            <td>Gender</td>
-                            <td>
+                            <td class="label-cell">Gender</td>
+                            <td class="content-cell">
                                 <c:choose>
                                     <c:when test="${sessionScope.genderMale}">
                                         Male
@@ -82,6 +92,7 @@
                                 </c:choose>
                             </td>
                         </tr>
+
                     </table>
                 </div>
 
@@ -146,6 +157,7 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div id="invoices" class="tab-content">
                     <table border="1">
                         <thead>
@@ -200,14 +212,7 @@
                         </tbody>
                     </table>
                 </div>
-                <form action="${pageContext.request.contextPath}/logout.do" method="post" id="logout">
-                    <fmt:message key="page.btn.logout" var="exit"/>
-                    <input type="submit" value="${exit}"/>
-                </form>
-                <form action="${pageContext.request.contextPath}/openCart.do" method="post" id="cart">
-                    <fmt:message key="page.btn.cart" var="cartOpen"/>
-                    <input type="submit" value="${cartOpen}"/>
-                </form>
+
             </div>
 
         </section>

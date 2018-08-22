@@ -36,16 +36,11 @@ public class PerformLoginCommand extends Command{
             User incomingUser = userService.authorizeUser(email, encryptedPass);
 
             if (incomingUser != null){
-                if (!incomingUser.getBlocked()){
-                    session.setAttribute(ParameterName.USER_ID, incomingUser.getUserId());
-                    session.setAttribute(ParameterName.ROLE, incomingUser.getRole().toString());
-                    session.setAttribute(ParameterName.DISCOUNT, incomingUser.getDiscount());
-                    session.removeAttribute(ParameterName.OPERATION_MESSAGE);
-                    urlPattern = UrlPattern.OPEN_USER_OFFICE;
-                } else {
-                    session.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.ACCOUNT_BLOCKED_CODE);
-                    urlPattern = UrlPattern.LOGIN;
-                }
+                session.setAttribute(ParameterName.USER_ID, incomingUser.getUserId());
+                session.setAttribute(ParameterName.ROLE, incomingUser.getRole().toString());
+                session.setAttribute(ParameterName.DISCOUNT, incomingUser.getDiscount());
+                session.removeAttribute(ParameterName.OPERATION_MESSAGE);
+                urlPattern = UrlPattern.OPEN_USER_OFFICE;
             } else {
                 request.getSession().setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.WRONG_PASSWORD_OR_EMAIL_CODE);
                 urlPattern = UrlPattern.LOGIN;
