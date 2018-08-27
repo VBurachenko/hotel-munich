@@ -46,5 +46,6 @@ public class ListUsersViewCommand extends Command {
 
         request.getRequestDispatcher(PageEnum.USER_LIST.getPath()).forward(request, response);
 
+        request.getSession().removeAttribute(ParameterName.OPERATION_MESSAGE);
     }
 }

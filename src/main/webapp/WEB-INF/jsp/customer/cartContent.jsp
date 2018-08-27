@@ -25,22 +25,36 @@
     <c:import url="../part/header.jsp"/>
 
     <section>
+        <c:set var="rooms" value="${sessionScope.orderInCart.roomsSet}" scope="page"/>
         <c:choose>
             <c:when test="${sessionScope.orderInCart.roomsSet eq null}">
-                <p>Basket is empty</p>
+                <p>Cart is empty</p>
             </c:when>
             <c:otherwise>
                 <form action="${pageContext.request.contextPath}/displayFreeRooms.do" method="post">
                     <input type="hidden" name="page" value="${sessionScope.Page}"/>
                     <input type="submit" value="Go back to search"/>
                 </form>
+
                 <form action="${pageContext.request.contextPath}/bookingSelectedRooms.do" method="post" id="bookingSelectedRooms">
 
                     <input type="submit" value="Order selected rooms">
-
+                    <p>You want to booking from <span>${sessionScope.orderInCart.checkInDate}</span>
+                        to <span>${sessionScope.orderInCart.checkOutDate}</span>; for <span>${sessionScope.orderInCart.adultCount}</span> adults and
+                        <span>${sessionScope.orderInCart.childCount}</span> children, next rooms:
+                    </p>
                     <c:forEach var="roomInCart" items="${sessionScope.orderInCart.roomsSet}">
                         <div class="container">
-                            <input type="checkbox" checked name="selectedRooms" value="${roomInCart.roomNumber}"/>
+                            <label>Leave this room in booking
+                                <c:choose>
+                                    <c:when test="${rooms.size() eq 1}">
+                                        <input type="checkbox" checked name="selectedRooms" value="${roomInCart.roomNumber}" required/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="checkbox" checked name="selectedRooms" value="${roomInCart.roomNumber}"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </label>
                             <img src="${roomInCart.pictureLink}" alt="Photo of room">
                             <p><span>Room number: ${roomInCart.roomNumber}</span> Count of berth : ${roomInCart.berthCount} Comfort level : ${roomInCart.comfortLevel}</p>
                             <p>Price per night: ${roomInCart.pricePerNight}</p>

@@ -231,5 +231,8 @@
         <action>/roomChangeSuccess.do</action>
         <class>by.training.hotel.controller.command.impl.admin.RoomChangeSuccessCommand</class>
     </command>
-
+    <command>
+        <action>/performUserBlockChange.do</action>
+        <class>by.training.hotel.controller.command.impl.admin.PerformUserBlockChangeCommand</class>
+    </command>
 </commands>

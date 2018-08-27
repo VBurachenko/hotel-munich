@@ -39,11 +39,10 @@ public final class BookingDAOImplTest extends BaseDAOTest{
     public void addNotExistingBooking() throws DAOException {
 
         Room roomFirst = new Room();
-        roomFirst.setRoomNumber(1005);
+        roomFirst.setRoomNumber(2001);
 
-
-        testBooking.setCheckInDate(new LocalDate(2018, 10, 25));
-        testBooking.setCheckOutDate(new LocalDate(2018, 10, 28));
+        testBooking.setCheckInDate(new LocalDate(2019, 10, 25));
+        testBooking.setCheckOutDate(new LocalDate(2019, 10, 28));
         testBooking.setAdultCount(1);
         testBooking.setChildCount(0);
         testBooking.setUserId(10);
@@ -59,9 +58,9 @@ public final class BookingDAOImplTest extends BaseDAOTest{
     public void addBookingWithOverlappingDates() throws DAOException {
 
         Room room = new Room();
-        room.setRoomNumber(1006);
-        testBooking.setCheckInDate(new LocalDate(2018, 7, 5));
-        testBooking.setCheckOutDate(new LocalDate(2018, 7, 20));
+        room.setRoomNumber(2001);
+        testBooking.setCheckInDate(new LocalDate(2019, 10, 20));
+        testBooking.setCheckOutDate(new LocalDate(2019, 10, 26));
         testBooking.setAdultCount(2);
         testBooking.setChildCount(1);
         testBooking.setUserId(12);

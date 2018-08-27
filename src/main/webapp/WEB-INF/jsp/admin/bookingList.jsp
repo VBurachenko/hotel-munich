@@ -47,10 +47,10 @@ bookingList
     </c:if>
 
     <c:if test="${not empty requestScope.changedBookingId}">
-        User with id ${requestScope.changedBookingId}
+        Booking with id ${requestScope.changedBookingId}
         <c:choose>
             <c:when test="${requestScope.changedBookingStatus eq 'true'}">
-                was blocking.
+                was blocked.
             </c:when>
             <c:otherwise>
                 was unblocked.

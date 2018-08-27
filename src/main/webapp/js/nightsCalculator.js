@@ -8,5 +8,4 @@ function calcNightCount(fromDate, toDate) {
     var diffInMillSeconds = Math.abs(to - from);
 
     document.getElementById("nightCount").innerText = Math.ceil(diffInMillSeconds / milliSecInDay).toString();
-
 }

@@ -57,7 +57,7 @@
                     </c:when>
                     <c:otherwise>
                         <c:choose>
-                            <c:when test="${sessionScope.role ne 'GUEST'}">
+                            <c:when test="${sessionScope.role eq 'CUSTOMER' and sessionScope.blocking eq 0}">
                                 <form action="${pageContext.request.contextPath}/putRoomInCart.do" method="post">
                                     <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                     <input type="submit" value="Add to cart"/>
@@ -68,12 +68,17 @@
                                 </form>
                             </c:when>
                             <c:otherwise>
-                                <form action="${pageContext.request.contextPath}/login.do" method="post">
-                                    <fmt:message key="page.btn.loginForOrder" var="loginForOrder"/>
-                                    <label>
-                                            ${forOrder} <input type="submit" value="${loginForOrder}"/>
-                                    </label>
-                                </form>
+                                <c:if test="${sessionScope.blocking eq 0}">
+                                    <form action="${pageContext.request.contextPath}/login.do" method="post">
+                                        <fmt:message key="page.btn.loginForOrder" var="loginForOrder"/>
+                                        <label>
+                                                ${forOrder} <input type="submit" value="${loginForOrder}"/>
+                                        </label>
+                                    </form>
+                                </c:if>
+                                <c:if test="${sessionScope.blocking gt '0'}">
+                                    You can not booking it, because your account is blocked.
+                                </c:if>
                             </c:otherwise>
                         </c:choose>
                     </c:otherwise>

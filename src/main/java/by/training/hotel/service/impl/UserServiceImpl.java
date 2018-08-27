@@ -159,13 +159,12 @@ public class UserServiceImpl implements UserService {
     public boolean changeBlockUser(String strUserId, String strBlockCode) throws ServiceException{
 
         Integer blockCode;
+        Integer userId;
         boolean userBlocked = false;
-        Integer userId = Integer.valueOf(strUserId);
-        if (!CommonValidator.validateIntegerId(userId)){
-            return false;
-        }
+
         try {
             blockCode = Integer.valueOf(strBlockCode);
+            userId = Integer.valueOf(strUserId);
         } catch (NumberFormatException e){
             return false;
         }

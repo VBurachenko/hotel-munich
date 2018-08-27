@@ -30,7 +30,6 @@
         <label>
             <input type="radio" name="payment" value="pay_in_hotel"/> Pay in hotel
         </label><br>
-        <%--<c:set var="invoiceIdForPayment" value="${sessionScope.invoiceForBooking.invoiceId}" scope="session"/>--%>
         <input type="hidden" name="invoiceIdForPayment" value="${sessionScope.invoiceForBooking.invoiceId}"/>
         <input type="submit" value="Finalize booking"/>
     </form>

@@ -42,11 +42,11 @@ VALUES (2007, 2, 3, 50.5, 've9jhdfrerf', 1);
 
 INSERT INTO `hotel`.`user`
           (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES ('qwert@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Игорь', 'Петров', '+375447754924', '2018-04-15', 0, 1, 0, 'customer');
+VALUES ('qwert@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Ihar', 'Piatrou', '+375447754924', '2018-04-15', 0, 1, 0, 'customer');
 
 INSERT INTO `hotel`.`user`
           (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES ('ytrew@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Cdewdw', 'Pfrew', '+375447754921', '2018-09-23', 0, 1, 0, 'customer');
+VALUES ('ytrew@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Andrew', 'Malkov', '+375447754921', '2018-09-23', 0, 1, 0, 'customer');
 
 INSERT INTO `hotel`.`user`
           (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
@@ -54,7 +54,7 @@ VALUES ('asdfg@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Johnatan', 'Davi
 
 INSERT INTO `hotel`.`user`
           (`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES (2, 'xswedc@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Евгений', 'Крюк','+375447754988', '2018-09-01', 0, 1, 0, 'admin');
+VALUES (2, 'xswedc@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Eugenue', 'Kruk','+375447754988', '2018-09-01', 0, 1, 0, 'admin');
 
 INSERT INTO `hotel`.`user`
           (`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)

@@ -386,7 +386,7 @@ public class BookingDAOImpl extends AbstractDAO<Booking, Long> implements Bookin
                 statement.setDate(2, localDateToSqlDate(booking.getCheckOutDate()));
                 statement.setInt(3, roomInBooking.getRoomNumber());
                 ResultSet resultSet = statement.executeQuery();
-                if (!resultSet.next()) {
+                if (resultSet.next()) {
                     roomsAreFree = false;
                     break;
                 }

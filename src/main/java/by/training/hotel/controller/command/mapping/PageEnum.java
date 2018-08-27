@@ -27,7 +27,8 @@ public enum PageEnum {
     SUCCESS_ADMIN_REGISTRATION("/WEB-INF/jsp/admin/successAdminRegistration.jsp"),
     INVOICE_LIST("/WEB-INF/jsp/admin/invoiceList.jsp"),
     CHANGE_ROOM_FORM("/WEB-INF/jsp/admin/changeRoomForm.jsp"),
-    SUCCESS_ROOM_CHANGE("WEB-INF/jsp/admin/successRoomChange.jsp");
+    SUCCESS_ROOM_CHANGE("WEB-INF/jsp/admin/successRoomChange.jsp"),
+    USER_BLOCKING_CONTROL("WEB-INF/jsp/admin/userBlockingControl.jsp");
 
 
     private String path;

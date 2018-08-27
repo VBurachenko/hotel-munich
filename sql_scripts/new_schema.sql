@@ -170,20 +170,23 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE defineNumberOfOccupiedRoom(from_date DATE, to_date DATE, room_num INT)
   BEGIN
-    SELECT `room`.`room_number`
+    SELECT
+           `room`.`room_number`
     FROM `room`
            JOIN `room_in_booking` ON `room`.`room_number` = `room_in_booking`.`room_number`
            JOIN `booking` ON `booking`.`booking_id` = `room_in_booking`.`booking_id`
     WHERE `room`.`room_number` = room_num
-            AND (
-              (from_date NOT BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
-                OR
-              (to_date NOT BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
-              )
-       OR (
-              (`booking`.`check_in` NOT BETWEEN from_date AND to_date)
-                OR
-              (`booking`.`check_out` NOT BETWEEN from_date AND to_date)
+      AND (
+              (
+                  (from_date BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
+                    OR
+                  (to_date BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
+                  )
+                OR (
+                  (`booking`.`check_in` BETWEEN from_date AND to_date)
+                    OR
+                  (`booking`.`check_out` BETWEEN from_date AND to_date)
+                  )
               );
   END $$
 DELIMITER ;

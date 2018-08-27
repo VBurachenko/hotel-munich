@@ -134,32 +134,33 @@ INSERT INTO room(room_number, berth_count, comfort_level, price_per_night, pictu
 VALUES (2007, 2, 3, 50.5, 've9jhdfrerf', 1);
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES ('qwert@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Игорь', 'Петров', '+375447754924', '2018-04-15', 0, 1, 0, 'customer');
+    (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
+VALUES ('qwert@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Ihar', 'Piatrou', '+375447754924', '2018-04-15', 0, 1, 0, 'customer');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES ('ytrew@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Cdewdw', 'Pfrew', '+375447754921', '2018-09-23', 0, 1, 0, 'customer');
+    (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
+VALUES ('ytrew@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Andrew', 'Malkov', '+375447754921', '2018-09-23', 0, 1, 0, 'customer');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES ('asdfg@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Johnatan', 'Davis','+375447754922', '2018-09-23', 10, 1, 1, 'customer');
+    (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
+VALUES ('asdfg@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Johnatan', 'Davis','+375447754922', '2018-09-23', 10, 1, 1, 'customer');
 
 INSERT INTO `user`
-(`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES (2, 'xswedc@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Евгений', 'Крюк','+375447754988', '2018-09-01', 0, 1, 0, 'admin');
+    (`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
+VALUES (2, 'xswedc@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Eugenue', 'Kruk','+375447754988', '2018-09-01', 0, 1, 0, 'admin');
 
 INSERT INTO `user`
-(`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES (1, 'zxcvb@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Ann', 'Volkova','+375447754956', '2018-09-15', 0, 0, 0, 'moder');
+    (`user_id`, `email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
+VALUES (1, 'zxcvb@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Ann', 'Volkova','+375447754956', '2018-09-15', 0, 0, 0, 'moder');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES ('poiut@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Natali', 'Kir','+375447754945', '2018-09-24', 15, 0, 0, 'customer');
+    (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
+VALUES ('poiut@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Natali', 'Kir','+375447754945', '2018-09-24', 15, 0, 2, 'customer');
 
 INSERT INTO `user`
-(`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
-VALUES ('stas@gmail.com', '3d5326c8717e6b6426b31ec9819a0baf', 'Stas', 'Ilyasov','+375447754432', '2018-01-06', 5, 1, 0, 'customer');
+    (`email`, `password`, `name`, `surname`, `tel_number`, `birthday`, `discount`, `gender_male`, `blocking`, `role`)
+VALUES ('stas@gmail.com', 'f97e2f1f37d10977c25a118f21c302f8', 'Stas', 'Ilyasov','+375447754432', '2018-01-06', 5, 1, 0, 'customer');
+
 
 INSERT INTO `booking`
 (booking_id, check_in, check_out, adult_count, child_count, user_id)
@@ -262,14 +263,14 @@ CREATE PROCEDURE defineNumberOfOccupiedRoom (from_date DATE, to_date DATE, room_
     WHERE `room`.`room_number` = room_num
           AND (
               (
-                  (from_date NOT BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
+                  (from_date BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
                     OR
-                  (to_date NOT BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
+                  (to_date BETWEEN `booking`.`check_in` AND `booking`.`check_out`)
                   )
                 OR (
-                  (`booking`.`check_in` NOT BETWEEN from_date AND to_date)
+                  (`booking`.`check_in` BETWEEN from_date AND to_date)
                     OR
-                  (`booking`.`check_out` NOT BETWEEN from_date AND to_date)
+                  (`booking`.`check_out` BETWEEN from_date AND to_date)
                   )
               );
   END ;

@@ -367,8 +367,8 @@ public class UserDAOImpl extends AbstractDAO<User, Integer> implements UserDAO<U
         Boolean genderMale = resultSet.getBoolean(EntityParameter.GENDER_MALE);
         user.setGenderMale(genderMale);
 
-        Integer blocked = resultSet.getInt(EntityParameter.BLOCKING);
-        user.setBlocking(blocked);
+        Integer blocking = resultSet.getInt(EntityParameter.BLOCKING);
+        user.setBlocking(blocking);
 
         String role = resultSet.getString(EntityParameter.ROLE).toUpperCase();
         user.setRole(UserRole.valueOf(role));

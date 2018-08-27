@@ -24,15 +24,6 @@
     <c:import url="../part/header.jsp"/>
 
     <section>
-        <h2>You activated as Administrator</h2>
-        <p>Hello ${sessionScope.firstName}</p>
-
-        <c:if test="${sessionScope.changeBookingMessage eq 3}">
-            <p>Change this booking is impossible</p>
-        </c:if>
-        <c:if test="${sessionScope.changeBookingMessage eq 4}">
-            <p>Booking was successfully changed</p>
-        </c:if>
 
         <div>
             <table>
