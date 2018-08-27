@@ -42,7 +42,7 @@ public class UserDAOImplTest extends BaseDAOTest{
     public void addNotExistingUser() throws DAOException {
 
         testUser.setEmail("13Saha@gmail.com");
-        testUser.setPassword(convertToHash("3105199431z"));
+        testUser.setPassword(convertToHash("31051199431z"));
         testUser.setName("Aliaksandra");
         testUser.setSurname("Kovalets");
         testUser.setTelNumber("+375296026827");
