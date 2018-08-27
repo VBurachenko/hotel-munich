@@ -2,7 +2,7 @@ package by.training.hotel.entity;
 
 import java.util.Objects;
 
-public class Room implements Entity, Comparable<Room>{
+public class Room implements Entity{
 
     private static final long serialVersionUID = 6830391423828569602L;
 
@@ -103,8 +103,4 @@ public class Room implements Entity, Comparable<Room>{
                 '}';
     }
 
-    @Override
-    public int compareTo(Room o) {
-        return 0;
-    }
 }

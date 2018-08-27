@@ -17,7 +17,9 @@
         <title><fmt:message key="page.title"/></title>
 
         <script src="${pageContext.request.contextPath}/js/container_selector.js"></script>
+        <script src="${pageContext.request.contextPath}/js/nightsCalculator.js"></script>
 
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rooms_list.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tab.css">
     </head>
@@ -96,66 +98,130 @@
                     </table>
                 </div>
 
-                <div id="bookings" class="tab-content">
-                    <table border="1">
-                        <thead>
-                        <c:if test="${not empty requestScope.usersBookingSet}">
-                            <tr>
-                                <td>bookingId</td>
-                                <td>checkIn</td>
-                                <td>checkOut</td>
-                                <td>adultCount</td>
-                                <td>childCount</td>
-                                <td>invoiceId</td>
-                                <td>bookingStatus</td>
-                                <td>rooms</td>
-                            </tr>
-                        </c:if>
-                        </thead>
+                <div id="bookings" class="tab-content" >
+                    <c:choose>
+                        <c:when test="${not empty requestScope.usersBookingSet}">
+                            <c:forEach var="currentBooking" items="${requestScope.usersBookingSet}">
+                                <div class="booking-item" style="border: 1px green solid; border-radius: 4px;">
+                                    <label>Booking-id:
+                                        <i>${currentBooking.bookingId}</i>
+                                    </label>
+                                    <label>from:
+                                        <i>${currentBooking.checkInDate}</i>
+                                    </label>
+                                    <label>to:
+                                        <i>${currentBooking.checkOutDate}</i>
+                                    </label>
+                                    <label onload="calcNightCount(${currentBooking.checkInDate}, ${currentBooking.checkOutDate})">nights count:
+                                        <i id="nightCount"></i>
+                                    </label>
+                                    <label>adults:
+                                        <i>${currentBooking.adultCount}</i> persons
+                                    </label>
+                                    <c:if test="${currentBooking.childCount ne 0}">
+                                        <label>children:
+                                            <i>${currentBooking.childCount}</i>
+                                        </label>
+                                    </c:if>
+                                    <label>invoice-id for this booking:
+                                        <i>${currentBooking.invoiceId}</i>
+                                    </label>
+                                    <label>status of booking:
+                                        <i>${currentBooking.bookingStatus}</i>
+                                    </label>
+                                    <c:if test="${currentBooking.bookingStatus eq 'REGISTERED'}">
+                                        <form action="${pageContext.request.contextPath}/openChangeForm.do"
+                                              method="post">
+                                            <input type="hidden" name="bookingId"
+                                                   value="${currentBooking.bookingId}"/>
+                                            <input type="submit" value="change booking"/>
+                                        </form>
+                                        <form action="${pageContext.request.contextPath}/cancelBooking.do"
+                                              method="post">
+                                            <input type="hidden" name="cancelBookingId"
+                                                   value="${currentBooking.bookingId}"/>
+                                            <input type="hidden" name="cancelInvoiceId"
+                                                   value="${currentBooking.invoiceId}"/>
+                                            <input type="submit" value="cancel"/>
+                                        </form>
+                                    </c:if>
+                                    <c:forEach var="roomInBooking" items="${currentBooking.roomsSet}">
+                                        <div class="container">
+                                            <img src="${roomInBooking.pictureLink}" alt="Photo of room">
+                                            <p><span>Room number: ${roomInBooking.roomNumber}</span>
+                                                <span>Count of berth: ${roomInBooking.berthCount}</span>
+                                                <span>Comfort level: ${roomInBooking.comfortLevel}</span>
+                                            </p>
+                                            <p>Price per night: ${roomInBooking.pricePerNight}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p>You have not bookings</p>
+                        </c:otherwise>
+                    </c:choose>
 
-                        <tbody>
-                        <c:choose>
-                            <c:when test="${not empty requestScope.usersBookingSet}">
-                                <c:forEach var="currentBooking" items="${requestScope.usersBookingSet}">
-                                    <tr>
-                                        <td>${currentBooking.bookingId}</td>
-                                        <td>${currentBooking.checkInDate}</td>
-                                        <td>${currentBooking.checkOutDate}</td>
-                                        <td>${currentBooking.adultCount}</td>
-                                        <td>${currentBooking.childCount}</td>
-                                        <td>${currentBooking.invoiceId}</td>
-                                        <td>${currentBooking.bookingStatus}
-                                            <c:if test="${currentBooking.bookingStatus eq 'REGISTERED'}">
-                                                <form action="${pageContext.request.contextPath}/openChangeForm.do"
-                                                      method="post">
-                                                    <input type="hidden" name="bookingId"
-                                                           value="${currentBooking.bookingId}"/>
-                                                    <input type="submit" value="change booking"/>
-                                                </form>
-                                                <form action="${pageContext.request.contextPath}/cancelBooking.do"
-                                                      method="post">
-                                                    <input type="hidden" name="cancelBookingId"
-                                                           value="${currentBooking.bookingId}"/>
-                                                    <input type="hidden" name="cancelInvoiceId"
-                                                           value="${currentBooking.invoiceId}"/>
-                                                    <input type="submit" value="cancel"/>
-                                                </form>
-                                            </c:if>
-                                        </td>
-                                        <td>
-                                            <c:forEach var="room" items="${currentBooking.roomsSet}">
-                                                ${room}
-                                            </c:forEach>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                You have not bookings
-                            </c:otherwise>
-                        </c:choose>
-                        </tbody>
-                    </table>
+                    <%--<table border="1">--%>
+                        <%--<thead>--%>
+                        <%--<c:if test="${not empty requestScope.usersBookingSet}">--%>
+                            <%--<tr>--%>
+                                <%--<td>bookingId</td>--%>
+                                <%--<td>checkIn</td>--%>
+                                <%--<td>checkOut</td>--%>
+                                <%--<td>adultCount</td>--%>
+                                <%--<td>childCount</td>--%>
+                                <%--<td>invoiceId</td>--%>
+                                <%--<td>bookingStatus</td>--%>
+                                <%--<td>rooms</td>--%>
+                            <%--</tr>--%>
+                        <%--</c:if>--%>
+                        <%--</thead>--%>
+
+                        <%--<tbody>--%>
+                        <%--<c:choose>--%>
+                            <%--<c:when test="${not empty requestScope.usersBookingSet}">--%>
+                                <%--<c:forEach var="currentBooking" items="${requestScope.usersBookingSet}">--%>
+                                    <%--<tr>--%>
+                                        <%--<td>${currentBooking.bookingId}</td>--%>
+                                        <%--<td>${currentBooking.checkInDate}</td>--%>
+                                        <%--<td>${currentBooking.checkOutDate}</td>--%>
+                                        <%--<td>${currentBooking.adultCount}</td>--%>
+                                        <%--<td>${currentBooking.childCount}</td>--%>
+                                        <%--<td>${currentBooking.invoiceId}</td>--%>
+                                        <%--<td>${currentBooking.bookingStatus}--%>
+                                            <%--<c:if test="${currentBooking.bookingStatus eq 'REGISTERED'}">--%>
+                                                <%--<form action="${pageContext.request.contextPath}/openChangeForm.do"--%>
+                                                      <%--method="post">--%>
+                                                    <%--<input type="hidden" name="bookingId"--%>
+                                                           <%--value="${currentBooking.bookingId}"/>--%>
+                                                    <%--<input type="submit" value="change booking"/>--%>
+                                                <%--</form>--%>
+                                                <%--<form action="${pageContext.request.contextPath}/cancelBooking.do"--%>
+                                                      <%--method="post">--%>
+                                                    <%--<input type="hidden" name="cancelBookingId"--%>
+                                                           <%--value="${currentBooking.bookingId}"/>--%>
+                                                    <%--<input type="hidden" name="cancelInvoiceId"--%>
+                                                           <%--value="${currentBooking.invoiceId}"/>--%>
+                                                    <%--<input type="submit" value="cancel"/>--%>
+                                                <%--</form>--%>
+                                            <%--</c:if>--%>
+                                        <%--</td>--%>
+                                        <%--<td>--%>
+                                            <%--<c:forEach var="room" items="${currentBooking.roomsSet}">--%>
+                                                <%--${room}--%>
+                                            <%--</c:forEach>--%>
+                                        <%--</td>--%>
+                                    <%--</tr>--%>
+                                <%--</c:forEach>--%>
+                            <%--</c:when>--%>
+                            <%--<c:otherwise>--%>
+                                <%--You have not bookings--%>
+                            <%--</c:otherwise>--%>
+                        <%--</c:choose>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
                 </div>
 
                 <div id="invoices" class="tab-content">
