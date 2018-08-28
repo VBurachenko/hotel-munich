@@ -26,7 +26,6 @@ public class LanguageCommand extends Command {
         HttpSession session = request.getSession();
         session.setAttribute(LOCAL_LANG, languageName);
 
-        response.sendRedirect(url[1]);
-//        request.getRequestDispatcher(url[1]).forward(request, response);
+        request.getRequestDispatcher(url[1]).forward(request, response);
     }
 }
