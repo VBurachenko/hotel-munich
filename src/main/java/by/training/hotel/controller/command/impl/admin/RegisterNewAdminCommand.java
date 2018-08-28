@@ -31,7 +31,7 @@ public class RegisterNewAdminCommand extends Command {
         if (adminRegistered){
             response.sendRedirect(UrlPattern.SUCCESS_ADMIN_REGISTRATION);
         } else {
-            request.setAttribute(ParameterName.USER_OPERATION_MESSAGE, ParameterName.ADMIN_WAS_NOT_REGISTERED_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.ADMIN_WAS_NOT_REGISTERED_MESSAGE_CODE);
             request.getRequestDispatcher(PageEnum.USER_LIST.getPath()).forward(request, response);
         }
     }

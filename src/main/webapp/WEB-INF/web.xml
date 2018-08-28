@@ -26,6 +26,10 @@
     <listener-class>by.training.hotel.listener.ConnectionPoolInitializer</listener-class>
   </listener>
 
+  <error-page>
+    <location>/WEB-INF/jsp/error.jsp</location>
+  </error-page>
+
   <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>by.training.hotel.filter.EncodingFilter</filter-class>

@@ -33,7 +33,7 @@ public class ProvideUserForViewCommand extends Command {
         if (userForView != null){
             request.setAttribute(ParameterName.USERS_FOR_VIEW, userForView);
         } else {
-            request.setAttribute(ParameterName.USER_OPERATION_MESSAGE, ParameterName.NO_SUCH_USER_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.NO_SUCH_USER_MESSAGE_CODE);
         }
         request.getRequestDispatcher(PageEnum.USER_LIST.getPath()).forward(request, response);
     }

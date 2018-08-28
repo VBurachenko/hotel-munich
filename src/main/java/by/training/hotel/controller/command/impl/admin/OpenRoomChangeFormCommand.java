@@ -36,7 +36,7 @@ public class OpenRoomChangeFormCommand extends Command {
             session.setAttribute(ParameterName.ROOM_FOR_CHANGE, roomForChange);
             path = PageEnum.CHANGE_ROOM_FORM.getPath();
         } else {
-            request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.ROOM_CHANGE_IMPOSSIBLE_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.ROOM_CHANGE_IMPOSSIBLE_MESSAGE_CODE);
             path = PageEnum.ROOM_LIST.getPath();
         }
         request.getRequestDispatcher(path).forward(request, response);

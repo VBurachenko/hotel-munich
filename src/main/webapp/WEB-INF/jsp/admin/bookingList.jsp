@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="custom-tag/footer" prefix="ftr" %>
 <%@ taglib uri="custom-tag/paginator" prefix="pgr"%>
+<%@ taglib uri="custom-tag/operation-message" prefix="op-msg"%>
 <%@ include file="../part/locale.jsp" %>
 
 <!DOCTYPE html>
@@ -36,27 +37,13 @@ bookingList
 <c:set var="pagesCount" value="${requestScope.bookingsForView.pagesCount}" scope="page"/>
 <br>
 <div>
-    <c:if test="${requestScope.bookingOperationMessage eq 6}">
-        Booking status was not changed.
-    </c:if>
-    <c:if test="${requestScope.bookingOperationMessage eq 10}">
-        No such booking existing.
-    </c:if>
-    <c:if test="${requestScope.bookingOperationMessage eq 12}">
-        Booking was not processed.
-    </c:if>
 
-    <c:if test="${not empty requestScope.changedBookingId}">
-        Booking with id ${requestScope.changedBookingId}
-        <c:choose>
-            <c:when test="${requestScope.changedBookingStatus eq 'true'}">
-                was blocked.
-            </c:when>
-            <c:otherwise>
-                was unblocked.
-            </c:otherwise>
-        </c:choose>
-    </c:if>
+    <div>
+        <op-msg:operationMessage messageCode="12" textMessage="Booking status was not changed."/>
+        <op-msg:operationMessage messageCode="10" textMessage="No such booking existing."/>
+        <op-msg:operationMessage messageCode="11" textMessage="Booking was not processed."/>
+    </div>
+
 </div>
 <c:if test="${not empty requestScope.bookingsForView}">
     <div>

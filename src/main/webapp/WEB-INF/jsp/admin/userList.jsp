@@ -32,7 +32,7 @@
     <br>
 
     <form action="${pageContext.request.contextPath}/provideUserForView.do" method="get">
-        <label>Search user by email or telephone number:
+        <label>Search user by user-id, email or telephone number:
             <input type="text" name="searchUserArtifact"/>
         </label>
         <input type="submit" value="search"/>

@@ -35,7 +35,7 @@ public class RoomBlockingControlCommand extends Command {
 
             request.getRequestDispatcher(UrlPattern.LIST_ROOMS_VIEW).forward(request, response);
         } else {
-            request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.CHANGE_ROOM_STATUS_ERROR_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.CHANGE_ROOM_STATUS_ERROR_CODE);
         }
 
     }

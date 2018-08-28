@@ -46,7 +46,7 @@ public class PrepareForBookingProcessCommand extends Command {
                     response.sendRedirect(UrlPattern.OPEN_BOOKING_PROCESSING_FORM);
                 }
             } else {
-                request.setAttribute(ParameterName.BOOKING_OPERATION_MESSAGE, ParameterName.IMPOSSIBLE_PROCESS_BOOKING_MESSAGE_CODE);
+                request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.IMPOSSIBLE_PROCESS_BOOKING_MESSAGE_CODE);
                 request.getRequestDispatcher(PageEnum.BOOKING_LIST.getPath()).forward(request, response);
             }
         } catch (ServiceException e){

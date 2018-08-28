@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="custom-tag/paginator" prefix="pgr"%>
 <%@ taglib uri="custom-tag/footer" prefix="ftr" %>
+<%@ taglib uri="custom-tag/operation-message" prefix="op-msg"%>
 
 <%@ include file="../part/locale.jsp" %>
 
@@ -39,21 +40,9 @@ Invoice List
 
 <section>
     <div>
-        <c:if test="${requestScope.invoiceOperationMessage eq 13}">
-            No such invoice existing.
-        </c:if>
-
-        <%--<c:if test="${not empty requestScope.changedInvoceId}">--%>
-        <%--Booking with id ${requestScope.changedInvoiceId}--%>
-        <%--<c:choose>--%>
-        <%--<c:when test="${requestScope.changedInvoiceStatus eq 'true'}">--%>
-        <%--was blocking.--%>
-        <%--</c:when>--%>
-        <%--<c:otherwise>--%>
-        <%--was unblocked.--%>
-        <%--</c:otherwise>--%>
-        <%--</c:choose>--%>
-        <%--</c:if>--%>
+        <div>
+            <op-msg:operationMessage messageCode="13" textMessage="No such invoice existing."/>
+        </div>
     </div>
     <c:if test="${not empty requestScope.invoicesForView}">
         <div>

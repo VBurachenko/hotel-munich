@@ -31,7 +31,7 @@ public class ProvideBookingForViewCommand extends Command {
         if (bookingForView != null){
             request.setAttribute(ParameterName.BOOKINGS_FOR_VIEW, bookingForView);
         } else {
-            request.setAttribute(ParameterName.BOOKING_OPERATION_MESSAGE, ParameterName.NO_SUCH_BOOKING_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.NO_SUCH_BOOKING_MESSAGE_CODE);
         }
         request.getRequestDispatcher(PageEnum.BOOKING_LIST.getPath()).forward(request, response);
     }

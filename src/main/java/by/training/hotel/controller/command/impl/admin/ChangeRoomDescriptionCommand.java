@@ -39,7 +39,7 @@ public class ChangeRoomDescriptionCommand extends Command {
         if (roomUpdated){
             response.sendRedirect(UrlPattern.ROOM_CHANGE_SUCCESS);
         } else {
-            request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.ROOM_CHANGE_IMPOSSIBLE_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.ROOM_CHANGE_IMPOSSIBLE_MESSAGE_CODE);
             request.getRequestDispatcher(PageEnum.ROOM_LIST.getPath()).forward(request, response);
         }
 

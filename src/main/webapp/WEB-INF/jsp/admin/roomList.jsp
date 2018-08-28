@@ -4,9 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="custom-tag/footer" prefix="ftr" %>
 <%@ taglib uri="custom-tag/paginator" prefix="pgr" %>
+<%@ taglib uri="custom-tag/operation-message" prefix="op-msg"%>
 
 <%@ include file="../part/locale.jsp" %>
 
+<!DOCTYPE HTML>
 
 <html>
 <head>
@@ -21,11 +23,10 @@
 
 <c:import url="../part/header.jsp"/>
 
-Rooms list
-<br>
-
 
 <section>
+    Rooms list
+    <br>
     <form action="${pageContext.request.contextPath}/provideRoomForView.do" method="get">
         <label>Search room by number:
             <input type="text" name="roomNumber"/>
@@ -41,15 +42,11 @@ Rooms list
     <c:set var="pagesCount" value="${requestScope.roomsForView.pagesCount}" scope="page"/>
 
     <div>
-        <c:if test="${requestScope.roomOperationMessage eq 6}">
-            Room was not disabled.
-        </c:if>
-        <c:if test="${requestScope.roomOperationMessage eq 8}">
-            No such room existing.
-        </c:if>
-        <c:if test="${requestScope.roomOperationMessage eq 9}">
-            New room wasn't added.
-        </c:if>
+        <div>
+            <op-msg:operationMessage messageCode="6" textMessage="Room was not disabled."/>
+            <op-msg:operationMessage messageCode="8" textMessage="No such room existing."/>
+            <op-msg:operationMessage messageCode="9" textMessage="New room wasn't added."/>
+        </div>
 
         <c:if test="${not empty requestScope.disabledRoomNumber}">
             Room with number ${requestScope.disabledRoomNumber}

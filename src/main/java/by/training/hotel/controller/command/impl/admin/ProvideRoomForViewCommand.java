@@ -33,7 +33,7 @@ public class ProvideRoomForViewCommand extends Command {
         if (roomForView != null){
             request.setAttribute(ParameterName.ROOMS_FOR_VIEW, roomForView);
         } else {
-            request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.NO_SUCH_ROOM_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.NO_SUCH_ROOM_MESSAGE_CODE);
         }
 
         request.getRequestDispatcher(PageEnum.ROOM_LIST.getPath()).forward(request, response);

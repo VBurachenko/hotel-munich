@@ -52,7 +52,7 @@ public class PerformBookingProcessingCommand extends Command {
             session.removeAttribute(ParameterName.BOOKING_IN_PROCESS);
             session.removeAttribute(ParameterName.INVOICE_FOR_BOOKING);
 
-            request.setAttribute(ParameterName.BOOKING_OPERATION_MESSAGE, ParameterName.BOOKING_NOT_PROCESSED_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.BOOKING_NOT_PROCESSED_CODE);
             request.getRequestDispatcher(PageEnum.BOOKING_LIST.getPath()).forward(request, response);
         }
 

@@ -33,7 +33,7 @@ public class ProvideInvoiceForViewCommand extends Command {
         if (invoiceForView != null){
             request.setAttribute(ParameterName.INVOICES_FOR_VIEW, invoiceForView);
         } else {
-            request.setAttribute(ParameterName.INVOICE_OPERATION_MESSAGE, ParameterName.NO_SUCH_INVOICE_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.NO_SUCH_INVOICE_MESSAGE_CODE);
         }
         request.getRequestDispatcher(PageEnum.INVOICE_LIST.getPath()).forward(request, response);
     }

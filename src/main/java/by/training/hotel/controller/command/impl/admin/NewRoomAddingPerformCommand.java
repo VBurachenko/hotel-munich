@@ -38,7 +38,7 @@ public class NewRoomAddingPerformCommand extends Command {
         if (justAddedRoomNumber != null){
             response.sendRedirect(UrlPattern.ROOM_ADDED_SUCCESSFULLY);
         } else {
-            request.setAttribute(ParameterName.ROOM_OPERATION_MESSAGE, ParameterName.ROOM_NOT_ADDED_MESSAGE_CODE);
+            request.setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.ROOM_NOT_ADDED_MESSAGE_CODE);
             request.getRequestDispatcher(PageEnum.ROOM_LIST.getPath()).forward(request, response);
         }
     }
