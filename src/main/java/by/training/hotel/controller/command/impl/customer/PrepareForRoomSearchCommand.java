@@ -56,6 +56,6 @@ public class PrepareForRoomSearchCommand implements Command {
         request.setAttribute(ParameterName.SEARCH_UNIT, searchUnit);
         request.setAttribute(ParameterName.PAGE, page);
 
-        request.getRequestDispatcher(request.getContextPath() + UrlPattern.DISPLAY_FREE_ROOMS).forward(request, response);
+        request.getRequestDispatcher(UrlPattern.DISPLAY_FREE_ROOMS).forward(request, response);
     }
 }

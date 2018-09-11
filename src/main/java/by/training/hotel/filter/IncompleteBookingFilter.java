@@ -54,13 +54,11 @@ public class IncompleteBookingFilter implements Filter {
         HttpSession session = httpRequest.getSession();
         Integer userId = (Integer) session.getAttribute(ParameterName.USER_ID);
         String action = httpRequest.getServletPath();
-        System.out.println(action);
         if (PATTERN_ALLOWED_ACTION.matcher(action).find()){
             if (userId != null && !ALLOWED_ACTIONS.contains(action)) {
                 try{
                     bookingService.clearIncompleteBookings(userId);
                     invoiceService.clearUnspecifiedInvoices(userId);
-                    System.out.println("deleted");
                 } catch (ServiceException e){
                     LOGGER.error(e);
                 }
