@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class BookingSelectedRoomsCommand extends Command {
+public class BookingSelectedRoomsCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -46,7 +46,7 @@ public class BookingSelectedRoomsCommand extends Command {
 
         if (addedBookingId != null){
             session.setAttribute(ParameterName.BOOKING_ID, addedBookingId);
-            response.sendRedirect(UrlPattern.ATTACH_INVOICE_TO_BOOKING);
+            response.sendRedirect(request.getContextPath() + UrlPattern.ATTACH_INVOICE_TO_BOOKING);
         } else {
             request.getRequestDispatcher(PageEnum.BOOKING_IMPOSSIBLE.getPath()).forward(request, response);
         }

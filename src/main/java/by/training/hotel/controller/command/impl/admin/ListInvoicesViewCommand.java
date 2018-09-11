@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ListInvoicesViewCommand extends Command {
+public class ListInvoicesViewCommand implements Command {
 
     private final static int ITEMS_PER_PAGE = 10;
 

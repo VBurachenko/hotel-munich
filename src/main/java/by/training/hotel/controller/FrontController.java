@@ -25,16 +25,13 @@ public final class FrontController extends HttpServlet {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request,
-                                HttpServletResponse response)
+    private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getServletPath();
-
         CommandFactory factory = CommandFactory.getInstance();
-        Command command = factory.getCommand(action);
-
+        Command command = factory.getCommand(request);
         command.execute(request, response);
+
     }
 
 }

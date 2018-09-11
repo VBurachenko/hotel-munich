@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AdminOfficeCommand extends Command {
+public class AdminOfficeCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)

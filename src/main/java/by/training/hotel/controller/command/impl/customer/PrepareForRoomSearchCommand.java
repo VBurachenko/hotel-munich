@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class PrepareForRoomSearchCommand extends Command {
+public class PrepareForRoomSearchCommand implements Command {
 
     private final static int DEFAULT_ADULT_COUNT = 1;
     private final static int DEFAULT_CHILD_COUNT = 0;
@@ -56,6 +56,6 @@ public class PrepareForRoomSearchCommand extends Command {
         request.setAttribute(ParameterName.SEARCH_UNIT, searchUnit);
         request.setAttribute(ParameterName.PAGE, page);
 
-        request.getRequestDispatcher(UrlPattern.DISPLAY_FREE_ROOMS).forward(request, response);
+        request.getRequestDispatcher(request.getContextPath() + UrlPattern.DISPLAY_FREE_ROOMS).forward(request, response);
     }
 }

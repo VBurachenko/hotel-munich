@@ -9,6 +9,6 @@
     <title>Index</title>
 </head>
 <body>
-    <c:redirect url="/home.do"/>
+    <c:redirect url="${pageContext.request.contextPath}/home.do"/>
 </body>
 </html>

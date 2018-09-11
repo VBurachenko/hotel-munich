@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SuccessRegistrationCommand extends Command {
+public class SuccessRegistrationCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)

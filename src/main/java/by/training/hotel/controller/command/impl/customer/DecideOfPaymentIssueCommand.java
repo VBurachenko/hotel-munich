@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class DecideOfPaymentIssueCommand extends Command {
+public class DecideOfPaymentIssueCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -41,14 +41,15 @@ public class DecideOfPaymentIssueCommand extends Command {
                 }
             } else {
                 session.setAttribute(ParameterName.INVOICE_ID_FOR_PAYMENT, invoiceId);
-                response.sendRedirect(UrlPattern.PAY_INVOICE);
+                response.sendRedirect(request.getContextPath() + UrlPattern.PAY_INVOICE);
             }
         } catch (ServiceException e) {
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
         if (invoiceStatusDefined){
-            response.sendRedirect(UrlPattern.SUCCESS_PAYMENT);
+            response.sendRedirect(request.getContextPath() +
+                    UrlPattern.SUCCESS_PAYMENT);
         } else {
             System.out.println("2Booking can not be finalized");
         }

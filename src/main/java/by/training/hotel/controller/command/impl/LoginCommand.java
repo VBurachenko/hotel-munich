@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class LoginCommand extends Command {
+public class LoginCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)

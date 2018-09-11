@@ -13,7 +13,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,14 +33,17 @@ public class CommandManager {
     }
 
     public Map<String, Command> getAllCommands() throws MappingException {
+
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         ClassLoader loader = getClass().getClassLoader();
         Map<String, Command> actionsAndCommandsMap = new HashMap<>();
+
         try (InputStream stream = loader.getResourceAsStream(XML_FILE_COMMANDS_PATH)){
 
             DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
             Document usedDocWithCommands = docBuilder.parse(new InputSource(stream));
             Element root = usedDocWithCommands.getDocumentElement();
+
             NodeList commandsList = root.getElementsByTagName(COMMAND);
 
             for (int i = 0; i < commandsList.getLength(); i++){
@@ -51,22 +53,14 @@ public class CommandManager {
                 String actionName = getElementTextContent(parsedCommand, ACTION);
                 String commandClassName = getElementTextContent(parsedCommand, CLASS);
 
-                Class currentCommandClass = Class.forName(commandClassName);
-                Command command = (Command) currentCommandClass.getDeclaredConstructor().newInstance();
+                Class<?> commandClass = Class.forName(commandClassName);
+                Command command = (Command) commandClass.newInstance();
 
                 actionsAndCommandsMap.put(actionName, command);
             }
-        } catch (SAXException | IOException | ClassNotFoundException e) {
-            throw new MappingException(e);
-        } catch (ParserConfigurationException e) {
-            throw new MappingException(e);
-        } catch (NoSuchMethodException e) {
-            throw new MappingException(e);
-        } catch (IllegalAccessException e) {
-            throw new MappingException(e);
-        } catch (InstantiationException e) {
-            throw new MappingException(e);
-        } catch (InvocationTargetException e) {
+        } catch (SAXException | IOException | ClassNotFoundException |
+                ParserConfigurationException | IllegalAccessException |
+                InstantiationException e) {
             throw new MappingException(e);
         }
         return actionsAndCommandsMap;

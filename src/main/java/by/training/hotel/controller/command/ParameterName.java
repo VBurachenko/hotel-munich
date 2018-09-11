@@ -110,4 +110,7 @@ public final class ParameterName {
     public static final int USER_BLOCK_CHANGED_CODE = 16;
 
     public static final String USER_FOR_BLOCK = "userForBlock";
+
+    public static final String ALLOWED_ACTION_REG = "allowedActionRegex";
+
 }

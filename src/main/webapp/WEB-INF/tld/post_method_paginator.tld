@@ -8,7 +8,7 @@
     <description>post-method-paginator</description>
     <tlib-version>1.0</tlib-version>
     <short-name>post-pgr</short-name>
-    <uri>custom-tag/post_method_paginator</uri>
+    <uri>custom-tag/post-method-paginator</uri>
 
     <tag>
         <description>Use post method for view of page numbers during page navigation</description>

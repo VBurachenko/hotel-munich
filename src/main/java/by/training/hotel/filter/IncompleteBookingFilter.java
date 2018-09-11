@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -31,10 +32,15 @@ public class IncompleteBookingFilter implements Filter {
     private final static BookingService bookingService = ServiceFactory.getInstance().getBookingService();
     private final static InvoiceService invoiceService = ServiceFactory.getInstance().getInvoiceService();
 
-    private final static String ACTION_NAME_REGEX = "^/\\w*\\.do";
+    private static Pattern PATTERN_ALLOWED_ACTION;
 
     @Override
     public void init(FilterConfig filterConfig) {
+
+        ServletContext servletContext = filterConfig.getServletContext();
+        String allowedActionRegex = servletContext.getInitParameter(ParameterName.ALLOWED_ACTION_REG);
+        PATTERN_ALLOWED_ACTION = Pattern.compile(allowedActionRegex);
+
         Enumeration<String> allowedActionNames = filterConfig.getInitParameterNames();
         while (allowedActionNames.hasMoreElements()){
             String actionName = allowedActionNames.nextElement();
@@ -46,17 +52,15 @@ public class IncompleteBookingFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession();
-
         Integer userId = (Integer) session.getAttribute(ParameterName.USER_ID);
-
         String action = httpRequest.getServletPath();
-        Pattern patternActionName = Pattern.compile(ACTION_NAME_REGEX);
-
-        if (patternActionName.matcher(action).find()){
+        System.out.println(action);
+        if (PATTERN_ALLOWED_ACTION.matcher(action).find()){
             if (userId != null && !ALLOWED_ACTIONS.contains(action)) {
                 try{
                     bookingService.clearIncompleteBookings(userId);
                     invoiceService.clearUnspecifiedInvoices(userId);
+                    System.out.println("deleted");
                 } catch (ServiceException e){
                     LOGGER.error(e);
                 }
@@ -67,6 +71,7 @@ public class IncompleteBookingFilter implements Filter {
 
     @Override
     public void destroy() {
+        PATTERN_ALLOWED_ACTION = null;
         ALLOWED_ACTIONS.clear();
     }
 

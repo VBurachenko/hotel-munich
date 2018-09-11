@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public final class LogoutCommand extends Command {
+public final class LogoutCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)

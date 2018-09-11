@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class DisplayRoomsCommand extends Command {
+public class DisplayRoomsCommand implements Command {
 
     private static final int ITEMS_PER_PAGE = 4;
 

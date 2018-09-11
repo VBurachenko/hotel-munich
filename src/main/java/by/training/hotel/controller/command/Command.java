@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public abstract class Command {
+public interface Command {
 
-    protected final static ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
-    protected static final Logger LOGGER = LogManager.getLogger();
+    Logger LOGGER = LogManager.getLogger();
 
-    public abstract void execute(HttpServletRequest request, HttpServletResponse response)
+    void execute(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException;
 }

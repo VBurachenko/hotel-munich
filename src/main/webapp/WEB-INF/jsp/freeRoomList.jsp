@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="custom-tag/footer" prefix="ftr" %>
-<%@ taglib uri="custom-tag/post_method_paginator" prefix="post-pgr" %>
+<%@ taglib uri="custom-tag/post-method-paginator" prefix="post-pgr" %>
 <%@ include file="part/locale.jsp" %>
 
 <!DOCTYPE html>

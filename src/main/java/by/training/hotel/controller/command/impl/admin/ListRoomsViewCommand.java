@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ListRoomsViewCommand extends Command {
+public class ListRoomsViewCommand implements Command {
 
     private final static int ITEMS_PER_PAGE = 10;
 

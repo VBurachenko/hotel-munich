@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class PaymentPerformCommand extends Command {
+public class PaymentPerformCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -44,7 +44,7 @@ public class PaymentPerformCommand extends Command {
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);
         }
         if (paymentPerformed && bookingConfirmed){
-            response.sendRedirect(UrlPattern.SUCCESS_PAYMENT);
+            response.sendRedirect(request.getContextPath() + UrlPattern.SUCCESS_PAYMENT);
         } else {
             System.out.println("error payment");
         }

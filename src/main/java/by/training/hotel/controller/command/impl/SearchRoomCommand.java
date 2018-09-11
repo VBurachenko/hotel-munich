@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SearchRoomCommand extends Command{
+public class SearchRoomCommand implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)

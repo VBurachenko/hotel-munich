@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class ChangeBookingCommand extends Command {
+public class ChangeBookingCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -45,7 +45,7 @@ public class ChangeBookingCommand extends Command {
         session.setAttribute(ParameterName.BOOKING_FOR_CHANGE, bookingForChange);
         session.setAttribute(ParameterName.SELECTED_ROOMS, roomNumbers);
 
-        response.sendRedirect(UrlPattern.PERFORM_CHANGE_BOOKING);
+        response.sendRedirect(request.getContextPath() + UrlPattern.PERFORM_CHANGE_BOOKING);
 
 
     }

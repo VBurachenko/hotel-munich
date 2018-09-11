@@ -12,7 +12,7 @@ import static by.training.hotel.controller.command.ParameterName.CURRENT_PAGE;
 import static by.training.hotel.controller.command.ParameterName.LOCAL_LANG;
 import static by.training.hotel.controller.command.ParameterName.SET_LANG;
 
-public class LanguageCommand extends Command {
+public class LanguageCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)

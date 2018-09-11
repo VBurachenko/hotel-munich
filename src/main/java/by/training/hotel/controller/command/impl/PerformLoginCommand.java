@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class PerformLoginCommand extends Command{
+public class PerformLoginCommand implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)
@@ -28,7 +28,7 @@ public class PerformLoginCommand extends Command{
 
         UserService userService = serviceFactory.getUserService();
 
-        String urlPattern = null;
+        String urlPattern;
 
         try {
 
@@ -45,8 +45,7 @@ public class PerformLoginCommand extends Command{
                 request.getSession().setAttribute(ParameterName.OPERATION_MESSAGE, ParameterName.WRONG_PASSWORD_OR_EMAIL_CODE);
                 urlPattern = UrlPattern.LOGIN;
             }
-            String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + urlPattern);
+            response.sendRedirect(request.getContextPath() + urlPattern);
         } catch (ServiceException e){
             LOGGER.error(e);
             request.getRequestDispatcher(PageEnum.ERROR_PAGE.getPath()).forward(request, response);

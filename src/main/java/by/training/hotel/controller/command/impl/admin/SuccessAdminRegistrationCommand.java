@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SuccessAdminRegistrationCommand extends Command {
+public class SuccessAdminRegistrationCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getRequestDispatcher(PageEnum.SUCCESS_ADMIN_REGISTRATION.getPath()).forward(request, response);

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class AttachInvoiceToBookingCommand extends Command {
+public class AttachInvoiceToBookingCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -40,7 +40,7 @@ public class AttachInvoiceToBookingCommand extends Command {
                     session.setAttribute(ParameterName.BOOKING_IN_PROCESS, bookingInProcess);
                     session.setAttribute(ParameterName.INVOICE_FOR_BOOKING, invoiceForBooking);
 
-                    response.sendRedirect(UrlPattern.COMPLETE_BOOKING);
+                    response.sendRedirect(request.getContextPath() + UrlPattern.COMPLETE_BOOKING);
                 }
             } else {
                 request.getRequestDispatcher(PageEnum.BOOKING_IMPOSSIBLE.getPath()).forward(request, response);

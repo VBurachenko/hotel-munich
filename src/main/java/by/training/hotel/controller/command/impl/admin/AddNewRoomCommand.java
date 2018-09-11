@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AddNewRoomCommand extends Command {
+public class AddNewRoomCommand implements Command {
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getRequestDispatcher(PageEnum.ADDING_NEW_ROOM_FORM.getPath()).forward(request, response);
