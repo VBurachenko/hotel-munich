@@ -1,4 +1,4 @@
-package by.training.hotel.filter;
+package by.training.hotel.controller.filter;
 
 import by.training.hotel.controller.command.ParameterName;
 import by.training.hotel.service.BookingService;

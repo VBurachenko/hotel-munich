@@ -31,7 +31,7 @@
     User List
     <br>
 
-    <form action="${pageContext.request.contextPath}/provideUserForView.do" method="get">
+    <form action="${pageContext.request.contextPath}/admin/provideUserForView.do" method="get">
         <label>Search user by user-id, email or telephone number:
             <input type="text" name="searchUserArtifact"/>
         </label>
@@ -119,7 +119,7 @@
                             </c:choose>
                             <c:if test="${(user.role ne 'MODER') and (user.role ne 'ADMIN')}">
                                 <form id="changeBlock"
-                                      action="${pageContext.request.contextPath}/userBlockingControl.do" method="post">
+                                      action="${pageContext.request.contextPath}/admin/userBlockingControl.do" method="post">
                                     <input type="hidden" name="user_id" value="${user.userId}"/>
                                     <input type="submit" value="Change block"/>
                                 </form>
@@ -128,7 +128,7 @@
 
                         <td>${user.role}
                             <c:if test="${(user.role eq 'CUSTOMER') and (sessionScope.role eq 'MODER')}">
-                                <form action="${pageContext.request.contextPath}/registerNewAdmin.do" method="post">
+                                <form action="${pageContext.request.contextPath}/moder/registerNewAdmin.do" method="post">
                                     <input type="hidden" name="email" value="${user.email}"/>
                                     <input type="submit" value="make admin"/>
                                 </form>
@@ -145,7 +145,7 @@
                     <div class="pagination">
                         <pgr:navPages currentPage="${currentPage}"
                                       pagesCount="${pagesCount}"
-                                      urlPattern="/listUsersView.do"
+                                      urlPattern="/admin/listUsersView.do"
                                       previous="&laquo;"
                                       next="&raquo;"/>
                     </div>

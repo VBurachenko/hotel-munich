@@ -13,7 +13,7 @@
     <tag>
         <description>Use post method for view of page numbers during page navigation</description>
         <name>navPagesWithPost</name>
-        <tag-class>by.training.hotel.tag.PostMethodPaginationTag</tag-class>
+        <tag-class>by.training.hotel.controller.tag.PostMethodPaginationTag</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

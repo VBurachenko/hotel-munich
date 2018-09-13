@@ -16,7 +16,7 @@
             <element name="action" default="/">
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="/{1}[A-z.]+"/>
+                        <pattern value="/{1}[A-z./]+"/>
                     </restriction>
                 </simpleType>
             </element>

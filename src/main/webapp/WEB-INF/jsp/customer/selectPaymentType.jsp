@@ -23,7 +23,7 @@
     Your booking: ${sessionScope.bookingInProcess}<br>
     Your invoice: ${sessionScope.invoiceForBooking}
 
-    <form action="${pageContext.request.contextPath}/decidePaymentIssue.do" method="post">
+    <form action="${pageContext.request.contextPath}/customer/decidePaymentIssue.do" method="post">
         <label>
             <input type="radio" name="payment" value="instant_pay" checked/> Pay now
         </label><br>

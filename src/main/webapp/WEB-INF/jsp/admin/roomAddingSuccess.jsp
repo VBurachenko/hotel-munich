@@ -23,7 +23,7 @@
 
     <section>
         <p>
-            Room added successfully <a href="${pageContext.request.contextPath}/listRoomsView.do">
+            Room added successfully <a href="${pageContext.request.contextPath}/admin/listRoomsView.do">
             Go to rooms list
         </a>
         </p>

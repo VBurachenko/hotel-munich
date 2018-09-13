@@ -1,4 +1,4 @@
-package by.training.hotel.tag;
+package by.training.hotel.controller.tag;
 
 final class StandardTagName {
 

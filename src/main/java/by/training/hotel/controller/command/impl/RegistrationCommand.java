@@ -1,4 +1,4 @@
-package by.training.hotel.controller.command.impl.customer;
+package by.training.hotel.controller.command.impl;
 
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.mapping.PageEnum;

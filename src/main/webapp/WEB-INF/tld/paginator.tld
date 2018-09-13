@@ -13,7 +13,7 @@
     <tag>
         <description>View of page numbers for page navigation</description>
         <name>navPages</name>
-        <tag-class>by.training.hotel.tag.PaginationTag</tag-class>
+        <tag-class>by.training.hotel.controller.tag.PaginationTag</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

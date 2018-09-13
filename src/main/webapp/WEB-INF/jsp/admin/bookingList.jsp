@@ -26,7 +26,7 @@
 bookingList
 <br>
 
-<form action="${pageContext.request.contextPath}/provideBookingForView.do" method="get">
+<form action="${pageContext.request.contextPath}/admin/provideBookingForView.do" method="get">
     <label>Search booking by booking id:
         <input type="text" name="bookingId"/>
     </label>
@@ -72,12 +72,12 @@ bookingList
                     <td>${booking.adultCount}</td>
                     <td>${booking.childCount}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/provideInvoiceForView.do?invoiceId=${booking.invoiceId}">
+                        <a href="${pageContext.request.contextPath}/admin/provideInvoiceForView.do?invoiceId=${booking.invoiceId}">
                                 ${booking.invoiceId}
                         </a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/provideUserForView.do?searchUserArtifact=${booking.userId}">
+                        <a href="${pageContext.request.contextPath}/admin/provideUserForView.do?searchUserArtifact=${booking.userId}">
                                 ${booking.userId}
                         </a>
                     </td>
@@ -88,7 +88,7 @@ bookingList
                         </c:forEach>
                     </td>
                     <td>
-                        <form id="processBookingAndInvoice" action="${pageContext.request.contextPath}/prepareForBookingProcess.do" method="post">
+                        <form id="processBookingAndInvoice" action="${pageContext.request.contextPath}/admin/prepareForBookingProcess.do" method="post">
                             <input type="hidden" name="bookingId" value="${booking.bookingId}">
                             <input type="submit" value="process"/>
                         </form>
@@ -108,7 +108,7 @@ bookingList
                 <div class="pagination">
                     <pgr:navPages currentPage="${currentPage}"
                                   pagesCount="${pagesCount}"
-                                  urlPattern="/listBookingsView.do"
+                                  urlPattern="/admin/listBookingsView.do"
                                   previous="&laquo;"
                                   next="&raquo;"/>
                 </div>

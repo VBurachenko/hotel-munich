@@ -20,7 +20,7 @@
 
     <section>
         <p>
-            Booking processed successfully <a href="${pageContext.request.contextPath}/listBookingsView.do">
+            Booking processed successfully <a href="${pageContext.request.contextPath}/admin/listBookingsView.do">
             Go to bookings list
         </a>
         </p>

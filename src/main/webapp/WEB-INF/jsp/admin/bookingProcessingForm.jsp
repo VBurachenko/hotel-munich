@@ -27,7 +27,7 @@
     Invoice For this booking : ${invoice}<br>
 </div> <br>
 <div>
-    <form action="${pageContext.request.contextPath}/performBookingProcessing.do" method="post">
+    <form action="${pageContext.request.contextPath}/admin/performBookingProcessing.do" method="post">
         <hr>
         <div> Select status for booking:<br>
             <c:if test="${booking.bookingStatus eq 'REGISTERED'}">

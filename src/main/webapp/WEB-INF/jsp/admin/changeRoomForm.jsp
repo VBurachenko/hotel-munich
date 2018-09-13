@@ -26,7 +26,7 @@
 <section>
     <c:set var="room" value="${sessionScope.roomForChange}" scope="page"/>
     <div class="container">
-        <form action="${pageContext.request.contextPath}/changeRoomDescription.do" method="post">
+        <form action="${pageContext.request.contextPath}/admin/changeRoomDescription.do" method="post">
 
             <label>Room Number: <input type="text" name="roomNumber" value="${room.roomNumber}" readonly/></label><br/>
 

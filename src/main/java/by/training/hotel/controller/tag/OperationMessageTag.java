@@ -1,4 +1,4 @@
-package by.training.hotel.tag;
+package by.training.hotel.controller.tag;
 
 import by.training.hotel.controller.command.ParameterName;
 

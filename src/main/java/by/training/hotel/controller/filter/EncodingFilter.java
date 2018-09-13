@@ -1,4 +1,4 @@
-package by.training.hotel.filter;
+package by.training.hotel.controller.filter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

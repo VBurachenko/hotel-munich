@@ -77,7 +77,7 @@
     <c:set var="changedBooking" value="${requestScope.bookingForChange}" scope="page"/>
 
     <section>
-        <form action="${pageContext.request.contextPath}/performBookingChange.do" method="post">
+        <form action="${pageContext.request.contextPath}/customer/performBookingChange.do" method="post">
             <label>Booking id:
                 <input type="text" name="bookingId" value="${requestScope.bookingForChange.bookingId}" readonly/>
             </label>

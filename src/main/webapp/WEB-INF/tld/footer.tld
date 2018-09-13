@@ -13,7 +13,7 @@
     <tag>
         <description>Demonstrates web resource info on footers of pages</description>
         <name>footer</name>
-        <tag-class>by.training.hotel.tag.CommonFooterTag</tag-class>
+        <tag-class>by.training.hotel.controller.tag.CommonFooterTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 </taglib>

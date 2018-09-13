@@ -13,7 +13,7 @@
     <tag>
         <description>Provides view of appeared operation message</description>
         <name>operationMessage</name>
-        <tag-class>by.training.hotel.tag.OperationMessageTag</tag-class>
+        <tag-class>by.training.hotel.controller.tag.OperationMessageTag</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

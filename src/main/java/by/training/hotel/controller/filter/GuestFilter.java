@@ -1,4 +1,7 @@
-package by.training.hotel.filter;
+package by.training.hotel.controller.filter;
+
+import by.training.hotel.controller.command.ParameterName;
+import by.training.hotel.entity.UserRole;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -10,17 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static by.training.hotel.controller.command.ParameterName.LOCAL_LANG;
-
-public class LanguageFilter implements Filter {
-
-    private static final String APPLICATION_LANGUAGE = "Language";
-
-    private String defaultLanguage;
+public class GuestFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        defaultLanguage = filterConfig.getInitParameter(APPLICATION_LANGUAGE);
+    public void init(FilterConfig filterConfig) {
+
     }
 
     @Override
@@ -30,16 +27,17 @@ public class LanguageFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession();
 
-        String localLang = (String) session.getAttribute(LOCAL_LANG);
+        String role = (String) session.getAttribute(ParameterName.ROLE);
 
-        if (localLang == null){
-            session.setAttribute(LOCAL_LANG, defaultLanguage);
+        if (role == null || role.isEmpty()){
+            session.setAttribute(ParameterName.ROLE, UserRole.GUEST.toString());
         }
+
         chain.doFilter(httpRequest, response);
     }
 
     @Override
     public void destroy() {
-        defaultLanguage = null;
+
     }
 }

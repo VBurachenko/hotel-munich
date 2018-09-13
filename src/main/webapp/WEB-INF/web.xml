@@ -29,11 +29,7 @@
     </session-config>
 
     <listener>
-        <listener-class>by.training.hotel.listener.ConnectionPoolInitializer</listener-class>
-    </listener>
-
-    <listener>
-        <listener-class>by.training.hotel.listener.RoleAttributeListener</listener-class>
+        <listener-class>by.training.hotel.controller.listener.ConnectionPoolInitializer</listener-class>
     </listener>
 
     <error-page>
@@ -42,7 +38,7 @@
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
-        <filter-class>by.training.hotel.filter.EncodingFilter</filter-class>
+        <filter-class>by.training.hotel.controller.filter.EncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
@@ -56,7 +52,7 @@
 
     <filter>
         <filter-name>LanguageFilter</filter-name>
-        <filter-class>by.training.hotel.filter.LanguageFilter</filter-class>
+        <filter-class>by.training.hotel.controller.filter.LanguageFilter</filter-class>
         <init-param>
             <param-name>Language</param-name>
             <param-value>en</param-value>
@@ -69,42 +65,42 @@
 
     <filter>
         <filter-name>IncompleteBookingFilter</filter-name>
-        <filter-class>by.training.hotel.filter.IncompleteBookingFilter</filter-class>
+        <filter-class>by.training.hotel.controller.filter.IncompleteBookingFilter</filter-class>
         <init-param>
             <param-name>ChangeLanguage</param-name>
             <param-value>/changeLang.do</param-value>
         </init-param>
         <init-param>
             <param-name>BookingSelectedRooms</param-name>
-            <param-value>/bookingSelectedRooms.do</param-value>
+            <param-value>/customer/bookingSelectedRooms.do</param-value>
         </init-param>
         <init-param>
             <param-name>SingleRoomBooking</param-name>
-            <param-value>/singleRoomBooking.do</param-value>
+            <param-value>/customer/singleRoomBooking.do</param-value>
         </init-param>
         <init-param>
             <param-name>AttachInvoice</param-name>
-            <param-value>/attachInvoiceToBooking.do</param-value>
+            <param-value>/customer/attachInvoiceToBooking.do</param-value>
         </init-param>
         <init-param>
             <param-name>CompleteBooking</param-name>
-            <param-value>/completeBooking.do</param-value>
+            <param-value>/customer/completeBooking.do</param-value>
         </init-param>
         <init-param>
             <param-name>DecideOfPayment</param-name>
-            <param-value>/decidePaymentIssue.do</param-value>
+            <param-value>/customer/decidePaymentIssue.do</param-value>
         </init-param>
         <init-param>
             <param-name>InstantPayment</param-name>
-            <param-value>/payInvoice.do</param-value>
+            <param-value>/customer/payInvoice.do</param-value>
         </init-param>
         <init-param>
             <param-name>PrepareForPayment</param-name>
-            <param-value>/prepareForPayment.do</param-value>
+            <param-value>/customer/prepareForPayment.do</param-value>
         </init-param>
         <init-param>
             <param-name>PaymentPerform</param-name>
-            <param-value>/paymentPerform.do</param-value>
+            <param-value>/customer/paymentPerform.do</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -113,12 +109,39 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>RoleFilter</filter-name>
-        <filter-class>by.training.hotel.filter.RoleAccessFilter</filter-class>
+        <filter-name>GuestFilter</filter-name>
+        <filter-class>by.training.hotel.controller.filter.GuestFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>RoleFilter</filter-name>
+        <filter-name>GuestFilter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>CustomerFilter</filter-name>
+        <filter-class>by.training.hotel.controller.filter.CustomerAccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <url-pattern>/customer/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>by.training.hotel.controller.filter.AdminAccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ModerFilter</filter-name>
+        <filter-class>by.training.hotel.controller.filter.ModerAccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ModerFilter</filter-name>
+        <url-pattern>/moder/*</url-pattern>
     </filter-mapping>
 
     <jsp-config>

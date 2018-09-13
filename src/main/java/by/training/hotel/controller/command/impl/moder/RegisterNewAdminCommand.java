@@ -1,4 +1,4 @@
-package by.training.hotel.controller.command.impl.admin;
+package by.training.hotel.controller.command.impl.moder;
 
 import by.training.hotel.controller.command.Command;
 import by.training.hotel.controller.command.ParameterName;

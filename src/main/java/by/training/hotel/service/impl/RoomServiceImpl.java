@@ -65,7 +65,7 @@ public class RoomServiceImpl implements RoomService {
             Room selectedRoom = roomDao.getById(Integer.valueOf(roomNumber));
             createdBooking.getRoomsSet().add(selectedRoom);
         } catch (DAOException e) {
-            throw new ServiceException(e);
+            throw new ServiceException("eeee" + roomNumber, e);
         }
     }
 

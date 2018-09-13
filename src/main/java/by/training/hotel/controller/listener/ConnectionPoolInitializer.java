@@ -1,4 +1,4 @@
-package by.training.hotel.listener;
+package by.training.hotel.controller.listener;
 
 import by.training.hotel.dao.connection_pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;

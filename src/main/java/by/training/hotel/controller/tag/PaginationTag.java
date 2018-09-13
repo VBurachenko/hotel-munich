@@ -1,4 +1,4 @@
-package by.training.hotel.tag;
+package by.training.hotel.controller.tag;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;

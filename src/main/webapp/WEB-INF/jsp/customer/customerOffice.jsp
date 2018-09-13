@@ -130,7 +130,7 @@
                                     </label>
                                     <c:if test="${currentBooking.bookingStatus eq 'REGISTERED'}">
                                         <c:if test="${sessionScope.blocking eq 0}">
-                                            <form action="${pageContext.request.contextPath}/openChangeForm.do"
+                                            <form action="${pageContext.request.contextPath}/customer/openChangeForm.do"
                                                   method="post">
                                                 <input type="hidden" name="bookingId"
                                                        value="${currentBooking.bookingId}"/>

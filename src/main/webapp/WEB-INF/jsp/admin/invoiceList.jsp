@@ -28,7 +28,7 @@
 Invoice List
 <br>
 
-<form action="${pageContext.request.contextPath}/provideInvoiceForView.do" method="get">
+<form action="${pageContext.request.contextPath}/admin/provideInvoiceForView.do" method="get">
     <label>Search invoice by id:
         <input type="text" name="invoiceId"/>
     </label>
@@ -65,7 +65,7 @@ Invoice List
                     <tr>
                         <td>${invoice.invoiceId}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/provideUserForView.do?searchUserArtifact=${invoice.userId}">
+                            <a href="${pageContext.request.contextPath}/admin/provideUserForView.do?searchUserArtifact=${invoice.userId}">
                                     ${invoice.userId}
                             </a>
                         </td>
@@ -84,7 +84,7 @@ Invoice List
                             </c:choose>
                         </td>
                         <td>
-                            <form id="processBookingAndInvoice" action="${pageContext.request.contextPath}/prepareForBookingProcess.do" method="post">
+                            <form id="processBookingAndInvoice" action="${pageContext.request.contextPath}/admin/prepareForBookingProcess.do" method="post">
                                 <input type="hidden" name="invoiceId" value="${invoice.invoiceId}">
                                 <input type="submit" value="process"/>
                             </form>
@@ -99,7 +99,7 @@ Invoice List
                     <div class="pagination">
                         <pgr:navPages currentPage="${currentPage}"
                                       pagesCount="${pagesCount}"
-                                      urlPattern="/listInvoicesView.do"
+                                      urlPattern="/admin/listInvoicesView.do"
                                       previous="&laquo;"
                                       next="&raquo;"/>
                     </div>

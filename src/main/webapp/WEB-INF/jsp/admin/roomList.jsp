@@ -27,14 +27,14 @@
 <section>
     Rooms list
     <br>
-    <form action="${pageContext.request.contextPath}/provideRoomForView.do" method="get">
+    <form action="${pageContext.request.contextPath}/admin/provideRoomForView.do" method="get">
         <label>Search room by number:
             <input type="text" name="roomNumber"/>
         </label>
         <input type="submit" value="search"/>
     </form>
 
-    <form action="${pageContext.request.contextPath}/addNewRoom.do" method="get">
+    <form action="${pageContext.request.contextPath}/admin/addNewRoom.do" method="get">
         <input type="submit" value="Add new room"/>
     </form>
 
@@ -88,7 +88,7 @@
                         <c:choose>
                             <c:when test="${room.availableStatus eq 'true'}">
                                 <td>Is available
-                                    <form id="disable" action="${pageContext.request.contextPath}/roomBlockingControl.do"
+                                    <form id="disable" action="${pageContext.request.contextPath}/admin/roomBlockingControl.do"
                                           method="post">
                                         <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                         <input type="hidden" name="blockDown" value="false"/>
@@ -98,7 +98,7 @@
                             </c:when>
                             <c:otherwise>
                                 <td>NOT available
-                                    <form id="makeAble" action="${pageContext.request.contextPath}/roomBlockingControl.do"
+                                    <form id="makeAble" action="${pageContext.request.contextPath}/admin/roomBlockingControl.do"
                                           method="post">
                                         <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                         <input type="hidden" name="blockDown" value="true"/>
@@ -108,7 +108,7 @@
                             </c:otherwise>
                         </c:choose>
                         <td>
-                            <form id="changeRoom" action="${pageContext.request.contextPath}/openRoomChangeForm.do" method="post">
+                            <form id="changeRoom" action="${pageContext.request.contextPath}/admin/openRoomChangeForm.do" method="post">
                                 <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
                                 <input type="submit" value="change"/>
                             </form>
@@ -124,7 +124,7 @@
                     <div class="pagination">
                         <pgr:navPages currentPage="${currentPage}"
                                       pagesCount="${pagesCount}"
-                                      urlPattern="/listRoomsView.do"
+                                      urlPattern="/admin/listRoomsView.do"
                                       previous="&laquo;"
                                       next="&raquo;"/>
                     </div>

@@ -26,7 +26,7 @@
 
 <section>
     <div class="container">
-        <form action="${pageContext.request.contextPath}/newRoomAddingPerform.do" method="post">
+        <form action="${pageContext.request.contextPath}/admin/newRoomAddingPerform.do" method="post">
 
             <label>Room Number: <input type="text" name="roomNumber" placeholder="" /></label><br/>
 

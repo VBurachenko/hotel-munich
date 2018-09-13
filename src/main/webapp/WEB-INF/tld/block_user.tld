@@ -13,7 +13,7 @@
     <tag>
         <description>Provides view of message user's blocking reason</description>
         <name>userBlock</name>
-        <tag-class>by.training.hotel.tag.UserBlockingMessageTag</tag-class>
+        <tag-class>by.training.hotel.controller.tag.UserBlockingMessageTag</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

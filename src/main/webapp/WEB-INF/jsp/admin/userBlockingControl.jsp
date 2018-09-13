@@ -38,7 +38,7 @@
 <c:set var="userForBlock" value="${requestScope.userForBlock}" scope="page"/>
 
 <section>
-    <form action="${pageContext.request.contextPath}/performUserBlockChange.do" method="post">
+    <form action="${pageContext.request.contextPath}/admin/performUserBlockChange.do" method="post">
         <label>User-id:
             <input type="text" name="user_id" value="${userForBlock.userId}" readonly/>
         </label>

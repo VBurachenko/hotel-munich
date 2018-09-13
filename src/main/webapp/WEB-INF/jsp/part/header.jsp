@@ -17,16 +17,16 @@
     </a>
 
     <c:if test="${sessionScope.role eq 'CUSTOMER'}">
-        <a href="${pageContext.request.contextPath}/openCart.do">
+        <a href="${pageContext.request.contextPath}/customer//openCart.do">
             <fmt:message key="page.btn.cart"/>
         </a>
     </c:if>
 
     <c:if test="${sessionScope.role eq 'ADMIN' or sessionScope.role eq 'MODER'}">
-        <a href="${pageContext.request.contextPath}/listUsersView.do">Users</a>
-        <a href="${pageContext.request.contextPath}/listBookingsView.do">Bookings</a>
-        <a href="${pageContext.request.contextPath}/listInvoicesView.do">Invoices</a>
-        <a href="${pageContext.request.contextPath}/listRoomsView.do">Rooms</a>
+        <a href="${pageContext.request.contextPath}/admin/listUsersView.do">Users</a>
+        <a href="${pageContext.request.contextPath}/admin/listBookingsView.do">Bookings</a>
+        <a href="${pageContext.request.contextPath}/admin/listInvoicesView.do">Invoices</a>
+        <a href="${pageContext.request.contextPath}/admin/listRoomsView.do">Rooms</a>
     </c:if>
 
     <div class="header-right">

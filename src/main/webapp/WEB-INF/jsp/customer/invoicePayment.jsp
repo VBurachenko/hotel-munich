@@ -23,7 +23,7 @@
         Payment page <br>
         ${sessionScope.invoiceForPayment}
 
-        <form action="${pageContext.request.contextPath}/paymentPerform.do" method="post">
+        <form action="${pageContext.request.contextPath}/customer/paymentPerform.do" method="post">
             <label>Insert total sum payment:
                 <input type="text" name="totalAmount"/>
             </label>

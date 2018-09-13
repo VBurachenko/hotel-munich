@@ -19,7 +19,7 @@
 
     <section>
         <p>
-            Admin registered successfully <a href="${pageContext.request.contextPath}/listUsersView.do">
+            Admin registered successfully <a href="${pageContext.request.contextPath}/admin/listUsersView.do">
             Go to users list
         </a>
         </p>
